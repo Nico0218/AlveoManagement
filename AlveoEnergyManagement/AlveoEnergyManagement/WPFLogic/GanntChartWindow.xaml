@@ -1,0 +1,14 @@
+﻿<Window x:Class="AlveoEnergyManagement.WPFLogic.GanntChartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlveoEnergyManagement.WPFLogic"
+        mc:Ignorable="d"
+        Title="GanntChartWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Sample Data DisplyLabel" HorizontalAlignment="Left" Margin="34,11,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtGanntID" HorizontalAlignment="Left" Margin="44,37,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="221"/>
+
+    </Grid>
+</Window>
