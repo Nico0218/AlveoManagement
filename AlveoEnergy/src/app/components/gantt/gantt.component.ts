@@ -17,13 +17,42 @@ var gantt = require('dhtmlx-gantt');
 export class GanttComponent implements OnInit, AfterViewInit {
 	@ViewChild('gantt_here') ganttContainer: ElementRef;
 
-
 	constructor(private taskService: TaskService, private linkService: LinkService) { }
 	ngAfterViewInit(): void {
 
 	}
 
 	ngOnInit() {
+		gantt.gantt.config.layout = {
+			css: "gantt_container",
+			rows: [
+				{
+					cols: [
+						{
+							// the default grid view  
+							view: "grid",
+							scrollX: "scrollHor",
+							scrollY: "scrollVer"
+						},
+						{ resizer: true, width: 1 },
+						{
+							// the default timeline view
+							view: "timeline",
+							scrollX: "scrollHor",
+							scrollY: "scrollVer"
+						},
+						{
+							view: "scrollbar",
+							id: "scrollVer"
+						}
+					]
+				},
+				{
+					view: "scrollbar",
+					id: "scrollHor"
+				}
+			]
+		}
 
 		gantt.gantt.config.xml_date = '%Y-%m-%d %H:%i';
 
@@ -32,7 +61,10 @@ export class GanttComponent implements OnInit, AfterViewInit {
 		const dp = gantt.gantt.createDataProcessor({
 			task: {
 				update: (data: Task) => this.taskService.update(data),
-				create: (data: Task) => this.taskService.insert(data),
+				create: (data: Task) => {
+					this.taskService.insert(data);
+					gantt.gantt.resetLayout();
+				},
 				delete: (id) => this.taskService.remove(id)
 			},
 			link: {
