@@ -1,0 +1,24 @@
+<h2>Inventory</h2>
+
+ <input #partSearch placeholder="part number" />
+
+<input type="button" value="Search" (click)="getPartNumber(partSearch.value)" />
+
+
+<p> Part Number</p>
+<textarea readonly id="partNumDisp" style="resize: none;"></textarea>
+
+<p>Part Description</p>
+<textarea readonly id="partDescriptionDisp" style="resize: none;"></textarea>
+
+<p>Part Quantity in stock</p>
+<textarea readonly id="partQtyDisp" style="resize: none;"></textarea>
+
+<p>Part Quantity Ordered</p>
+<textarea readonly id="partQtyOrderedDisp" style="resize: none;"></textarea>
+
+<p>Part Cost</p>
+<textarea readonly id="partCostDisp" style="resize: none;"></textarea>
+
+<p>Part Supplier</p>
+<textarea readonly id="PartSupplierDisp" style="resize: none;"></textarea>
