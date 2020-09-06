@@ -6,6 +6,11 @@ import { Link } from '../../models/link';
 import 'dhtmlx-gantt';
 
 var gantt = require('dhtmlx-gantt');
+// if (gantt.gantt.selectedId() != null) {
+// 	var TaskName = gantt.gantt.getTask(gantt.gantt.getSelectedId()).text;
+// 	var TaskStartDate = gantt.gantt.getTask(gantt.gantt.getSelectedId()).Start_Date;
+// }
+
 
 @Component({
 	encapsulation: ViewEncapsulation.None,
@@ -121,10 +126,11 @@ export class GanttComponent implements OnInit, AfterViewInit {
 	}
 
 	public Save() {
+		debugger
 		var data = [];
 		gantt.gantt.eachTask(ii => {
 			data.push(ii);
 		});
 		console.log(JSON.stringify(data))
-	}
+	};
 }
