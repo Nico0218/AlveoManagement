@@ -1,0 +1,1 @@
+For structure only classes

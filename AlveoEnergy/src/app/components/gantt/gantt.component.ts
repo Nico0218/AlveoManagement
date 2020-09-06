@@ -4,6 +4,8 @@ import { LinkService } from '../../services/link.service';
 import { Task } from '../../models/task';
 import { Link } from '../../models/link';
 import 'dhtmlx-gantt';
+import { GanttService } from '../../services/gantt.service';
+import { map } from 'rxjs/operators';
 
 var gantt = require('dhtmlx-gantt');
 // if (gantt.gantt.selectedId() != null) {
@@ -22,12 +24,48 @@ var gantt = require('dhtmlx-gantt');
 export class GanttComponent implements OnInit, AfterViewInit {
 	@ViewChild('gantt_here') ganttContainer: ElementRef;
 
-	constructor(private taskService: TaskService, private linkService: LinkService) { }
+	constructor(private taskService: TaskService, private linkService: LinkService, private ganttService: GanttService) {
+
+	}
 	ngAfterViewInit(): void {
 
 	}
 
 	ngOnInit() {
+		this.setGanttStyleConfig();
+		gantt.gantt.init(this.ganttContainer.nativeElement);
+		const dp = gantt.gantt.createDataProcessor({
+			task: {
+				update: (data: Task) => this.taskService.update(data),
+				create: (data: Task) => {
+					this.taskService.insert(data);
+					gantt.gantt.resetLayout();
+				},
+				delete: (id) => this.taskService.remove(id)
+			},
+			link: {
+				update: (data: Link) => this.linkService.update(data),
+				create: (data: Link) => this.linkService.insert(data),
+				delete: (id) => this.linkService.remove(id)
+			}
+		});
+
+		Promise.all([this.taskService.get(), this.linkService.get()])
+			.then(([data, links]) => {
+				gantt.gantt.parse({ data, links });
+			});
+
+		this.ganttService.GetAllGanttData()
+			.pipe(
+				map(ganttData => {
+					gantt.gantt.parse(ganttData)
+				})
+			)
+			.subscribe();
+	}
+
+	private setGanttStyleConfig() {
+		gantt.gantt.config.xml_date = '%Y-%m-%d %H:%i';
 		gantt.gantt.config.layout = {
 			css: "gantt_container",
 			rows: [
@@ -58,71 +96,6 @@ export class GanttComponent implements OnInit, AfterViewInit {
 				}
 			]
 		}
-
-		gantt.gantt.config.xml_date = '%Y-%m-%d %H:%i';
-
-		var tasks = {
-			data: [
-				{
-					id: 1,
-					text: "Project #1",
-					start_date: "2020-09-04",
-					duration: 2,
-					color: "red",
-					end_date: "2020-09-06",
-					progress: 0,
-					parent: 0
-				},
-				{
-					id: 2,
-					text: "Task #1",
-					start_date: "2020-09-04",
-					duration: 1,
-					color: "blue",
-					parent: 1,
-					end_date: "2020-09-05",
-					progress: 0
-				},
-				{
-					id: 3,
-					text: "Task #2",
-					start_date: "2020-09-05",
-					duration: 1,
-					color: "blue",
-					parent: 1,
-					end_date: "2020-09-06",
-					progress: 0
-				}
-			],
-			links:[
-				{ id:1, source:1, target:2, type:"1"},                       //link's id = 1 
-				{ id:2, source:2, target:3, type:"0"}                       //link's id = 2 
-			]
-		};
-
-		gantt.gantt.init(this.ganttContainer.nativeElement);
-		gantt.gantt.parse(tasks)
-
-		const dp = gantt.gantt.createDataProcessor({
-			task: {
-				update: (data: Task) => this.taskService.update(data),
-				create: (data: Task) => {
-					this.taskService.insert(data);
-					gantt.gantt.resetLayout();
-				},
-				delete: (id) => this.taskService.remove(id)
-			},
-			link: {
-				update: (data: Link) => this.linkService.update(data),
-				create: (data: Link) => this.linkService.insert(data),
-				delete: (id) => this.linkService.remove(id)
-			}
-		});
-
-		Promise.all([this.taskService.get(), this.linkService.get()])
-			.then(([data, links]) => {
-				gantt.gantt.parse({ data, links });
-			});
 	}
 
 	public Save() {

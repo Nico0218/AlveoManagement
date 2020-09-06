@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './services/in-memory-data.service';
+import { InventoryService }  from './services/inventory.service';
 import { GanttComponent } from './components/gantt/gantt.component';
 import { PropertiesComponent } from './components/properties/properties.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
@@ -15,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { ProjectService } from './services/project.service';
+import { TaskService } from './services/task.service';
+import { GanttService } from './services/gantt.service';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,18 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     HttpClientModule,
     BrowserModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatListModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [ 
+    InventoryService,
+    ProjectService,
+    TaskService,
+    GanttService 
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

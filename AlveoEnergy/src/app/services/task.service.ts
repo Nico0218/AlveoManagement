@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Task} from '../models/task';
 import {HttpClient} from '@angular/common/http';
-import {HandleError} from './service-helper';
+import {HandleError} from './service.helper';
 
 @Injectable()
 export class TaskService {
