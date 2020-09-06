@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { InventoryItem } from '../models/inventory/inventory-item';
 import { Guid } from '../classes/guid';
-import { InventoryType } from '../models/inventory/inventory-type';
+
 
 @Injectable()
 export class InventoryService {
@@ -16,66 +16,44 @@ export class InventoryService {
     var ItemData: InventoryItem[] = [];
 
     //PLCc
-    var inventoryItem = this.buildInventoryItem("PLCs", "Siemens");
-    var type = this.buildInventoryType("S71212 DC/DC/DC", "1258-456875-123145", 1);
-    inventoryItem.Types.push(type);
-    type = this.buildInventoryType("S71214C DC/DC/DC", "1234654-4641-412314", 3);
-    inventoryItem.Types.push(type);
-    type = this.buildInventoryType("S71517", "213654-23145612-123124", 1);
-    inventoryItem.Types.push(type);
+    var inventoryItem = this.buildInventoryItem("S71212 DC/DC/DC", "Siemens", "45665-5644-2852", 5);
+    ItemData.push(inventoryItem);
+    var inventoryItem = this.buildInventoryItem("S71214 DC/DC/DC", "Siemens", "45665-4852-2852", 5);
+    ItemData.push(inventoryItem);
+    var inventoryItem = this.buildInventoryItem("S71215 DC/DC/DC", "Siemens", "45665-1234-2852", 5);
+    ItemData.push(inventoryItem);
+    var inventoryItem = this.buildInventoryItem("S71217 DC/DC/DC", "Siemens", "45665-7845-2852", 5);
+    ItemData.push(inventoryItem);
+    var inventoryItem = this.buildInventoryItem("S71512 DC/DC/DC", "Siemens", "45665-1254-2852", 5);
+    ItemData.push(inventoryItem);
+    var inventoryItem = this.buildInventoryItem("S71515 DC/DC/DC", "Siemens", "45665-1236-2852", 5);
+    ItemData.push(inventoryItem);
+    var inventoryItem = this.buildInventoryItem("S71517 DC/DC/DC", "Siemens", "45665-4582-2852", 5);
     ItemData.push(inventoryItem);
 
-    //HMI's
-    inventoryItem = this.buildInventoryItem("HMI's", "Siemens");
-    var type = this.buildInventoryType("12' Comfort", "1235423-1234534123-453457748", 10);
-    inventoryItem.Types.push(type);
-    type = this.buildInventoryType("7' Basic", "45612345-45682423-45645213", 9);
-    inventoryItem.Types.push(type);
-    type = this.buildInventoryType("15' Comfort", "123486-45645313-456423", 5);
-    inventoryItem.Types.push(type);
-    ItemData.push(inventoryItem);
+    // //HMI's
+    // inventoryItem = this.buildInventoryItem("HMI's", "Siemens");
+    // ItemData.push(inventoryItem);
 
-    //VSD's
-    inventoryItem = this.buildInventoryItem("VSD's", "Siemens");
-    var type = this.buildInventoryType("G120x", "45354678-41234561-24674", 8);
-    inventoryItem.Types.push(type);
-    type = this.buildInventoryType("V20", "45648645465-456453213-45645", 6);
-    inventoryItem.Types.push(type);
-    type = this.buildInventoryType("G120c", "1234556-1234564", 7);
-    inventoryItem.Types.push(type);
-    ItemData.push(inventoryItem);
+    // //VSD's
+    // inventoryItem = this.buildInventoryItem("VSD's", "Siemens");
+    // ItemData.push(inventoryItem);
 
-    //Contactor's
-    inventoryItem = this.buildInventoryItem("VSD's", "Siemens");
-    var type = this.buildInventoryType("24VDC", "45354678-dfgdfg", 80);
-    inventoryItem.Types.push(type);
-    type = this.buildInventoryType("12VDC", "45648645465-asdghjhgas-45645", 80);
-    inventoryItem.Types.push(type);
-    type = this.buildInventoryType("230VAC", "1234-asjdkhas-556-1234564", 70);
-    inventoryItem.Types.push(type);
-    ItemData.push(inventoryItem);
+    // //Contactor's
+    // inventoryItem = this.buildInventoryItem("VSD's", "Siemens");
+    // ItemData.push(inventoryItem);
 
     return ItemData;
   }
 
-  private buildInventoryItem(name: string, make: string): InventoryItem {
+  private buildInventoryItem(name: string, make: string, partnumber: string, qty: number): InventoryItem {
     var inventoryItem = new InventoryItem();
     inventoryItem.ID = Guid.newGuid();
-    inventoryItem.Name = "PLCs";
-    inventoryItem.Make = "Siemens";
-    inventoryItem.isExpanded = false;
-    inventoryItem.Types = [];
+    inventoryItem.Name = name;
+    inventoryItem.Make = make;
+    inventoryItem.PartNumber = partnumber;
+    inventoryItem.Qty = qty;
     return inventoryItem;
   }
 
-  private buildInventoryType(name: string, partNumber: string, qty: number): InventoryType {
-    var inventoryType = new InventoryType();
-    inventoryType.ID = Guid.newGuid();
-    inventoryType.Name = "S71212 DC/DC/DC";
-    inventoryType.PartNumber = "1258-456875-123145";
-    inventoryType.Qty = 1;
-    return inventoryType;
-  }
-
-  
 }

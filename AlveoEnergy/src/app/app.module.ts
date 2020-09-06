@@ -11,12 +11,14 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { PersonnelComponent } from './components/personnel/personnel.component';
 import { PersonnelAddComponent } from './components/personnel/personnelAdd/personnelAdd.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { ProjectService } from './services/project.service';
 import { TaskService } from './services/task.service';
 import { GanttService } from './services/gantt.service';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
+  MatSortModule, MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,9 +35,14 @@ import { GanttService } from './services/gantt.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatTableModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
   providers: [ 
     InventoryService,

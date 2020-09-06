@@ -1,9 +1,10 @@
 import { ModelBase } from '../model-base';
-import { InventoryType } from './inventory-type';
 
 export class InventoryItem extends ModelBase {
+    public Name: string;
     public Make: string;
-    public Types: InventoryType[];
+    public PartNumber: string;
+    public Qty: number;
 
     //UIProperties
     public isExpanded: boolean;
@@ -21,8 +22,9 @@ export class InventoryItem extends ModelBase {
         var inventoryItem = new InventoryItem();
         inventoryItem.ID = jObj.ID;
         inventoryItem.Name = jObj.Name;
+        inventoryItem.PartNumber = jObj.PartNumber;
+        inventoryItem.Qty = jObj.Qty;
         inventoryItem.Make = jObj.Make;
-        inventoryItem.Types = jObj.Subjects as InventoryType[];
         return inventoryItem;
     }
 
