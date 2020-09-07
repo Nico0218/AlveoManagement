@@ -1,7 +1,12 @@
 <mat-tab-group>
   <mat-tab label="PLC's">
 
-    <table *ngIf="dataItemsList && dataItemsList.data" mat-table [dataSource]="dataItemsList" class="mat-elevation-z8">
+    <mat-form-field *ngIf="plcItemsList && plcItemsList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyPlcFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="plcItemsList && plcItemsList.data" mat-table [dataSource]="plcItemsList" class="mat-elevation-z8">
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> id </th>
@@ -28,23 +33,103 @@
         <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedItemsColumnsList"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedItemsColumnsList;"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedPlcColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedPlcColumnsList;"></tr>
     </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
 
   </mat-tab>
 
 
   <mat-tab label="HMI's">
 
-    Content 2
+    <mat-form-field *ngIf="hmiItemsList && hmiItemsList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyHmiFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="hmiItemsList && hmiItemsList.data" mat-table [dataSource]="hmiItemsList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedHmiColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedHmiColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
 
   </mat-tab>
 
 
   <mat-tab label="VSD's">
 
-    Content 3
+    <mat-form-field *ngIf="vsdItemsList && vsdItemsList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyVsdFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="vsdItemsList && vsdItemsList.data" mat-table [dataSource]="vsdItemsList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedVsdColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedVsdColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
 
   </mat-tab>
 

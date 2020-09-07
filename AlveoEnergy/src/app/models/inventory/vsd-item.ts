@@ -1,13 +1,10 @@
 import { ModelBase } from '../model-base';
 
-export class InventoryItem extends ModelBase {
+export class VsdItem extends ModelBase {
     public Name: string;
     public Make: string;
     public PartNumber: string;
     public Qty: number;
-
-    //UIProperties
-    public isExpanded: boolean;
 
     constructor() {
         super();
@@ -18,8 +15,8 @@ export class InventoryItem extends ModelBase {
         return JSON.stringify(this);
     }
 
-    static FromJson(jObj: any): InventoryItem {
-        var inventoryItem = new InventoryItem();
+    static FromJson(jObj: any): VsdItem {
+        var inventoryItem = new VsdItem();
         inventoryItem.ID = jObj.ID;
         inventoryItem.Name = jObj.Name;
         inventoryItem.PartNumber = jObj.PartNumber;

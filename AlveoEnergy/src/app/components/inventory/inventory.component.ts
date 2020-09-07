@@ -3,8 +3,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
   MatSortModule, MatTableModule } from '@angular/material';
 import { map, take } from 'rxjs/operators';
-import { InventoryItem } from '../../models/inventory/inventory-item';
+import { PlcItem } from '../../models/inventory/plc-item';
 import { InventoryService } from '../../services/inventory.service';
+import { HmiItem } from '../../models/inventory/hmi-item';
+import { VsdItem } from '../../models/inventory/vsd-item';
 
 @Component({
   selector: 'inventory',
@@ -12,24 +14,65 @@ import { InventoryService } from '../../services/inventory.service';
   templateUrl: './inventory.component.html',
 })
 export class InventoryComponent {
-  ITEM_DATA: InventoryItem[];
+  PLC_DATA: PlcItem[];
+  HMI_DATA: HmiItem[];
+  VSD_DATA: VsdItem[];
 
   constructor(private inventoryService: InventoryService) {
 
   }
 
-  dataItemsList = new MatTableDataSource();
-  displayedItemsColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
+  plcItemsList = new MatTableDataSource();
+  displayedPlcColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
+  hmiItemsList = new MatTableDataSource();
+  displayedHmiColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
+  vsdItemsList = new MatTableDataSource();
+  displayedVsdColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
+
+  applyPlcFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.plcItemsList.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyHmiFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.hmiItemsList.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyVsdFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.vsdItemsList.filter = filterValue.trim().toLowerCase();
+  }
 
   ngOnInit() {
-    this.inventoryService.GetAllInventoryItems()//This function builds and returns a Observable
+    this.inventoryService.GetAllPlcItems()//This function builds and returns a Observable
       .pipe( // pipe allows us to define actions or "effects" that should happen with the Observable - Note at this point the Observable has not "Run" yet
-        map(inventoryItems => { // https://www.learnrxjs.io/learn-rxjs/operators/transformation/map
-          this.ITEM_DATA = inventoryItems;
-          this.dataItemsList.data = this.ITEM_DATA;
+        map(plcItems => { // https://www.learnrxjs.io/learn-rxjs/operators/transformation/map
+          this.PLC_DATA = plcItems;
+          this.plcItemsList.data = this.PLC_DATA;
         }),
         take(1) // https://www.learnrxjs.io/learn-rxjs/operators/filtering/take
       )
       .subscribe();// Subscribe starts the execution of the Observable
+
+      this.inventoryService.GetAllHmiItems()
+      .pipe(
+        map(hmiItems => {
+          this.HMI_DATA = hmiItems;
+          this.hmiItemsList.data = this.HMI_DATA;
+        }),
+        take(1)
+      )
+      .subscribe();
+
+      this.inventoryService.GetAllVsdItems()
+      .pipe(
+        map(vsdItems => {
+          this.VSD_DATA = vsdItems;
+          this.vsdItemsList.data = this.VSD_DATA;
+        }),
+        take(1)
+      )
+      .subscribe();
   }
 }
