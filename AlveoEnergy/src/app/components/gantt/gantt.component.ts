@@ -8,10 +8,6 @@ import { GanttService } from '../../services/gantt.service';
 import { map } from 'rxjs/operators';
 
 var gantt = require('dhtmlx-gantt');
-// if (gantt.gantt.selectedId() != null) {
-// 	var TaskName = gantt.gantt.getTask(gantt.gantt.getSelectedId()).text;
-// 	var TaskStartDate = gantt.gantt.getTask(gantt.gantt.getSelectedId()).Start_Date;
-// }
 
 
 @Component({

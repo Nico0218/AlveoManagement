@@ -19,7 +19,7 @@ export class InventoryComponent {
   }
 
   dataItemsList = new MatTableDataSource();
-  displayedItemsColumnsList: string[] = ['id', 'name', 'Make'];
+  displayedItemsColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
 
   ngOnInit() {
     this.inventoryService.GetAllInventoryItems()//This function builds and returns a Observable
