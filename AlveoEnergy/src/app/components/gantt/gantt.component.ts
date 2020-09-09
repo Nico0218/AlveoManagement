@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
 
 var gantt = require('dhtmlx-gantt');
 
-
 @Component({
 	encapsulation: ViewEncapsulation.None,
 	selector: 'gantt',
@@ -95,7 +94,6 @@ export class GanttComponent implements OnInit, AfterViewInit {
 	}
 
 	public Save() {
-		debugger
 		var data = [];
 		gantt.gantt.eachTask(ii => {
 			data.push(ii);

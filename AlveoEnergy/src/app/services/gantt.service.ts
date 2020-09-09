@@ -14,7 +14,7 @@ export class GanttService {
         ganttData.data = [
             {
                 id: 1,
-                text: "Project #1",
+                text: "Zoar",
                 start_date: "2020-09-04",
                 duration: 2,
                 color: "red",
@@ -24,20 +24,20 @@ export class GanttService {
             },
             {
                 id: 2,
-                text: "Task #1",
+                text: "Finish Container Work",
                 start_date: "2020-09-04",
                 duration: 1,
-                color: "blue",
+                color: "red",
                 parent: 1,
                 end_date: "2020-09-05",
                 progress: 0
             },
             {
                 id: 3,
-                text: "Task #2",
+                text: "Pack Items For Zoar",
                 start_date: "2020-09-05",
                 duration: 1,
-                color: "blue",
+                color: "red",
                 parent: 1,
                 end_date: "2020-09-06",
                 progress: 0
