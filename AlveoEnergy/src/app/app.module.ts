@@ -17,9 +17,9 @@ import { ProjectService } from './services/project.service';
 import { TaskService } from './services/task.service';
 import { GanttService } from './services/gantt.service';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
-  MatSortModule, MatTableModule } from '@angular/material';
-  import { PersonnelService }  from './services/personnel.service';
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
+import { PersonnelService }  from './services/personnel.service';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +44,6 @@ import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule
-
   ],
   providers: [ 
     InventoryService,
