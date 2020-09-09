@@ -19,6 +19,8 @@ import { GanttService } from './services/gantt.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
 import { PersonnelService }  from './services/personnel.service';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ScannerComponent } from './components/scanner/scanner.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { PersonnelService }  from './services/personnel.service';
     InventoryComponent,
     ProjectsComponent,
     PersonnelComponent,
-    PersonnelAddComponent
+    PersonnelAddComponent,
+    ScannerComponent
   ],
   imports: [
     HttpClientModule,
@@ -43,7 +46,8 @@ import { PersonnelService }  from './services/personnel.service';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ZXingScannerModule
   ],
   providers: [ 
     InventoryService,
