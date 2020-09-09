@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
-  MatSortModule, MatTableModule } from '@angular/material';
 import { map, take } from 'rxjs/operators';
 import { PlcItem } from '../../models/inventory/plc-item';
 import { InventoryService } from '../../services/inventory.service';

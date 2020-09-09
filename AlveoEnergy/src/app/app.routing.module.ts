@@ -5,13 +5,15 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { PersonnelComponent } from './components/personnel/personnel.component';
 import { PersonnelAddComponent } from './components/personnel/personnelAdd/personnelAdd.component';
+import { ScannerComponent } from './components/scanner/scanner.component';
 
 const routes: Routes = [
     { path: 'gantt-component', component: GanttComponent },
     { path: 'inventory-component', component: InventoryComponent },
     { path: 'projects-component', component: ProjectsComponent },
     { path: 'personnel-component', component: PersonnelComponent },
-    { path: 'personnelAdd-component', component: PersonnelAddComponent }
+    { path: 'personnelAdd-component', component: PersonnelAddComponent },
+    { path: 'scanner-component', component: ScannerComponent }
 ]; 
 
 
