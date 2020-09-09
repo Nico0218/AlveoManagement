@@ -19,6 +19,7 @@ import { GanttService } from './services/gantt.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
   MatSortModule, MatTableModule } from '@angular/material';
+  import { PersonnelService }  from './services/personnel.service';
 
 @NgModule({
   declarations: [
@@ -43,12 +44,14 @@ import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule
+
   ],
   providers: [ 
     InventoryService,
     ProjectService,
     TaskService,
-    GanttService 
+    GanttService ,
+    PersonnelService
    ],
   bootstrap: [AppComponent]
 })

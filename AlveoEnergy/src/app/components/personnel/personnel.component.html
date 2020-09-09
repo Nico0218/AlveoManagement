@@ -1,4 +1,47 @@
-<ul>
-    <li><a routerLink="/personnelAdd-component" routerLinkActive="active">All Personnel</a></li>
-    <li><a href="#">Add New Personnel</a></li>
-  </ul>
+<mat-tab-group>
+  <mat-tab label="Personnel">
+
+<mat-form-field *ngIf="personnelList && personnelList.data">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyPersonnelFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+<table *ngIf="personnelList && personnelList.data" mat-table [dataSource]="personnelList" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="idnum">
+    <th mat-header-cell *matHeaderCellDef> ID Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.IDNumber}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fullName">
+    <th mat-header-cell *matHeaderCellDef> Full Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Position </th>
+    <td mat-cell *matCellDef="let element"> {{element.Position}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="employementDate">
+    <th mat-header-cell *matHeaderCellDef> Start Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.EmployementDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="contactNum">
+    <th mat-header-cell *matHeaderCellDef> Contact Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.ContactNumber}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedPersonnelColumnsList"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedPersonnelColumnsList;"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+
+</table>
+
+</mat-tab>
+
+</mat-tab-group> 
