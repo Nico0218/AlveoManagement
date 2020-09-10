@@ -22,7 +22,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScannerComponent } from './components/scanner/scanner.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,6 @@ import { MatSortModule } from '@angular/material/sort';
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule,
     ZXingScannerModule
   ],
   providers: [

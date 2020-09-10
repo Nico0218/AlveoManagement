@@ -1,5 +1,5 @@
-<zxing-scanner #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="onCodeResult($event)"
-style="height: 200px;">
+<zxing-scanner style="max-height: 400px; max-width: 400px;" #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="onCodeResult($event)"
+>
 </zxing-scanner>
 
 <section class="results" *ngIf="qrResultString">
