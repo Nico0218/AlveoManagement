@@ -6,3 +6,13 @@ AlveoEnergyManagementServer/AlveoEnergyCommon/bin/
 AlveoEnergyManagementServer/AlveoEnergyManagementServer/bin/
 
 AlveoEnergy/package-lock.json
+
+AlveoManagementServer/.vs/
+
+AlveoManagementServer/AlveoManagementServer/bin/
+
+AlveoManagementServer/AlveoManagementServer/obj/
+
+AlveoManagementServer/AlveoManagementCommon/obj/
+
+AlveoManagementServer/AlveoManagementCommon/bin/
