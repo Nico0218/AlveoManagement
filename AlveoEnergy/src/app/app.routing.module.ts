@@ -6,6 +6,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { PersonnelComponent } from './components/personnel/personnel.component';
 import { PersonnelAddComponent } from './components/personnel/personnelAdd/personnelAdd.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
     { path: 'gantt-component', component: GanttComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
     { path: 'projects-component', component: ProjectsComponent },
     { path: 'personnel-component', component: PersonnelComponent },
     { path: 'personnelAdd-component', component: PersonnelAddComponent },
-    { path: 'scanner-component', component: ScannerComponent }
+    { path: 'scanner-component', component: ScannerComponent },
+    { path: 'orders-component', component: OrdersComponent }
 ]; 
 
 

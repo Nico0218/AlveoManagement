@@ -24,6 +24,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import '@angular/material/sort';
 import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import { OrdersComponent } from './components/orders/orders.component'
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { MatFormFieldModule} from '@angular/material/form-field';
     ProjectsComponent,
     PersonnelComponent,
     PersonnelAddComponent,
-    ScannerComponent
+    ScannerComponent,
+    OrdersComponent
   ],
   imports: [
     HttpClientModule,
@@ -48,7 +51,8 @@ import { MatFormFieldModule} from '@angular/material/form-field';
     MatTableModule,
     MatPaginatorModule,
     ZXingScannerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     InventoryService,

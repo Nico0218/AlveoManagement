@@ -13,7 +13,7 @@ var gantt = require('dhtmlx-gantt');
 	encapsulation: ViewEncapsulation.None,
 	selector: 'gantt',
 	styleUrls: ['./gantt.component.scss'],
-	providers: [TaskService, LinkService],
+	providers: [ LinkService, TaskService ],
 	templateUrl: './gantt.component.html',
 })
 export class GanttComponent implements OnInit, AfterViewInit {
@@ -23,10 +23,6 @@ export class GanttComponent implements OnInit, AfterViewInit {
 
 	}
 	ngAfterViewInit(): void {
-
-	}
-
-	ngOnInit() {
 		this.setGanttStyleConfig();
 		gantt.gantt.init(this.ganttContainer.nativeElement);
 		const dp = gantt.gantt.createDataProcessor({
@@ -57,6 +53,10 @@ export class GanttComponent implements OnInit, AfterViewInit {
 				})
 			)
 			.subscribe();
+	}
+
+	ngOnInit() {
+		
 	}
 
 	private setGanttStyleConfig() {
