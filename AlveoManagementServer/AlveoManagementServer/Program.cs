@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace AlveoManagementServer
@@ -22,6 +23,11 @@ namespace AlveoManagementServer
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(configureLogging => { 
+                    configureLogging.AddLog4Net("log4net.config");
+                    configureLogging.AddConsole();
+                    configureLogging.SetMinimumLevel(LogLevel.Information);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
