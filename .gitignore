@@ -18,3 +18,7 @@ AlveoManagementServer/AlveoManagementCommon/obj/
 AlveoManagementServer/AlveoManagementCommon/bin/
 
 AlveoManagementServer/AlveoManagementServer/Logs/
+
+AlveoManagementServer/GoogleSheets/bin/
+
+AlveoManagementServer/GoogleSheets/obj/

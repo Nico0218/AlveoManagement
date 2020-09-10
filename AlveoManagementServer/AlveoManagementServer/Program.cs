@@ -1,3 +1,5 @@
+using AlveoManagementServer.Services.Interfaces;
+using GoogleSheets;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +18,9 @@ namespace AlveoManagementServer
             using (IServiceScope serviceScope = host.Services.CreateScope())
             {
                 //Services that need to run at application start
-                //IService service = serviceScope.ServiceProvider.GetRequiredService<IService>();
+                //IGoogleSheetsService googleSheetsService = serviceScope.ServiceProvider.GetRequiredService<IGoogleSheetsService>();
+                IStartupService startupService = serviceScope.ServiceProvider.GetRequiredService<IStartupService>();
+
                 await host.RunAsync();
             }
         }

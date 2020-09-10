@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlveoManagementServer", "Al
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlveoManagementCommon", "AlveoManagementCommon\AlveoManagementCommon.csproj", "{65B85341-06CB-4492-B1E9-E5B4EA82E4C4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C9FE0BCA-EB11-45AA-A877-C76D1D91CD76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleSheets", "GoogleSheets\GoogleSheets.csproj", "{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{65B85341-06CB-4492-B1E9-E5B4EA82E4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65B85341-06CB-4492-B1E9-E5B4EA82E4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65B85341-06CB-4492-B1E9-E5B4EA82E4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1} = {C9FE0BCA-EB11-45AA-A877-C76D1D91CD76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C029D623-904E-4D06-A8E7-349FFCB69660}
