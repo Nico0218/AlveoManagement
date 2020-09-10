@@ -23,6 +23,8 @@ import { ScannerComponent } from './components/scanner/scanner.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import '@angular/material/sort';
+import { MatFormFieldModule} from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import '@angular/material/sort';
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    MatFormFieldModule
   ],
   providers: [
     InventoryService,
