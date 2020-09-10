@@ -17,8 +17,8 @@ namespace AlveoManagementServer.Controllers
             this.inventoryService = inventoryService;
         }
 
-        [HttpGet]
-        public ActionResult Get()
+        [HttpGet("GetAllPLCItems")]
+        public ActionResult GetAllPLCItems()
         {
             logger.LogInformation("Getting all PLC items");
             return new ObjectResult(inventoryService.GetAllPLCItems());

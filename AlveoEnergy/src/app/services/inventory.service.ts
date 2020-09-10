@@ -1,16 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PlcItem } from '../models/inventory/plc-item';
-import { HmiItem } from '../models/inventory/hmi-item';
-import { VsdItem } from '../models/inventory/vsd-item';
 import { Guid } from '../classes/guid';
-
+import { HmiItem } from '../models/inventory/hmi-item';
+import { PlcItem } from '../models/inventory/plc-item';
+import { VsdItem } from '../models/inventory/vsd-item';
+import { map, catchError } from 'rxjs/operators';
+import { Environment } from '../classes/environment';
 
 @Injectable()
 export class InventoryService {
+  constructor(private httpClient: HttpClient) {
+
+  }
+
+  public get controllerURL(): string {
+    return `${Environment.apiUrl}/Inventory`;
+  }
+
   public GetAllPlcItems(): Observable<PlcItem[]> {
-    //https://www.learnrxjs.io/learn-rxjs/operators/creation/of
-    return of(this.getPlcData()); // We wrap our data in an Observable here - Note at this point the Observable has not "Run" yet
+    return this.httpClient.get(`${this.controllerURL}/GetAllPLCItems`)
+      .pipe(
+        map((ii: PlcItem[]) => {
+          return ii;
+        }),
+        catchError(ii => {
+          //Return the default dummy data if we can`t get the data from the server
+          return of(this.getPlcData());
+        })
+      );
   }
 
   public GetAllHmiItems(): Observable<HmiItem[]> {
@@ -60,7 +78,7 @@ export class InventoryService {
     HmiData.push(HmiItem);
 
     return HmiData;
-    
+
   }
 
   private getVsdData() {

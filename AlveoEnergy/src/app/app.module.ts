@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InventoryService } from './services/inventory.service';
@@ -26,6 +26,7 @@ import '@angular/material/sort';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { OrdersComponent } from './components/orders/orders.component'
+import { ConfigService } from './services/config.service';
 
 
 @NgModule({
@@ -55,6 +56,14 @@ import { OrdersComponent } from './components/orders/orders.component'
     MatInputModule
   ],
   providers: [
+    ConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (configService: ConfigService) =>
+      () => configService.loadAppsettings(),
+      deps: [ConfigService],
+      multi: true
+    },
     InventoryService,
     ProjectService,
     TaskService,

@@ -24,7 +24,10 @@ namespace AlveoManagementServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IInventoryService, InventoryService>();
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options => {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Alveo Management API V1", Version = "v1" });
