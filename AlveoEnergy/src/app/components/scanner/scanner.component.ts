@@ -1,45 +1,23 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'scanner',
-  styleUrls: ['./scanner.component.scss'],
-  templateUrl: './scanner.component.html',
+	selector: 'scanner',
+	styleUrls: ['./scanner.component.scss'],
+	templateUrl: './scanner.component.html',
 })
 
-export class ScannerComponent implements AfterViewInit {
-  @ViewChild('scanner') scanner: ZXingScannerComponent;
+export class ScannerComponent{
+    qrResultString: string;
 
-  selectedDevice: any = null;
-  qrResultString: string;
+clearResult(): void {
+  this.qrResultString = null;
+}
 
-  constructor() {
-  }
-
-  ngAfterViewInit(): void {
-    this.scanner.updateVideoInputDevices().then(
-      devices => {
-        this.selectedDevice = devices[0];
-        this.scanner.askForPermission().then(
-          res => {
-            if (res) {
-              if (this.scanner.isCurrentDevice) {
-                this.scanner.restart()
-                console.log("ready");
-              }
-            }
-          }
-        );
-      }
-    );
-  }
-
-  clearResult(): void {
-    this.qrResultString = null;
-  }
-
-  onCodeResult(resultString: any) {
-    console.log(resultString);
-  }
+onCodeResult(resultString: string) {
+  this.qrResultString = resultString;
+  console.log(this.qrResultString);
+}
 
 }
+
+

@@ -1,8 +1,9 @@
 export class Task {
-	id: number;
-	start_date: string;
-	text: string;
-	progress: number;
-	duration: number;
-	parent: number;
+	ID: number;
+	Start_Date: string;
+	End_Date: string;
+	Text: string;
+	Progress: number;
+	Duration: number;
+	Parent: number;
 }

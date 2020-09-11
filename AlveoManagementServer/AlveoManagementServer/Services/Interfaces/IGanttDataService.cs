@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 namespace AlveoManagementServer.Services.Interfaces
 {
-    public interface IGanttService
+    public interface IGanttDataService
     {
-        List<Gantt> GetAllGanttData();
+        List<GanttData> GetAllGanttData();
+        List<GanttLink> GetAllGanttLinks();
 
     }
 }

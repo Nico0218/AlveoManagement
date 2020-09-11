@@ -1,6 +1,6 @@
 export class Link {
-	id: number;
-	source: number;
-	target: number;
-	type: string;
+	ID: number;
+	Source: number;
+	Target: number;
+	Type: string;
 }

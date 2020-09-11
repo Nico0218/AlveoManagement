@@ -1,6 +1,6 @@
 ﻿namespace AlveoManagementCommon.Interfaces
 {
-    public interface IGantt
+    public interface IGanttData
     {
         public int ID { get; set; }
         public string Start_Date { get; set; }

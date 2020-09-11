@@ -3,7 +3,10 @@ import { Task } from '../../models/task';
 import { Link } from '../../models/link';
 import 'dhtmlx-gantt';
 import { GanttService } from '../../services/gantt.service';
-import { map } from 'rxjs/operators';
+import { map, mergeAll } from 'rxjs/operators';
+import { GanttData } from 'src/app/models/gantt/gantt-task';
+import { link } from 'fs';
+import { merge } from 'rxjs';
 
 var gantt = require('dhtmlx-gantt');
 
@@ -15,6 +18,9 @@ var gantt = require('dhtmlx-gantt');
 	templateUrl: './gantt.component.html',
 })
 export class GanttComponent implements OnInit, AfterViewInit {
+	TASK_DATA : Task[];
+	LINK_DATA : Link[];
+
 	@ViewChild('gantt_here') ganttContainer: ElementRef;
 
 	constructor(private ganttService: GanttService) {
@@ -23,34 +29,41 @@ export class GanttComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit(): void {
 		this.setGanttStyleConfig();
 		gantt.gantt.init(this.ganttContainer.nativeElement);
-		// const dp = gantt.gantt.createDataProcessor({
-		// 	task: {
-		// 		update: (data: Task) => this.taskService.update(data),
-		// 		create: (data: Task) => {
-		// 			this.taskService.insert(data);
-		// 			gantt.gantt.resetLayout();
-		// 		},
-		// 		delete: (id) => this.taskService.remove(id)
-		// 	},
-		// 	link: {
-		// 		update: (data: Link) => this.linkService.update(data),
-		// 		create: (data: Link) => this.linkService.insert(data),
-		// 		delete: (id) => this.linkService.remove(id)
-		// 	}
-		// });
 
-		// Promise.all([this.taskService.get(), this.linkService.get()])
-		// 	.then(([data, links]) => {
-		// 		gantt.gantt.parse({ data, links });
-		// 	});
-debugger;
 		this.ganttService.GetAllGanttData()
-			.pipe(
-				map(ganttData => {
-					gantt.gantt.parse(ganttData)
-				})
-			)
-			.subscribe();
+		.pipe(
+		  map(ganttData => {
+			this.TASK_DATA = ganttData;
+			var data = JSON.stringify(ganttData);
+			console.log(data);
+		  }),
+		)
+		.subscribe();
+
+		this.ganttService.GetAllGanttLinks()
+		.pipe(
+		  map(ganttLink => {
+			this.LINK_DATA = ganttLink;
+			var link = JSON.stringify(ganttLink);
+			console.log(link);
+		  }),
+		)
+		.subscribe();
+		  
+
+	// 			gantt.gantt.parse({ data, links });
+
+
+
+
+		// this.ganttService.GetAllGanttData()
+		// 	.pipe(
+		// 		map(ganttData => {
+		// 			gantt.gantt.parse(ganttData)
+		// 			console.log(ganttData)
+		// 		})
+		// 	)
+		// 	.subscribe();
 	}
 
 	ngOnInit() {
@@ -91,11 +104,11 @@ debugger;
 		}
 	}
 
-	public Save() {
-		var data = [];
-		gantt.gantt.eachTask(ii => {
-			data.push(ii);
-		});
-		console.log(JSON.stringify(data))
-	};
+	// public Save() {
+	// 	var data = [];
+	// 	gantt.gantt.eachTask(ii => {
+	// 		data.push(ii);
+	// 	});
+	// 	console.log(JSON.stringify(data))
+	// };
 }
