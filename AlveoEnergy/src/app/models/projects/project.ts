@@ -21,9 +21,9 @@ export class Projects extends ModelBase {
         var project = new Projects();
         project.Number = jObj.ID;
         project.Name = jObj.Name;
-        project.StartDate = jObj.PartNumber;
-        project.EndDate = jObj.Qty;
-        project.Leader = jObj.Make;
+        project.StartDate = jObj.StartDate;
+        project.EndDate = jObj.EndDate;
+        project.Leader = jObj.Leader;
         return project;
     }
 

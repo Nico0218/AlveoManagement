@@ -23,5 +23,19 @@ namespace AlveoManagementServer.Controllers
             logger.LogInformation("Getting all PLC items");
             return new ObjectResult(inventoryService.GetAllPLCItems());
         }
+
+        [HttpGet("GetAllHMIItems")]
+        public ActionResult GetAllHMIItems()
+        {
+            logger.LogInformation("Getting all HMI items");
+            return new ObjectResult(inventoryService.GetAllHMIItems());
+        }
+
+        [HttpGet("GetAllVSDItems")]
+        public ActionResult GetAllVSDItems()
+        {
+            logger.LogInformation("Getting all VSD items");
+            return new ObjectResult(inventoryService.GetAllVSDItems());
+        }
     }
 }

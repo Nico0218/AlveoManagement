@@ -5,7 +5,7 @@ export class Personnel extends ModelBase {
     public IDNumber: string;
     public Name: string;
     public Position: string;
-    public EmployementDate: string;
+    public EmploymentDate: string;
     public ContactNumber: string;
 
     constructor() {
@@ -21,9 +21,9 @@ export class Personnel extends ModelBase {
         var personnel = new Personnel();
         personnel.IDNumber = jObj.ID;
         personnel.Name = jObj.Name;
-        personnel.Position = jObj.PartNumber;
-        personnel.EmployementDate = jObj.Qty;
-        personnel.ContactNumber = jObj.Make;
+        personnel.Position = jObj.Position;
+        personnel.EmploymentDate = jObj.EmploymentDate;
+        personnel.ContactNumber = jObj.ContactNumber;
         return personnel;
     }
 

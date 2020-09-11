@@ -1,24 +1,36 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Personnel } from '../models/personnel/personnel';
 import { Guid } from '../classes/guid';
+import { map, catchError } from 'rxjs/operators';
+import { Environment } from '../classes/environment';
 
 @Injectable()
 export class PersonnelService {
+  constructor(private httpClient: HttpClient) {
+    
+  }
+
+  public get controllerURL(): string {
+    return `${Environment.apiUrl}/Personnel`;
+  }
+
     public GetAllPersonnel(): Observable<any[]> {
-        //https://www.learnrxjs.io/learn-rxjs/operators/creation/of
-        return of(this.getPersonnelData()); // We wrap our data in an Observable here - Note at this point the Observable has not "Run" yet
+      return this.httpClient.get(`${this.controllerURL}/GetAllPersonnelDetails`)
+        .pipe(
+          map((ii: Personnel[]) => {
+            return ii;
+          }),
+          catchError(ii => {
+            return of(this.getPersonnelError());
+          })
+        );
     }
 
-    private getPersonnelData() {
+    private getPersonnelError() {
         var PersonnelData: Personnel[] = [];
-        var personnel = this.buildPersonnel("8812105132088", "Tinus Spangenberg", "Technician", "07/11/2019", "0828987503");
-        PersonnelData.push(personnel);
-        personnel = this.buildPersonnel("8958624583082", "Piet Voorbeeld", "Technician", "1/05/2016", "0826253589");
-        PersonnelData.push(personnel);
-        personnel = this.buildPersonnel("7526948783088", "Koos Verduidelik", "Technician", "31/12/2014", "0725681245");
-        PersonnelData.push(personnel);
-        personnel = this.buildPersonnel("9158625322083", "Jan Klug", "Technician", "15/02/2017", "0615263489");
+        var personnel = this.buildPersonnel("Cannot Retrieve Personnel Data", "Please Check Connection", "", "", "");
         PersonnelData.push(personnel);
     
         return PersonnelData;
@@ -29,7 +41,7 @@ export class PersonnelService {
         personnel.IDNumber = idNumber;
         personnel.Name = name;
         personnel.Position = position;
-        personnel.EmployementDate = employementDate;
+        personnel.EmploymentDate = employementDate;
         personnel.ContactNumber = contactNumber;
         return personnel;
       }

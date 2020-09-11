@@ -17,6 +17,7 @@ export class PersonnelComponent {
 
 	}
 
+	debugger;
 	personnelList = new MatTableDataSource();
   	displayedPersonnelColumnsList: string[] = ['idnum', 'fullName', 'position', 'employementDate', 'contactNum'];
 
@@ -28,8 +29,8 @@ export class PersonnelComponent {
     ngOnInit() {
 		this.personnelService.GetAllPersonnel()
       .pipe(
-        map(hmiItems => {
-          this.PERSONNEL_DATA = hmiItems;
+        map(personnel => {
+          this.PERSONNEL_DATA = personnel;
           this.personnelList.data = this.PERSONNEL_DATA;
         }),
         take(1)
