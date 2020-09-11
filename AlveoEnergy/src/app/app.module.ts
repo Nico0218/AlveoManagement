@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { ProjectService } from './services/project.service';
-import { TaskService } from './services/task.service';
 import { GanttService } from './services/gantt.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PersonnelService } from './services/personnel.service';
@@ -66,7 +65,6 @@ import { ConfigService } from './services/config.service';
     },
     InventoryService,
     ProjectService,
-    TaskService,
     GanttService,
     PersonnelService
   ],
