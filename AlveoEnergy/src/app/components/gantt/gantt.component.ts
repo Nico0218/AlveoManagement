@@ -1,12 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { Task } from '../../models/task';
-import { Link } from '../../models/link';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import 'dhtmlx-gantt';
+import { map } from 'rxjs/operators';
 import { GanttService } from '../../services/gantt.service';
-import { map, mergeAll, subscribeOn } from 'rxjs/operators';
-import { GanttObjWrapper } from 'src/app/models/gantt/gantt-data';
-import { link } from 'fs';
-import { merge } from 'rxjs';
+
 
 var gantt = require('dhtmlx-gantt');
 
@@ -32,10 +28,6 @@ export class GanttComponent implements OnInit, AfterViewInit {
 		this.setGanttStyleConfig();
 		gantt.gantt.init(this.ganttContainer.nativeElement);
 
-
-		const myJson: GanttObjWrapper[] = [];
-
-
 		this.ganttService.GetGanttDataWrapper()
 			.pipe(
 				map(ganttObjWrapper =>{
@@ -44,40 +36,6 @@ export class GanttComponent implements OnInit, AfterViewInit {
 				})
 			)
 			.subscribe()
-		
-
-
-		// this.ganttService.GetAllGanttData()
-		// .pipe(
-		//   map(ganttData => {
-
-		// 	this.TASK_DATA = ganttData;
-		// 	gantt.gantt.parse(JSON.stringify(ganttData));
-		//   }),
-		// )
-		// .subscribe();
-
-		// this.ganttService.GetAllGanttLinks()
-		// .pipe(
-		//   map(ganttLink => {
-		// 	this.LINK_DATA = ganttLink;
-		//   }),
-		// )
-		// .subscribe();
-
-	// 			gantt.gantt.parse({ data, links });
-
-
-
-
-		// this.ganttService.GetAllGanttData()
-		// 	.pipe(
-		// 		map(ganttData => {
-		// 			gantt.gantt.parse(ganttData)
-		// 			console.log(ganttData)
-		// 		})
-		// 	)
-		// 	.subscribe();
 	}
 
 	ngOnInit() {
@@ -117,12 +75,4 @@ export class GanttComponent implements OnInit, AfterViewInit {
 			]
 		}
 	}
-
-	// public Save() {
-	// 	var data = [];
-	// 	gantt.gantt.eachTask(ii => {
-	// 		data.push(ii);
-	// 	});
-	// 	console.log(JSON.stringify(data))
-	// };
 }
