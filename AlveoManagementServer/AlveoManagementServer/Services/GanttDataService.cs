@@ -22,42 +22,42 @@ namespace AlveoManagementServer.Services
             List<GanttData> ganttData = new List<GanttData>();
             ganttData.Add(new GanttData()
             {
-                ID = 1,
-                Text = "Zoar",
-                Start_Date = "2020-09-04",
-                Duration = 2,
-                Progress = 0,
-                Parent = 0,
-                End_Date = "2020-09-06",
-                Color = "pink"
+                               ID = 1,
+                               Text = "Zoar",
+                               Start_Date = "2020-09-04",
+                               Duration = 2,
+                               Color = "red",
+                               End_Date = "2020-09-06",
+                               Progress = 0,
+                               Parent = 0
             }
                   );
             ganttData.Add(new GanttData()
             {
-                ID = 2,
-                Text = "task 1",
-                Start_Date = "2020-09-04",
-                Duration = 1,
-                Progress = 0,
-                Parent = 1,
-                End_Date = "2020-09-05",
-                Color = "red"
+                               ID = 2,
+                               Text = "Finish Container Work",
+                               Start_Date = "2020-09-04",
+                               Duration = 1,
+                               Color = "red",
+                               Parent = 1,
+                               End_Date = "2020-09-05",
+                               Progress = 0
             }
       );
             ganttData.Add(new GanttData()
             {
-                ID = 1,
-                Text = "Task 2",
-                Start_Date = "2020-09-05",
-                Duration = 1,
-                Progress = 0,
-                Parent = 1,
-                End_Date = "2020-09-06",
-                Color = "blue"
+                               ID = 3,
+                               Text = "Pack Items For Zoar",
+                               Start_Date = "2020-09-05",
+                               Duration = 1,
+                               Color = "red",
+                               Parent = 1,
+                               End_Date = "2020-09-06",
+                               Progress = 0
             }
       );
             return ganttData;
-        }
+        }        
 
         public List<GanttLink> GetAllGanttLinks()
         {
@@ -68,19 +68,18 @@ namespace AlveoManagementServer.Services
                 ID = 1,
                 Source = 1,
                 Target = 2,
-                Type = "1",
+                Type = "1"
             }
-            );
+      );
             ganttLink.Add(new GanttLink()
             {
                 ID = 2,
                 Source = 2,
                 Target = 3,
-                Type = "0",
+                Type = "0"
             }
 );
             return ganttLink;
         }
-        
     }
 };

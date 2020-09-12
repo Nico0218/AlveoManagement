@@ -6,6 +6,7 @@ namespace AlveoManagementServer.Services.Interfaces
     public interface IGanttDataService
     {
         List<GanttData> GetAllGanttData();
+
         List<GanttLink> GetAllGanttLinks();
 
     }

@@ -18,8 +18,9 @@ var gantt = require('dhtmlx-gantt');
 	templateUrl: './gantt.component.html',
 })
 export class GanttComponent implements OnInit, AfterViewInit {
-	TASK_DATA : Task[];
-	LINK_DATA : Link[];
+	TASK_DATA : any[];
+	LINK_DATA : any[];
+	
 
 	@ViewChild('gantt_here') ganttContainer: ElementRef;
 
@@ -27,6 +28,8 @@ export class GanttComponent implements OnInit, AfterViewInit {
 
 	}
 	ngAfterViewInit(): void {
+		const myJson: GanttData[] = [];
+
 		this.setGanttStyleConfig();
 		gantt.gantt.init(this.ganttContainer.nativeElement);
 
@@ -34,8 +37,6 @@ export class GanttComponent implements OnInit, AfterViewInit {
 		.pipe(
 		  map(ganttData => {
 			this.TASK_DATA = ganttData;
-			var data = JSON.stringify(ganttData);
-			console.log(data);
 		  }),
 		)
 		.subscribe();
@@ -44,12 +45,10 @@ export class GanttComponent implements OnInit, AfterViewInit {
 		.pipe(
 		  map(ganttLink => {
 			this.LINK_DATA = ganttLink;
-			var link = JSON.stringify(ganttLink);
-			console.log(link);
 		  }),
 		)
 		.subscribe();
-		  
+		  console.log(myJson);
 
 	// 			gantt.gantt.parse({ data, links });
 
