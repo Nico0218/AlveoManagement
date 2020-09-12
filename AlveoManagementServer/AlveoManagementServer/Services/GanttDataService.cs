@@ -1,4 +1,5 @@
 ﻿using AlveoManagementCommon.Classes;
+using AlveoManagementCommon.Classes.Gantt_Classes;
 using AlveoManagementServer.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
@@ -22,42 +23,42 @@ namespace AlveoManagementServer.Services
             List<GanttData> ganttData = new List<GanttData>();
             ganttData.Add(new GanttData()
             {
-                               ID = 1,
-                               Text = "Zoar",
-                               Start_Date = "2020-09-04",
-                               Duration = 2,
-                               Color = "red",
-                               End_Date = "2020-09-06",
-                               Progress = 0,
-                               Parent = 0
+                id = 1,
+                text = "Zoar",
+                start_date = "2020-09-04",
+                duration = 2,
+                color = "red",
+                end_date = "2020-09-06",
+                progress = 0,
+                parent = 0
             }
                   );
             ganttData.Add(new GanttData()
             {
-                               ID = 2,
-                               Text = "Finish Container Work",
-                               Start_Date = "2020-09-04",
-                               Duration = 1,
-                               Color = "red",
-                               Parent = 1,
-                               End_Date = "2020-09-05",
-                               Progress = 0
+                id = 2,
+                text = "Finish Container Work",
+                start_date = "2020-09-04",
+                duration = 1,
+                color = "red",
+                parent = 1,
+                end_date = "2020-09-05",
+                progress = 0
             }
-      );
+            );
             ganttData.Add(new GanttData()
             {
-                               ID = 3,
-                               Text = "Pack Items For Zoar",
-                               Start_Date = "2020-09-05",
-                               Duration = 1,
-                               Color = "red",
-                               Parent = 1,
-                               End_Date = "2020-09-06",
-                               Progress = 0
+                id = 3,
+                text = "Pack Items For Zoar",
+                start_date = "2020-09-05",
+                duration = 1,
+                color = "red",
+                parent = 1,
+                end_date = "2020-09-06",
+                progress = 0
             }
-      );
+            );
             return ganttData;
-        }        
+        }
 
         public List<GanttLink> GetAllGanttLinks()
         {
@@ -65,21 +66,30 @@ namespace AlveoManagementServer.Services
             List<GanttLink> ganttLink = new List<GanttLink>();
             ganttLink.Add(new GanttLink()
             {
-                ID = 1,
-                Source = 1,
-                Target = 2,
-                Type = "1"
+                id = 1,
+                source = 1,
+                target = 2,
+                type = "1"
             }
-      );
+            );
             ganttLink.Add(new GanttLink()
             {
-                ID = 2,
-                Source = 2,
-                Target = 3,
-                Type = "0"
+                id = 2,
+                source = 2,
+                target = 3,
+                type = "0"
             }
-);
+            );
             return ganttLink;
         }
+        public GanttObjWrapper CombineGanttData()
+        {
+            GanttObjWrapper ganttObjWrapper = new GanttObjWrapper();
+            ganttObjWrapper.data = GetAllGanttData();
+            ganttObjWrapper.links = GetAllGanttLinks();
+            return ganttObjWrapper;
+        }
     }
+
+
 };

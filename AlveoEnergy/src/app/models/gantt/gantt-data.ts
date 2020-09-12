@@ -1,4 +1,4 @@
-export class GanttData {
+export class GanttObjWrapper {
     public data: any[];
     public links: any[];
 }

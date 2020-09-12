@@ -2,13 +2,13 @@
 {
     public interface IGanttData
     {
-        public int ID { get; set; }
-        public string Start_Date { get; set; }
-        public string End_Date { get; set; }
-        public string Text { get; set; }
-        public int Progress { get; set; }
-        public int Duration { get; set; }
-        public int Parent { get; set; }
-        public string Color { get; set; }
+        public int id { get; set; }
+        public string start_date { get; set; }
+        public string end_date { get; set; }
+        public string text { get; set; }
+        public int progress { get; set; }
+        public int duration { get; set; }
+        public int parent { get; set; }
+        public string color { get; set; }
     }
 }

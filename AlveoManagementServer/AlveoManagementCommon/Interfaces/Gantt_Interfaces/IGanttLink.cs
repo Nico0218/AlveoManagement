@@ -2,9 +2,9 @@
 {
     public interface IGanttLink
     {
-        public int ID { get; set; }
-        public int Source { get; set; }
-        public int Target { get; set; }
-        public string Type { get; set; }
+        public int id { get; set; }
+        public int source { get; set; }
+        public int target { get; set; }
+        public string type { get; set; }
     }
 }
