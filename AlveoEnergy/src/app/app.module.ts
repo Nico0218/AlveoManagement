@@ -28,6 +28,7 @@ import { OrdersComponent } from './components/orders/orders.component'
 import { ConfigService } from './services/config.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,8 @@ import { ConfigService } from './services/config.service';
     MatPaginatorModule,
     ZXingScannerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+
   ],
   providers: [
     ConfigService,

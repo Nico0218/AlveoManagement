@@ -7,6 +7,7 @@ import { PersonnelComponent } from './components/personnel/personnel.component';
 import { PersonnelAddComponent } from './components/personnel/personnelAdd/personnelAdd.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 
 const routes: Routes = [
     { path: 'gantt-component', component: GanttComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: 'personnel-component', component: PersonnelComponent },
     { path: 'personnelAdd-component', component: PersonnelAddComponent },
     { path: 'scanner-component', component: ScannerComponent },
-    { path: 'orders-component', component: OrdersComponent }
+    { path: 'orders-component', component: OrdersComponent },
+    { path: 'invoice-component', component: InvoiceComponent }
 ]; 
 
 
