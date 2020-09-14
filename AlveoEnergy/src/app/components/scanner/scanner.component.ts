@@ -39,6 +39,8 @@ ngAfterViewInit(): void {
 onCodeResult(resultString: string) {
   this.qrResultString = resultString;
   console.log(this.qrResultString);
+  const now = new Date();
+  console.log(now);
 }
 
 }
