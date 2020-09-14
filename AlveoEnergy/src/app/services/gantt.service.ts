@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { GanttObjWrapper } from '../models/gantt/gantt-data';
 import { Task } from '../models/task';
+import { Link } from '../models/link';
 import { map, catchError } from 'rxjs/operators';
 import { Environment } from '../classes/environment';
 import { HttpClient } from '@angular/common/http';
-import { Link } from '../models/link';
 
 @Injectable()
 export class GanttService {
-
     constructor(private httpClient: HttpClient) {
 
     }

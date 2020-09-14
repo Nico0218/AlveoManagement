@@ -1,6 +1,6 @@
 using AlveoManagementServer.Services;
 using AlveoManagementServer.Services.Interfaces;
-using GoogleSheets;
+//using GoogleSheets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +25,7 @@ namespace AlveoManagementServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IGoogleSheetsService, GoogleSheetsService>();            
+            //services.AddScoped<IGoogleSheetsService, GoogleSheetsService>();            
             services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<IPersonnelService, PersonnelService>();
             services.AddScoped<IGanttDataService, GanttDataService>();

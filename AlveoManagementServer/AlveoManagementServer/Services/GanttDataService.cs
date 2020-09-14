@@ -27,7 +27,7 @@ namespace AlveoManagementServer.Services
                 text = "Zoar",
                 start_date = "2020-09-04",
                 duration = 2,
-                color = "red",
+                color = "blue",
                 end_date = "2020-09-06",
                 progress = 0,
                 parent = 0
@@ -39,7 +39,7 @@ namespace AlveoManagementServer.Services
                 text = "Finish Container Work",
                 start_date = "2020-09-04",
                 duration = 1,
-                color = "red",
+                color = "yellow",
                 parent = 1,
                 end_date = "2020-09-05",
                 progress = 0
