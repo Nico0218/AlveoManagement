@@ -39,7 +39,7 @@ namespace AlveoManagementServer.Services
                 text = "Finish Container Work",
                 start_date = "2020-09-04",
                 duration = 1,
-                color = "yellow",
+                color = "green",
                 parent = 1,
                 end_date = "2020-09-05",
                 progress = 0

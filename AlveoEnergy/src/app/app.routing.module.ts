@@ -8,6 +8,7 @@ import { PersonnelAddComponent } from './components/personnel/personnelAdd/perso
 import { ScannerComponent } from './components/scanner/scanner.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
+import { QRCodeGenComponent } from './components/qr-code-generator/qr-code-gen.component';
 
 const routes: Routes = [
     { path: 'gantt-component', component: GanttComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: 'personnelAdd-component', component: PersonnelAddComponent },
     { path: 'scanner-component', component: ScannerComponent },
     { path: 'orders-component', component: OrdersComponent },
-    { path: 'invoice-component', component: InvoiceComponent }
+    { path: 'invoice-component', component: InvoiceComponent },
+    { path: 'qr-code-component', component: QRCodeGenComponent }
 ]; 
 
 

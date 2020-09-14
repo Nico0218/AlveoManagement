@@ -16,7 +16,7 @@ var gantt = require('dhtmlx-gantt');
 export class GanttComponent implements OnInit, AfterViewInit {
 	TASK_DATA : any[];
 	LINK_DATA : any[];
-	
+
 
 	@ViewChild('gantt_here') ganttContainer: ElementRef;
 

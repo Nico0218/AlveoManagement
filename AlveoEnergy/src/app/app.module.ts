@@ -26,6 +26,11 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { OrdersComponent } from './components/orders/orders.component'
 import { ConfigService } from './services/config.service';
+import { QRCodeGenComponent } from './components/qr-code-generator/qr-code-gen.component';
+import { QRCodeModule } from 'angular2-qrcode';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
+
 
 
 
@@ -39,7 +44,8 @@ import { ConfigService } from './services/config.service';
     PersonnelComponent,
     PersonnelAddComponent,
     ScannerComponent,
-    OrdersComponent
+    OrdersComponent,
+    QRCodeGenComponent
   ],
   imports: [
     HttpClientModule,
@@ -54,7 +60,9 @@ import { ConfigService } from './services/config.service';
     ZXingScannerModule,
     MatFormFieldModule,
     MatInputModule,
-
+    QRCodeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ConfigService,

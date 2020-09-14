@@ -1,0 +1,71 @@
+<h2>Generate QR-Code</h2>
+<div class="flexContainer">
+  <div>
+    <div>
+    <div>
+      <qr-code style="display: block; margin-left: auto; margin-right: auto; width: 40%;" [value]="qrdata" [size]="width" [level]="level" foreground="black"></qr-code>
+    </div>
+  </div>
+
+  <div>
+    <h3>QR Code Values</h3>
+
+    <label>
+      Type Of QR Code: <select [(ngModel)]="qrSelector">
+        <option value="qrProject">Project</option>
+        <option value="qrItem">Inventory Item</option>
+        <option value="qrPersonnel">Personnel</option>
+      </select>
+    </label> <br><br>
+
+
+    <ng-container *ngIf="qrSelector == 'qrItem'">
+      <label>
+        Part Number: <br><input [(ngModel)]="qrPartNumber" text="enter Part Number" />
+      </label><br>
+      <label>
+        Part Name: <br><input [(ngModel)]="qrPartName" text="enter Part Name"/>
+      </label><br>
+      <label>
+        Part Description: <br><input [(ngModel)]="qrPartDescription" text="enter Part Description" />
+      </label><br>
+      <button (click)='GeneratePartQR(qrPartNumber, qrPartName, qrPartDescription)'>GenerateQR</button>
+    </ng-container>
+
+    <ng-container *ngIf="qrSelector == 'qrPersonnel'">
+      <label>
+        First Name: <br><input [(ngModel)]="qrPersonName" text="enter Part Number" />
+      </label><br>
+      <label>
+        Last Name: <br><input [(ngModel)]="qrPersonSurname" text="enter Part Name"/>
+      </label><br>
+      <label>
+        Contact Number: <br><input [(ngModel)]="qrPersonContact" text="enter Part Description" />
+      </label><br>
+      <button (click)='GeneratePersonnelQR(qrPersonName, qrPersonSurname, qrPersonContact)'>GenerateQR</button>
+    </ng-container>
+
+    <ng-container *ngIf="qrSelector == 'qrProject'">
+      <label>
+        Project Number: <br><input [(ngModel)]="qrProjectNumber" text="enter Part Number" />
+      </label><br>
+      <label>
+        Project Name: <br><input [(ngModel)]="qrProjectName" text="enter Part Name"/>
+      </label><br>
+      <label>
+        Project Leader: <br><input [(ngModel)]="qrProjectLead" text="enter Part Description" />
+      </label><br>
+      <label>
+        Project Location: <br><input [(ngModel)]="qrProjectLocation" text="enter Part Description" />
+      </label><br>
+      <label>
+        Project Start Date: <br><input [(ngModel)]="qrProjectStart" text="enter Part Description" />
+      </label><br>
+      <label>
+        Project Deadline Date: <br><input [(ngModel)]="qrProjectDeadline" text="enter Part Description" />
+      </label><br>
+      <button (click)='GenerateProjectQR(qrProjectNumber, qrProjectName, qrProjectLead, qrProjectLocation, qrProjectStart, qrProjectDeadline)'>GenerateQR</button>
+    </ng-container>
+
+  </div>
+</div>

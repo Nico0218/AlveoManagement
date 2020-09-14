@@ -1,4 +1,4 @@
-<zxing-scanner style="max-height: 400px; max-width: 400px;" #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="onCodeResult($event)"
+<zxing-scanner style="display: block;margin-left: auto;margin-right: auto;width: 40%;" #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="onCodeResult($event)"
 >
 </zxing-scanner>
 
@@ -8,4 +8,8 @@
     <strong>{{ qrResultString }}</strong>
   </div>
   <button mat-icon-button (click)="clearResult()">&times;</button>
+</section>
+
+<section>
+  
 </section>
