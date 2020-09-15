@@ -26,6 +26,10 @@ export class PersonnelComponent {
 		this.personnelList.filter = filterValue.trim().toLowerCase();
 	  }
 
+	  getPersonnelRecord(row){
+		  console.log(row);
+	  }
+
     ngOnInit() {
 		this.personnelService.GetAllPersonnel()
       .pipe(

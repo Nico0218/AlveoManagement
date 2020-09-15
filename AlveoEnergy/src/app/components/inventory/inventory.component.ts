@@ -20,6 +20,7 @@ export class InventoryComponent {
 
   }
 
+  //creates data sources for plc, hmi and vsd items for list population
   plcItemsList = new MatTableDataSource();
   displayedPlcColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
   hmiItemsList = new MatTableDataSource();
@@ -27,20 +28,36 @@ export class InventoryComponent {
   vsdItemsList = new MatTableDataSource();
   displayedVsdColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
 
+  //filters displayed plc results in form
   applyPlcFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.plcItemsList.filter = filterValue.trim().toLowerCase();
   }
 
+  //filters displayed hmi results in form
   applyHmiFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.hmiItemsList.filter = filterValue.trim().toLowerCase();
   }
 
+  //filters displayed vsd results in form
   applyVsdFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.vsdItemsList.filter = filterValue.trim().toLowerCase();
   }
+
+  getPLCRecord(row){
+    console.log(row);
+  }
+
+  getHMIRecord(row){
+    console.log(row);
+  }
+
+  getVSDRecord(row){
+    console.log(row);
+  }
+
 
   ngOnInit() {
     this.inventoryService.GetAllPlcItems()//This function builds and returns a Observable

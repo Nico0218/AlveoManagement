@@ -32,6 +32,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
 
+        //Checks if user details are stored
         function authenticate() {
             debugger;
             const { username, password } = body;
@@ -45,24 +46,29 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             })
         }
 
+        //Checks if user is logged in -- if not user cannot access route/control
         function getUsers() {
             if (!isLoggedIn()) return unauthorized();
             return ok(users);
         }
 
 
+        //Return successfull Login
         function ok(body?) {
             return of(new HttpResponse({ status: 200, body }))
         }
 
+        //Return Error if login un successfull
         function error(message) {
             return throwError({ error: { message } });
         }
 
+        //returns unauthorized if user is not authorised for specific route/control
         function unauthorized() {
             return throwError({ status: 401, error: { message: 'Unauthorised' } });
         }
 
+        //test user
         function isLoggedIn() {
             return headers.get('Authorization') === `Basic ${window.btoa('test:test')}`;
         }

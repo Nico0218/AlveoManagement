@@ -25,6 +25,11 @@ export class ProjectsComponent {
 		this.projectsList.filter = filterValue.trim().toLowerCase();
 	  }
 
+	  getProjectRecord(row){
+		  console.log(row);
+	  }
+
+
     ngOnInit() {
 		this.projectService.GetAllProjects()
       .pipe(

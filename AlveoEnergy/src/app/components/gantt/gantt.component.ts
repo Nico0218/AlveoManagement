@@ -17,7 +17,7 @@ export class GanttComponent implements OnInit, AfterViewInit {
 	TASK_DATA : any[];
 	LINK_DATA : any[];
 
-
+	//points to gantt chart container
 	@ViewChild('gantt_here') ganttContainer: ElementRef;
 
 	constructor(private ganttService: GanttService) {
@@ -25,6 +25,7 @@ export class GanttComponent implements OnInit, AfterViewInit {
 	}
 	ngAfterViewInit(): void {
 
+		//initializes gantt chart and parses fetched data from backend
 		this.setGanttStyleConfig();
 		gantt.gantt.init(this.ganttContainer.nativeElement);
 
@@ -42,6 +43,7 @@ export class GanttComponent implements OnInit, AfterViewInit {
 		
 	}
 
+	//sets gantt styling and layout
 	private setGanttStyleConfig() {
 		gantt.gantt.config.xml_date = '%Y-%m-%d %H:%i';
 		gantt.gantt.config.layout = {

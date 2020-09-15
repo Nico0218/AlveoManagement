@@ -34,7 +34,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedPlcColumnsList"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedPlcColumnsList;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedPlcColumnsList;" (click)="getPLCRecord(row)"></tr>
     </table>
 
     <tr class="mat-row" *matNoDataRow>
@@ -79,7 +79,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedHmiColumnsList"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedHmiColumnsList;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedHmiColumnsList;" (click)="getHMIRecord(row)"></tr>
     </table>
 
     <tr class="mat-row" *matNoDataRow>
@@ -124,7 +124,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedVsdColumnsList"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedVsdColumnsList;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedVsdColumnsList;" (click)="getVSDRecord"></tr>
     </table>
 
     <tr class="mat-row" *matNoDataRow>
