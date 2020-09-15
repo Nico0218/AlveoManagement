@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InventoryService } from './services/inventory.service';
 import { GanttComponent } from './components/gantt/gantt.component';
 import { PropertiesComponent } from './components/properties/properties.component';
@@ -30,6 +30,10 @@ import { QRCodeGenComponent } from './components/qr-code-generator/qr-code-gen.c
 import { QRCodeModule } from 'angular2-qrcode';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { BasicAuthInterceptor } from './basic-gaurd/auth.interceptor';
+import { ErrorInterceptor } from './basic-gaurd/error.interceptor';
+import { fakeBackendProvider } from './basic-gaurd/fake-backend';
 
 
 
@@ -45,7 +49,8 @@ import { ReactiveFormsModule} from '@angular/forms';
     PersonnelAddComponent,
     ScannerComponent,
     OrdersComponent,
-    QRCodeGenComponent
+    QRCodeGenComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
@@ -76,8 +81,12 @@ import { ReactiveFormsModule} from '@angular/forms';
     InventoryService,
     ProjectService,
     GanttService,
-    PersonnelService
+    PersonnelService,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

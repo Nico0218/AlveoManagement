@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AlveoManagementCommon.Classes.Gantt_Classes
+namespace AlveoManagementCommon.Classes
 {
     public class GanttObjWrapper
     {

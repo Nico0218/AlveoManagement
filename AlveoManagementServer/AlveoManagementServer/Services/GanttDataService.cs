@@ -1,5 +1,4 @@
 ﻿using AlveoManagementCommon.Classes;
-using AlveoManagementCommon.Classes.Gantt_Classes;
 using AlveoManagementServer.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
