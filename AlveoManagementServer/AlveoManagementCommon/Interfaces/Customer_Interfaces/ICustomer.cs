@@ -11,7 +11,8 @@ namespace AlveoManagementCommon.Interfaces.Customer_Interfaces
         public string contact { get; set; }
         public string email { get; set; }
         public string orderNumber { get; set; }
-        public string project { get; set; }
+        public string projectName { get; set; }
+        public string projectNumber { get; set; }
         public string contactNumber { get; set; }
         public string taxNumber { get; set; }
     }

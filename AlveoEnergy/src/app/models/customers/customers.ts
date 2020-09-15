@@ -8,7 +8,8 @@ export class Customer {
     contact : string;
     email : string;
     orderNumber : string;
-    project : string;
+    projectNumber: string;
+    projectName : string;
     contactNumber : string;
     taxNumber : string;
   }

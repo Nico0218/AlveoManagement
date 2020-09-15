@@ -11,7 +11,8 @@ namespace AlveoManagementCommon.Classes.Customer_Classes
         public string contact { get; set; }
         public string email { get; set; }
         public string orderNumber { get; set; }
-        public string project { get; set; }
+        public string projectName { get; set; }
+        public string projectName { get; set; }
         public string contactNumber { get; set; }
         public string taxNumber { get; set; }
     }
