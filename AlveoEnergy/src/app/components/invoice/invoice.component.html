@@ -1,5 +1,9 @@
 
-
+<button type="button" id="addButton"
+class="btn btn-primary"
+(click)="addRow();">
+Add
+</button>
 
 
 <div style="border: 1px solid black;" id="container">
@@ -17,25 +21,25 @@
     30 Mynhardt Str&#13;&#10;
     Gantzz Plaza, Strand 7140&#13;&#10;
     021 851 2576 &#13;&#10;
-    {{Quote.preparedPerson}}&#13;&#10;
-    {{Quote.preparedEmail}}
+    Tinus&#13;&#10;
+    Tinus.Spangenberg@AlveoEnergy.co.za
 </textarea>
 <table style="float: right; margin-right: 250px;">
     <tr>
         <td style="text-align: right;">DATE:</td>
-        <td style="padding-left: 80px;">{{Quote.date}}</td>
+        <td style="padding-left: 80px;">17/09/2020</td>
     </tr>
     <tr>
         <td style="text-align: right;">QUOTE#</td>
-        <td style="padding-left: 80px;">{{Quote.number}}</td>
+        <td style="padding-left: 80px;">Q20-024</td>
     </tr>
     <tr>
         <td style="text-align: right;">Customer ID</td>
-        <td style="padding-left: 80px;">{{Customer.name}}</td>
+        <td style="padding-left: 80px;">Test Customer</td>
     </tr>
     <tr>
         <td style="text-align: right;">Valid Until</td>
-        <td style="padding-left: 80px;">{{Quote.ExpireDate}}</td>
+        <td style="padding-left: 80px;">17/10/2020</td>
     </tr>
 </table>
 <table style="margin-left: 315px; width: 320px;">
@@ -45,38 +49,38 @@
     </tr>
     <tr>
         <td>ORDER NO:</td>
-        <td style="padding-left: 38px;">{{Customer.OrderNumber}}</td>
+        <td style="padding-left: 38px;">AE025</td>
     </tr>
     <tr>
         <td>PROJECT:</td>
-        <td style="padding-left: 38px;">{{Customer.Project}}</td>
+        <td style="padding-left: 38px;">Test Project</td>
     </tr>
     <tr>
         <td>ATTENTION:</td>
-        <td style="padding-left: 38px;">{{Customer.contact}}</td>
+        <td style="padding-left: 38px;">Customer Contact</td>
     </tr>
     <tr>
         <td>PREPARED FOR:</td>
-        <td style="padding-left: 38px;">{{Customer.name}}</td>
+        <td style="padding-left: 38px;">Customer Name</td>
     </tr>
     <tr>
         <td>ADDRESS:</td>
-        <td style="padding-left: 38px;">{{Customer.AddrLine1}}</td>
+        <td style="padding-left: 38px;">Customer Address</td>
     </tr>
     <tr>
         <td></td>
-        <td style="padding-left: 38px;">{{Customer.AddrLine2}}</td>
+        <td style="padding-left: 38px;">Customer Town</td>
     </tr>
     <tr>
         <td>PHONE:</td>
-        <td style="padding-left: 38px;">{{Customer.contactNumber}}</td>
+        <td style="padding-left: 38px;">Customer Number</td>
     </tr>
     <tr>
         <td>EMAIL:</td>
-        <td style="padding-left: 38px;">{{Customer.email}}</td>
+        <td style="padding-left: 38px;">Customer@email.com</td>
     </tr>
 </table>
-<table style="margin-left: 315px;">
+<table style="margin-left: 315px;" id="quoteTable">
     <th style=" text-align: center; width: 350px; background-color: rgb(120, 180, 0); color: white;">DESCRIPTION</th>
     <th style=" text-align: center; width: 70px; background-color: rgb(120, 180, 0); color: white;">REQ</th>
     <th style=" text-align: center; width: 70px; background-color: rgb(120, 180, 0); color: white;">UNIT</th>
@@ -89,13 +93,7 @@
         <td style=" text-align: center;">item rate</td>
         <td style=" text-align: center;">item amount</td>
     </tr>
-    <tr style=" background-color: lightgrey">
-        <td style=" text-align: center;">item description</td>
-        <td style=" text-align: center;">item req</td>
-        <td style=" text-align: center;">item unit</td>
-        <td style=" text-align: center;">item rate</td>
-        <td style=" text-align: center;">item amount</td>
-    </tr>
+
 </table>
 
 <table style="float: left; margin-left: 315px; margin-top: 40px;">
@@ -110,23 +108,23 @@
 <table style=" float: right; margin-right: 210px; margin-top: 15px;">
     <tr>
         <td style="width: 130px; text-align: left;">Subtotal:</td>
-        <td style="text-align: right;">{{Quote.subTotal}}</td>
+        <td style="text-align: right;">R150 000.00</td>
     </tr>
     <tr>
         <td style="width: 130px;text-align: left;">Tax Rate:</td>
-        <td style="text-align: right;">{{Quote.taxRate}}</td>
+        <td style="text-align: right;">15%</td>
     </tr>
     <tr>
         <td style="width: 130px;text-align: left;">Tax Due:</td>
-        <td style="text-align: right;">{{Quote.taxDue}}</td>
+        <td style="text-align: right;">R10 000.00</td>
     </tr>
     <tr>
         <td style="width: 130px;text-align: left;">Other</td>
-        <td style="text-align: right;">{{Quote.other}}</td>
+        <td style="text-align: right;">R0.00</td>
     </tr>
     <tr>
         <td style="width: 130px;text-align: left;">TOTAL DUE</td>
-        <td style="text-align: right;">{{Quote.totalQuote}}</td>
+        <td style="text-align: right;">R160 000.00</td>
     </tr>
 </table>
 <p style=" text-align:center; clear:both">Please see terms and conditions on page 2</p>
@@ -244,3 +242,39 @@
 <p>such as obtain a WULA or an EIA, Alveo Energy will be allowed to continue with commissioning work as to invoice </p>
 <p>the client in full.</p>
 </div>
+
+<script>
+
+function addRow (argument) {
+        var myTable = document.getElementById("quoteTable");
+        var currentIndex = myTable.rows.length;
+        var currentRow = myTable.insertRow(-1);
+
+        var linksBox = document.createElement("input");
+        linksBox.setAttribute("name", "links" + currentIndex);
+
+        var keywordsBox = document.createElement("input");
+        keywordsBox.setAttribute("name", "keywords" + currentIndex);
+
+        var violationsBox = document.createElement("input");
+        violationsBox.setAttribute("name", "violationtype" + currentIndex);
+
+        var addRowBox = document.createElement("input");
+        addRowBox.setAttribute("type", "button");
+        addRowBox.setAttribute("value", "Add another line");
+        addRowBox.setAttribute("onclick", "addField();");
+        addRowBox.setAttribute("class", "button");
+
+        var currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(linksBox);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(keywordsBox);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(violationsBox);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(addRowBox);
+    }
+</script>
