@@ -1,10 +1,10 @@
 ﻿using AlveoManagementCommon.Interfaces;
 
-namespace AlveoManagementCommon.Interfaces.Customer_Interfaces
+namespace AlveoManagementCommon.Interfaces
 {
     public interface ICustomer
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string name { get; set; }
         public string addrLine1 { get; set; }
         public string addrLine2 { get; set; }

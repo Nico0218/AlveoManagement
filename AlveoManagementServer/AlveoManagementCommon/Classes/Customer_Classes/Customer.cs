@@ -1,6 +1,6 @@
 ﻿using AlveoManagementCommon.Interfaces;
 
-namespace AlveoManagementCommon.Classes.Customer_Classes
+namespace AlveoManagementCommon.Classes
 {
     public class Customer : ICustomer
     {
@@ -12,7 +12,7 @@ namespace AlveoManagementCommon.Classes.Customer_Classes
         public string email { get; set; }
         public string orderNumber { get; set; }
         public string projectName { get; set; }
-        public string projectName { get; set; }
+        public string projectNumber { get; set; }
         public string contactNumber { get; set; }
         public string taxNumber { get; set; }
     }

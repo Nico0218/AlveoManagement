@@ -7,10 +7,11 @@ import { PersonnelComponent } from './components/personnel/personnel.component';
 import { PersonnelAddComponent } from './components/personnel/personnelAdd/personnelAdd.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { InvoiceComponent } from './components/invoice/invoice.component';
 import { QRCodeGenComponent } from './components/qr-code-generator/qr-code-gen.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './basic-gaurd/auth.gaurd';
+import { QuoteComponent } from './components/quote/quote.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 
 const routes: Routes = [
     { path: '',redirectTo:'login-component', pathMatch: 'full'},
@@ -23,7 +24,8 @@ const routes: Routes = [
     { path: 'scanner-component', component: ScannerComponent, canActivate: [AuthGuard]  },
     { path: 'orders-component', component: OrdersComponent, canActivate: [AuthGuard]  },
     { path: 'invoice-component', component: InvoiceComponent, canActivate: [AuthGuard]  },
-    { path: 'qr-code-component', component: QRCodeGenComponent, canActivate: [AuthGuard]  }
+    { path: 'qr-code-component', component: QRCodeGenComponent, canActivate: [AuthGuard]  },
+    { path: 'quote-component', component: QuoteComponent, canActivate: [AuthGuard]  }
 ]; 
 
 

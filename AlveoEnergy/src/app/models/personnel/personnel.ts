@@ -7,6 +7,7 @@ export class Personnel extends ModelBase {
     public Position: string;
     public EmploymentDate: string;
     public ContactNumber: string;
+    public Email: string;
 
     constructor() {
         super();

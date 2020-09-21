@@ -12,7 +12,7 @@ export class QRCodeGenComponent{
     public partNumber: string;
     public qrValue: string;
     'qrSelector';
-    
+
     ngAfterViewInit(): void {
         this.level = "M";
         debugger;
@@ -22,7 +22,6 @@ export class QRCodeGenComponent{
 
     public GeneratePartQR(qrPartNumber: string, qrPartName: string, qrPartDescription: string){
         this.qrdata = "Part Number :" + qrPartNumber + "," + "Part Name :" + qrPartName + "," + "Part Description : " + qrPartDescription ;
-        console.log(JSON.parse(this.qrdata));
     }
 
     public GeneratePersonnelQR(qrPersonName: string, qrPersonSurname:string, qrPersonContact:string){

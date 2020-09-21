@@ -34,6 +34,7 @@ import { LoginComponent } from './components/login/login.component';
 import { BasicAuthInterceptor } from './basic-gaurd/auth.interceptor';
 import { ErrorInterceptor } from './basic-gaurd/error.interceptor';
 import { fakeBackendProvider } from './basic-gaurd/fake-backend';
+import { QuoteComponent } from './components/quote/quote.component';
 
 
 
@@ -50,7 +51,8 @@ import { fakeBackendProvider } from './basic-gaurd/fake-backend';
     ScannerComponent,
     OrdersComponent,
     QRCodeGenComponent,
-    LoginComponent
+    LoginComponent,
+    QuoteComponent
   ],
   imports: [
     HttpClientModule,
