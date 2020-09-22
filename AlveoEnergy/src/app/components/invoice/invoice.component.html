@@ -1,0 +1,117 @@
+<div style="border: 1px solid black;" id="container">
+    <header>
+        <img style="height: 100px; width: 250px; margin-left: 300px;" alt="" src="../../../assets/img/Alveo Energy Logo Colour.jpg"><h1 style=" float: right; margin-top: 30px; margin-right: 300px;">INVOICE</h1>
+    </header>
+    <div><table  style="margin-left: 315px; float: left;">
+        <tr>
+            <td>Address:</td>
+            <td style="padding-left: 60px;">30 Mynhardt St</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="padding-left: 60px;">Gantzz plaza, Strand, 7140</td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td style="padding-left: 60px;">021 851 2576</td>
+        </tr>
+    </table>
+    <table style="float: right; margin-right: 250px;">
+        <tr>
+            <td style="text-align: right;">DATE:</td>
+            <td style="padding-left: 80px;">{{quoteDate}}</td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">INVOICE#</td>
+            <td style="padding-left: 80px;">{{quoteNumber}}</td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">Customer ID</td>
+            <td style="padding-left: 80px;">{{customerID}}</td>
+        </tr>
+    </table>
+    </div>
+    <table style="margin-left: 315px; width: 320px; clear: both;">
+        <tr>
+            <td style="background-color: rgb(120, 180, 0); color: white;">Customer</td>
+            <td style="background-color: rgb(120, 180, 0);"></td>
+        </tr>
+        <tr>
+            <td>ORDER NO:</td>
+            <td style="padding-left: 38px;">{{orderNumber}}</td>
+        </tr>
+        <tr>
+            <td>PROJECT:</td>
+            <td style="padding-left: 38px;">{{projectName}}</td>
+        </tr>
+        <tr>
+            <td>ATTENTION:</td>
+            <td style="padding-left: 38px;">{{attention}}</td>
+        </tr>
+        <tr>
+            <td>PREPARED FOR:</td>
+            <td style="padding-left: 38px;">{{preparedFor}}</td>
+        </tr>
+        <tr>
+            <td>ADDRESS:</td>
+            <td style="padding-left: 38px;">{{customerAddress1}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="padding-left: 38px;">{{customerAddress2}}</td>
+        </tr>
+        <tr>
+            <td>PHONE:</td>
+            <td style="padding-left: 38px;">{{customerContactNumber}}</td>
+        </tr>
+        <tr>
+            <td>EMAIL:</td>
+            <td style="padding-left: 38px;">{{customerEmail}}</td>
+        </tr>
+        <tr>
+            <td>TAX NUMBER:</td>
+            <td style="padding-left: 38px;">{{customerEmail}}</td>
+        </tr>
+    </table>
+    <table style="margin-left: 315px; width: 800px;" id="quoteTable">
+        <th  style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;" *ngFor = "let column of headers">{{column}}</th>
+        <tr *ngFor = "let row of items">
+            <td style="text-align: center;" *ngFor = "let column of headers">
+              {{row[column]}}
+            </td>
+          </tr>
+    </table>
+    
+    <table style="float: left; margin-left: 315px; margin-top: 40px;">
+        <th style=" width: 320px; background-color: rgb(120, 180, 0); color: white;">
+            NOTES
+        </th>
+        <tr>
+            <td style="width: 315px;"><textarea style=" border: hidden; resize: none; width: 325px; height: 150px;"></textarea></td>
+        </tr>
+    </table>
+    
+    <table style=" float: right; margin-right: 210px; margin-top: 15px;">
+        <tr>
+            <td style="width: 130px; text-align: left;">Subtotal:</td>
+            <td style="text-align: right;">R{{quoteSubTotal}}</td>
+        </tr>
+        <tr>
+            <td style="width: 130px;text-align: left;">Tax Rate:</td>
+            <td style="text-align: right;">{{quoteTaxRate}}%</td>
+        </tr>
+        <tr>
+            <td style="width: 130px;text-align: left;">Tax Due:</td>
+            <td style="text-align: right;">R{{quoteTaxDue}}</td>
+        </tr>
+        <tr>
+            <td style="width: 130px;text-align: left;">Other</td>
+            <td style="text-align: right;">R{{quoteOther}}</td>
+        </tr>
+        <tr>
+            <td style="width: 130px;text-align: left;">TOTAL DUE</td>
+            <td style="text-align: right;">R{{quoteTotal}}</td>
+        </tr>
+    </table>
+    <p style=" text-align:center; clear:both"></p>
+    </div>

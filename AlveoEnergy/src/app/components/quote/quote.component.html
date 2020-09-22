@@ -1,9 +1,41 @@
-<input>
+
+<div style="text-align: center; border: darkolivegreen 1px solid; margin-top: 10px;">
+<h2>Select Customer:</h2>
+<select *ngIf="customers" #selectElem (change)="setNewUser(selectElem.value)">
+    <option *ngFor="let customer of customers" [value]="customer.id">
+        {{customer.name}}
+    </option>
+</select>
+<h5> Enter Customer Order Number:</h5>
+<input type="text" [(ngModel)]="custOrderNum">
+<h5>Enter Project Name:</h5>
+<input type="text" [(ngModel)]="custProjectName">
+<h5>For Attention:</h5>
+<input type="text" [(ngModel)]="custForAttention">
+
+<br>
+<br>
 <button type="button" id="addButton"
 class="btn btn-primary"
 (click)="test();">
 Add
 </button>
+</div>
+<br>
+<br>
+
+<div style="text-align: center; border: darkolivegreen 1px solid;">
+<h2>Add Items:</h2>
+<select *ngIf="inventory" #selectElem (change)="pushItems(selectElem.value)">
+    <option *ngFor="let item of inventory" [value]="item.ID">
+        {{item.Name}}
+    </option>
+</select>
+<br>
+<p>Select Quantity:</p>
+<input type="text" [(ngModel)]="partReq">
+</div>
+<br>
 
 
 <div style="border: 1px solid black;" id="container">

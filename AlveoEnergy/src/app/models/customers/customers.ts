@@ -1,7 +1,7 @@
 import { Guid } from 'src/app/classes/guid';
 
 export class Customer {
-    id : Guid;
+    id : number;
     name : string;
     addrLine1 : string;
     addrLine2 : string;

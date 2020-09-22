@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Personnel } from '../../models/personnel/personnel';
 import { Quote } from '../../models/quote/quote';
 import { Customer } from '../../models/customers/customers';
-import { FLOAT, float } from 'html2canvas/dist/types/css/property-descriptors/float';
-import { CurrencyPipe } from '@angular/common';
+import { map, take } from 'rxjs/operators';
+import { CustomerService } from '../../services/customers.service';
+import { InventoryService } from '../../services/inventory.service';
 
 @Component({
 	selector: 'quote',
@@ -11,6 +12,12 @@ import { CurrencyPipe } from '@angular/common';
 	templateUrl: './quote.component.html',
 })
 export class QuoteComponent implements OnInit {
+
+
+	constructor(private customerService: CustomerService, private inventoryService: InventoryService) {
+
+	}
+
 	public preparedBy = "";
 	public preparedByEmail = "";
 	public quoteDate = "";
@@ -30,98 +37,81 @@ export class QuoteComponent implements OnInit {
 	public quoteTaxDue = 0.00;
 	public quoteOther = 0.00;
 	public quoteTotal = 0.00;
-	public headers = [];
+	public headers = ["Description", "Req", "Unit", "Rate", "Ammount"];
+	public custOrderNum;
+	public custProjectName;
+	public custForAttention;
+	public partReq = "";
+	public customers = [];
 	public items = [];
+	public inventory = [];
+	public curUser;
+	public curItem;
+	public date;
 
 
+	public setNewUser(id: any){
+		console.log(id);
+		// Match the selected ID with the ID's in array
+		this.curUser = this.customers.filter(value => value.id === parseInt(id));
+		console.log(this.curUser);
+		this.preparedFor = this.curUser[0].name;
+		this.customerAddress1 = this.curUser[0].addrLine1;
+		this.customerAddress2 = this.curUser[0].addrLine2;
+		this.customerEmail = this.curUser[0].email;
+		this.customerContactNumber = this.curUser[0].contactNumber;
+		this.customerID = this.curUser[0].customerID;
+	}
 
-	public test(){
-		var newCustomer = new Customer();
-		newCustomer.name = "testCustomer",
-		newCustomer.email = "customer@email.com",
-		newCustomer.addrLine1 = "test Street 50",
-		newCustomer.addrLine2 = "test suburb, test town, 7140",
-		newCustomer.orderNumber = "test order Number",
-		newCustomer.projectName = "test project",
-		newCustomer.contact = "test name",
-		newCustomer.name = "test Customer Name",
-		newCustomer.contactNumber = "test ContactNumber"
-
-		var newPersonnel = new Personnel();
-		newPersonnel.Name = "tinus",
-		newPersonnel.Email = "tinus.spangenberg@alveoenergy.co.za"
-
-		var newQuote = new Quote();
-		newQuote.date = new Date(),
-		newQuote.quoteNumber = "Q20-025",
-		newQuote.custId = "5",
-		newQuote.validUntil = new Date(newQuote.date);
-
-		this.preparedBy = newPersonnel.Name;
-		this.preparedByEmail = newPersonnel.Email;
-		this.orderNumber = newCustomer.orderNumber;
-		this.projectName = newCustomer.projectName;
-		this.attention = newCustomer.contact;
-		this.preparedFor = newCustomer.name;
-		this.customerAddress1 = newCustomer.addrLine1;
-		this.customerAddress2 = newCustomer.addrLine2;
-		this.customerContactNumber = newCustomer.contactNumber;
-		this.customerEmail = newCustomer.email;
-		this.quoteDate = newQuote.date.toLocaleDateString();
-		this.quoteNumber = newQuote.quoteNumber;
-		this.customerID = newQuote.custId;
-		this.quoteValid = newQuote.validUntil.toLocaleDateString();
-
-		this.headers = ["DESCRIPTION", "REQ", "UNIT", "RATE", "AMMOUNT"];
-		this.items = [
-			{
-				"DESCRIPTION" : "Test Item",
-				"REQ" : "1",
-				"UNIT" : "10.00",
-				"RATE" : "12.00",
-				"AMMOUNT" : "20.00",
-			},
-			{
-				"DESCRIPTION" : "Test Item 2",
-				"REQ" : "5",
-				"UNIT" : "10.00",
-				"RATE" : "10.00",
-				"AMMOUNT" : "50.00",
-			},
-			{
-				"DESCRIPTION" : "Test Item 3",
-				"REQ" : "6",
-				"UNIT" : "20.00",
-				"RATE" : "20.00",
-				"AMMOUNT" : "120.00",
-			},
-			{
-				"DESCRIPTION" : "Test Item 4",
-				"REQ" : "10",
-				"UNIT" : "20.00",
-				"RATE" : "20.00",
-				"AMMOUNT" : "200.00",
+	public pushItems(id:any){
+		for (let index = 0; index < this.inventory.length; index++) {
+			if (this.inventory[index].ID == id) {
+				this.inventory[index].Req = Number(this.partReq);
+				this.inventory[index].Ammount = this.inventory[index].Rate * Number(this.partReq);
+				this.items.push(this.inventory[index]);
+				this.quoteSubTotal = this.quoteSubTotal + Number(this.inventory[index].Ammount);
+				this.quoteTaxRate = 15;
+				this.quoteTaxDue = this.quoteSubTotal*0.15;
+				this.quoteTotal = this.quoteSubTotal + this.quoteTaxDue;
 			}
-		]
-
-		// for (let index = 0; index < this.items.length; index++) {
-		// 	var temp += Number(this.items[index].AMMOUNT);
 			
-		// }
-
-		this.quoteSubTotal = Number(this.items[0].AMMOUNT) + Number(this.items[1].AMMOUNT) + Number(this.items[2].AMMOUNT) + Number(this.items[3].AMMOUNT);
-		this.quoteTaxRate = 15;
-		this.quoteTaxDue = this.quoteSubTotal*(this.quoteTaxRate/100);
-		this.quoteTotal = this.quoteSubTotal + this.quoteTaxDue;
-	}
-
-	public AddItem(){
-
-	}
-
-
-    ngOnInit(): void {
+		}
 	}
 	
+
+    ngOnInit(): void {
+		this.customerService.GetAllCustomerData()
+		.pipe(
+		  map(customer => {
+			this.customers = customer;
+		  }),
+		  take(1)
+		)
+		.subscribe();
+
+		this.inventoryService.GetAllHmiItems()
+		.pipe(
+		  map(hmiItems => {
+			this.inventory = hmiItems;
+			console.log(this.inventory)
+		  }),
+		  take(1)
+		)
+		.subscribe();
+
+	}
+	
+
+	public test(){
+		this.preparedBy = "incorporate current logged in user";
+		this.preparedByEmail = "incorporate current logged in user";
+		this.date = new Date();
+		this.quoteDate = this.date.toLocaleDateString();
+		this.quoteNumber = "still needs data";
+		this.quoteValid = new Date().toLocaleDateString();
+		this.orderNumber = this.custOrderNum;
+		this.projectName = this.custProjectName;
+		this.attention = this.custForAttention;
+	}
 
 }

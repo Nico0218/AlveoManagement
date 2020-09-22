@@ -30,6 +30,7 @@ namespace AlveoManagementServer
             services.AddScoped<IPersonnelService, PersonnelService>();
             services.AddScoped<IGanttDataService, GanttDataService>();
             services.AddScoped<IStartupService, StartupService>();
+            services.AddScoped<ICustomerService, CustomerService>();
 
             services.AddControllers()
                 .AddJsonOptions(options => {

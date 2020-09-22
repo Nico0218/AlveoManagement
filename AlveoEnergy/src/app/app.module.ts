@@ -35,6 +35,7 @@ import { BasicAuthInterceptor } from './basic-gaurd/auth.interceptor';
 import { ErrorInterceptor } from './basic-gaurd/error.interceptor';
 import { fakeBackendProvider } from './basic-gaurd/fake-backend';
 import { QuoteComponent } from './components/quote/quote.component';
+import { CustomerService } from './services/customers.service';
 
 
 
@@ -84,6 +85,7 @@ import { QuoteComponent } from './components/quote/quote.component';
     ProjectService,
     GanttService,
     PersonnelService,
+    CustomerService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider

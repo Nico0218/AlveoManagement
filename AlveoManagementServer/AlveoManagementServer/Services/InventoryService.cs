@@ -131,7 +131,11 @@ namespace AlveoManagementServer.Services
                 Name = "12' Basic Panel",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 1
+                Qty = 1,
+                Description = "12 inch Basic Panel",
+                Unit = "ea",
+                Rate = 25500,
+                Req = 0
             }
             );
             hmiItems.Add(new HmiItem()
@@ -140,7 +144,11 @@ namespace AlveoManagementServer.Services
                 Name = "4' Basic Panel",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 5
+                Qty = 5,
+                Description = "4 inch Basic Panel",
+                Unit = "ea",
+                Rate = 7500,
+                Req = 0
             }
             );
             hmiItems.Add(new HmiItem()
@@ -149,7 +157,11 @@ namespace AlveoManagementServer.Services
                 Name = "10' Basic Panel",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 7
+                Qty = 7,
+                Description = "10 inch Basic Panel",
+                Unit = "ea",
+                Rate = 15500,
+                Req = 0
             }
             );
             hmiItems.Add(new HmiItem()
@@ -158,7 +170,11 @@ namespace AlveoManagementServer.Services
                 Name = "7' Basic Panel",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 6
+                Qty = 6,
+                Description = "7 inch Basic Panel",
+                Unit = "ea",
+                Rate = 11500,
+                Req = 0
             }
             );
             return hmiItems;
@@ -174,7 +190,7 @@ namespace AlveoManagementServer.Services
                 Name = "G120x",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 3
+                Qty = 3,
             }
             );
             vsdItems.Add(new VsdItem()

@@ -5,6 +5,11 @@ export class HmiItem extends ModelBase {
     public Make: string;
     public PartNumber: string;
     public Qty: number;
+    public Description: string;
+    public Unit: string;
+    public Rate: number;
+    public Req: number;
+    public Ammount: Number;
 
     constructor() {
         super();
