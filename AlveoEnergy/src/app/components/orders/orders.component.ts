@@ -7,7 +7,5 @@ import { Component, OnInit } from '@angular/core';
 })
 
 
-export class OrdersComponent implements OnInit {
-    ngOnInit(): void {
-    }
-}
+export class OrdersComponent {
+  }

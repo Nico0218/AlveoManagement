@@ -5,6 +5,9 @@ import { Customer } from '../../models/customers/customers';
 import { map, take } from 'rxjs/operators';
 import { CustomerService } from '../../services/customers.service';
 import { InventoryService } from '../../services/inventory.service';
+import { from } from 'rxjs';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
 	selector: 'quote',
@@ -49,6 +52,33 @@ export class QuoteComponent implements OnInit {
 	public curItem;
 	public date;
 
+	public convertToPDF()
+	{
+	var data = document.getElementById('contentToConvert');
+	html2canvas(data).then(canvas => {
+	// Few necessary setting options
+	var imgWidth = 208;
+	var pageHeight = 295;
+	var imgHeight = canvas.height * imgWidth / canvas.width;
+	var heightLeft = imgHeight;
+ 
+	const contentDataURL = canvas.toDataURL('image/png')
+	let pdf = new jspdf.jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+	var position = 0;
+	pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+	pdf.save('new-file.pdf'); // Generated PDF
+	});
+	}
+
+	public ShowHide(){
+		var x = document.getElementById("addItems");
+		if (x.style.display === "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+	}
+
 
 	public setNewUser(id: any){
 		console.log(id);
@@ -77,7 +107,7 @@ export class QuoteComponent implements OnInit {
 			
 		}
 	}
-	
+
 
     ngOnInit(): void {
 		this.customerService.GetAllCustomerData()
@@ -89,17 +119,16 @@ export class QuoteComponent implements OnInit {
 		)
 		.subscribe();
 
-		this.inventoryService.GetAllHmiItems()
+		this.inventoryService.GetAllInventoryItems()
 		.pipe(
-		  map(hmiItems => {
-			this.inventory = hmiItems;
+		  map(inventoryItems => {
+			this.inventory = inventoryItems;
 			console.log(this.inventory)
 		  }),
 		  take(1)
 		)
 		.subscribe();
-
-	}
+		}
 	
 
 	public test(){

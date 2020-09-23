@@ -25,7 +25,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71212 DC/DC/DC",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 1
+                Qty = 1,
+                Description = "S71200 1212 plc",
+                Unit = "ea",
+                Rate = 8500,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -34,7 +38,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71214 DC/DC/DC",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 7
+                Qty = 7,
+                Description = "S71200 1214 plc",
+                Unit = "ea",
+                Rate = 9000,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -43,7 +51,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71211 DC/DC/DC",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 2
+                Qty = 2,
+                Description = "S71200 1211 plc",
+                Unit = "ea",
+                Rate = 7000,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -52,7 +64,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71215 DC/DC/DC",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 1
+                Qty = 1,
+                Description = "S71200 1215 plc",
+                Unit = "ea",
+                Rate = 11000,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -61,7 +77,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71217 DC/DC/DC",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 3
+                Qty = 3,
+                Description = "S71200 1217 plc",
+                Unit = "ea",
+                Rate = 12000,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -70,7 +90,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71512 DC/DC/DC",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 7
+                Qty = 7,
+                Description = "S71500 1512 plc",
+                Unit = "ea",
+                Rate = 17000,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -79,7 +103,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71515 DC/DC/DC",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 3
+                Qty = 3,
+                Description = "S71500 1515 plc",
+                Unit = "ea",
+                Rate = 19000,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -88,7 +116,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71517 DC/DC/DC",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 9
+                Qty = 9,
+                Description = "S71500 1517 plc",
+                Unit = "ea",
+                Rate = 23500,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -97,7 +129,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71212 Relay/Relay/Relay",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 1
+                Qty = 1,
+                Description = "S71200 1212 relay plc",
+                Unit = "ea",
+                Rate = 6500,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -106,7 +142,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71217 Relay/Relay/Relay",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 1
+                Qty = 1,
+                Description = "S71200 1217 relay plc",
+                Unit = "ea",
+                Rate = 8500,
+                Req = 0
             }
             );
             plcItems.Add(new PlcItem()
@@ -115,7 +155,11 @@ namespace AlveoManagementServer.Services
                 Name = "S71215 Relay/Relay/Relay",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 8
+                Qty = 8,
+                Description = "S71200 1215 relay plc",
+                Unit = "ea",
+                Rate = 7500,
+                Req = 0
             }
             );
             return plcItems;
@@ -191,6 +235,10 @@ namespace AlveoManagementServer.Services
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
                 Qty = 3,
+                Description = "G120x VSD 5.5kw",
+                Unit = "ea",
+                Rate = 11500,
+                Req = 0
             }
             );
             vsdItems.Add(new VsdItem()
@@ -199,7 +247,11 @@ namespace AlveoManagementServer.Services
                 Name = "V20",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 2
+                Qty = 2,
+                Description = "V20 vsd 0.75kw",
+                Unit = "ea",
+                Rate = 1200,
+                Req = 0
             }
             );
             vsdItems.Add(new VsdItem()
@@ -208,10 +260,22 @@ namespace AlveoManagementServer.Services
                 Name = "G120C",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
-                Qty = 1
+                Qty = 1,
+                Description = "G120c vsd 20kw",
+                Unit = "ea",
+                Rate = 25500,
+                Req = 0
             }
             );
             return vsdItems;
+        }
+        public InventoryItems GetAllInventoryItems()
+        {
+            InventoryItems inventoryItems = new InventoryItems();
+            inventoryItems.Plcs = GetAllPLCItems();
+            inventoryItems.Hmis = GetAllHMIItems();
+            inventoryItems.Vsds = GetAllVSDItems();
+            return inventoryItems;
         }
     }
 }

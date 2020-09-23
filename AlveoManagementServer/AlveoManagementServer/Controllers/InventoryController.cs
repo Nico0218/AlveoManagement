@@ -37,5 +37,12 @@ namespace AlveoManagementServer.Controllers
             logger.LogInformation("Getting all VSD items");
             return new ObjectResult(inventoryService.GetAllVSDItems());
         }
+
+        [HttpGet("GetAllInventoryItems")]
+        public ActionResult GetAllInventoryItems()
+        {
+            logger.LogInformation("Getting all Inventory items");
+            return new ObjectResult(inventoryService.GetAllInventoryItems());
+        }
     }
 }

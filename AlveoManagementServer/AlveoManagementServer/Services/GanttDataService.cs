@@ -56,6 +56,30 @@ namespace AlveoManagementServer.Services
                 progress = 0
             }
             );
+            ganttData.Add(new GanttData()
+            {
+                id = 4,
+                text = "Test",
+                start_date = "2020-09-04",
+                duration = 2,
+                color = "blue",
+                end_date = "2020-10-06",
+                progress = 0,
+                parent = 0
+            }
+      );
+            ganttData.Add(new GanttData()
+            {
+                id = 5,
+                text = "Test 2",
+                start_date = "2020-10-04",
+                duration = 2,
+                color = "blue",
+                end_date = "2020-10-28",
+                progress = 0,
+                parent = 0
+            }
+);
             return ganttData;
         }
 

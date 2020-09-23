@@ -6,6 +6,7 @@ import { GanttService } from '../../services/gantt.service';
 
 var gantt = require('dhtmlx-gantt');
 
+
 @Component({
 	encapsulation: ViewEncapsulation.None,
 	selector: 'gantt',
@@ -16,6 +17,8 @@ var gantt = require('dhtmlx-gantt');
 export class GanttComponent implements OnInit, AfterViewInit {
 	TASK_DATA : any[];
 	LINK_DATA : any[];
+	
+
 
 	//points to gantt chart container
 	@ViewChild('gantt_here') ganttContainer: ElementRef;
@@ -37,11 +40,30 @@ export class GanttComponent implements OnInit, AfterViewInit {
 				})
 			)
 			.subscribe()
+
+			gantt.gantt.refreshData();
 	}
 
 	ngOnInit() {
-		
+
+		gantt.gantt.attachEvent("onTaskSelected", function(id){
+			console.log(gantt.gantt.getTaskByIndex(id - 1));
+	
+			document.getElementById("taskNameDisplay").innerHTML = "Task Name : " + gantt.gantt.getTaskByIndex(id-1).text;
+			document.getElementById("taskStartDateDisplay").innerHTML = "Task Start Date : " + gantt.gantt.getTaskByIndex(id-1).start_date;
+			document.getElementById("taskEndDisplay").innerHTML = "Task End Date : " + gantt.gantt.getTaskByIndex(id -1).end_date;
+			document.getElementById("taskDurationDisplay").innerHTML = "Task Duration : " + gantt.gantt.getTaskByIndex(id -1).duration;
+	
+			debugger;
+			gantt.gantt.getTask(id).color = 
+			gantt.gantt.refreshData();
+		 });
+
 	}
+
+
+
+
 
 	//sets gantt styling and layout
 	private setGanttStyleConfig() {

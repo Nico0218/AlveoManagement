@@ -7,6 +7,7 @@ import { PlcItem } from '../models/inventory/plc-item';
 import { VsdItem } from '../models/inventory/vsd-item';
 import { map, catchError } from 'rxjs/operators';
 import { Environment } from '../classes/environment';
+import { Inventory } from '../models/inventory/inventory';
 
 @Injectable()
 export class InventoryService {
@@ -52,6 +53,15 @@ export class InventoryService {
         catchError(ii => {
           return of(this.getVsdError());
         })
+      );
+  }
+
+  public GetAllInventoryItems(): Observable<Inventory[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllInventoryItems`)
+      .pipe(
+        map((ii: Inventory[]) => {
+          return ii;
+        }),
       );
   }
 

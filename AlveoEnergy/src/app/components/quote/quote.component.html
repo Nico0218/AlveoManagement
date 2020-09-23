@@ -24,20 +24,20 @@ Add
 <br>
 <br>
 
-<div style="text-align: center; border: darkolivegreen 1px solid;">
-<h2>Add Items:</h2>
-<select *ngIf="inventory" #selectElem (change)="pushItems(selectElem.value)">
-    <option *ngFor="let item of inventory" [value]="item.ID">
-        {{item.Name}}
-    </option>
-</select>
-<br>
-<p>Select Quantity:</p>
-<input type="text" [(ngModel)]="partReq">
+
+<button class="btn btn-primary" (click)="ShowHide()">Add Quote Items</button><button (click)="convertToPDF()">save Quote</button>
+
+<div id="addItems" style="display: none;">
+    <table style="margin-left: 315px; width: 800px;" *ngFor="let item of inventory | keyvalue">
+        <th  style=" text-align: center; width: auto; background-color:grey; color: white;" >{{item.key}}</th>
+        <tr *ngFor='let elem of item.value'><input type="checkbox" style="margin-right: 10px;"><span style="display: inline-block; margin-right: 20px; min-width: 150px!important;">{{ elem.Description }}</span>  <span style="display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Unit}}</span>  <span style="display: inline-block; margin-right: 20px; min-width: 80px!important;">R{{elem.Rate}}</span>  
+            quantity : <input style="width: 50px;" type="number"> Total: R{{ elem.Rate * elem.Req}}
+        </tr>
+    </table>
 </div>
-<br>
 
 
+<div id="contentToConvert">
 <div style="border: 1px solid black;" id="container">
 <header>
     <img style="height: 100px; width: 250px; margin-left: 300px;" alt="" src="../../../assets/img/Alveo Energy Logo Colour.jpg"><h1 style=" float: right; margin-top: 30px; margin-right: 300px;">QUOTE</h1>
@@ -276,4 +276,4 @@ Add
 <p>such as obtain a WULA or an EIA, Alveo Energy will be allowed to continue with commissioning work as to invoice </p>
 <p>the client in full.</p>
 </div>
-
+</div>
