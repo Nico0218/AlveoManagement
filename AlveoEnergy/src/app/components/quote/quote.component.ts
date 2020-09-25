@@ -9,6 +9,7 @@ import { from } from 'rxjs';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 
+
 @Component({
 	selector: 'quote',
 	styleUrls: ['./quote.component.scss'],
@@ -54,20 +55,25 @@ export class QuoteComponent implements OnInit {
 
 	public convertToPDF()
 	{
-	var data = document.getElementById('contentToConvert');
-	html2canvas(data).then(canvas => {
-	// Few necessary setting options
-	var imgWidth = 208;
-	var pageHeight = 295;
-	var imgHeight = canvas.height * imgWidth / canvas.width;
-	var heightLeft = imgHeight;
- 
-	const contentDataURL = canvas.toDataURL('image/png')
 	let pdf = new jspdf.jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-	var position = 0;
-	pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-	pdf.save('new-file.pdf'); // Generated PDF
+	debugger;
+	var data1 = document.getElementById('quote');
+	var data2 = document.getElementById('terms')
+	html2canvas(data1).then(canvas => {
+		// Few necessary setting options
+		const conten1tDataURL = canvas.toDataURL('image/png', 0.1)
+		pdf.addImage(conten1tDataURL, 'JPG', 0, 0, 210, 297)
+		pdf.addPage("JPG", "p")
+		html2canvas(data2).then(canvas => {
+			// Few necessary setting options
+			const content2DataURL = canvas.toDataURL('image/png', 1.0)
+			pdf.addImage(content2DataURL, 'JPG', 0, 0, 210, 297)
+			pdf.save('new-file.pdf'); // Generated PDF
+			});
 	});
+
+	
+	
 	}
 
 	public ShowHide(){

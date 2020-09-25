@@ -5,6 +5,7 @@ import { Guid } from '../classes/guid';
 import { HmiItem } from '../models/inventory/hmi-item';
 import { PlcItem } from '../models/inventory/plc-item';
 import { VsdItem } from '../models/inventory/vsd-item';
+import { RelayItem } from '../models/inventory/relay-item';
 import { map, catchError } from 'rxjs/operators';
 import { Environment } from '../classes/environment';
 import { Inventory } from '../models/inventory/inventory';
@@ -56,6 +57,18 @@ export class InventoryService {
       );
   }
 
+  public GetAllRelayItems(): Observable<RelayItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllRelayItems`)
+      .pipe(
+        map((ii: RelayItem[]) => {
+          return ii;
+        }),
+        catchError(ii => {
+          return of(this.getRelayError());
+        })
+      );
+  }
+
   public GetAllInventoryItems(): Observable<Inventory[]> {
     return this.httpClient.get(`${this.controllerURL}/GetAllInventoryItems`)
       .pipe(
@@ -90,6 +103,13 @@ export class InventoryService {
     return VsdData;
   }
 
+  private getRelayError() {
+    var RelayData: RelayItem[] = [];
+    var relayItem = this.buildRelayItem("Could not retrieve Relay Data", "Check Connection", "Error");
+    RelayData.push(relayItem);
+    return RelayData;
+  }
+
   private buildPlcError(name: string, make: string, partnumber: string): PlcItem {
     var plcItem = new PlcItem();
     plcItem.ID = Guid.newGuid();
@@ -115,6 +135,15 @@ export class InventoryService {
     vsdItem.Make = make;
     vsdItem.PartNumber = partnumber;
     return vsdItem;
+  }
+
+  private buildRelayItem(name: string, make: string, partnumber: string): RelayItem {
+    var relayItem = new RelayItem();
+    relayItem.ID = Guid.newGuid();
+    relayItem.Name = name;
+    relayItem.Make = make;
+    relayItem.PartNumber = partnumber;
+    return relayItem;
   }
 
 }

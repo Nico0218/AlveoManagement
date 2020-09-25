@@ -134,4 +134,49 @@
   </mat-tab>
 
 
+  <mat-tab label="Relays">
+
+    <mat-form-field *ngIf="relayItemsList && relayItemsList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyRelayFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="relayItemsList && relayItemsList.data" mat-table [dataSource]="relayItemsList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedRelayColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedRelayColumnsList;" (click)="getRelayRecord"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+
 </mat-tab-group>

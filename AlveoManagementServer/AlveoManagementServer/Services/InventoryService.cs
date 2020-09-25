@@ -269,12 +269,61 @@ namespace AlveoManagementServer.Services
             );
             return vsdItems;
         }
+
+        public List<RelayItem> GetAllRelayItems()
+        {
+            logger.LogDebug("Getting all Relay items");
+            List<RelayItem> relayItems = new List<RelayItem>();
+            relayItems.Add(new RelayItem()
+            {
+                ID = Guid.NewGuid().ToString(),
+                Name = "2ch 24VDC Relay",
+                Make = "Siemens",
+                PartNumber = "LZS:RT4A4L24",
+                Qty = 3,
+                Description = "2 ch 24VDC relay - compete unit",
+                Unit = "ea",
+                Rate = 255,
+                Req = 0
+            }
+            );
+            relayItems.Add(new RelayItem()
+            {
+                ID = Guid.NewGuid().ToString(),
+                Name = "2ch 220vac Relay",
+                Make = "Siemens",
+                PartNumber = "LZS:RT4A4L220",
+                Qty = 2,
+                Description = "2 ch 220VAC relay - compete unit",
+                Unit = "ea",
+                Rate = 270,
+                Req = 0
+            }
+            );
+            relayItems.Add(new RelayItem()
+            {
+                ID = Guid.NewGuid().ToString(),
+                Name = "4ch 24vdc relay",
+                Make = "Siemens",
+                PartNumber = "LZS:RT8A8L24",
+                Qty = 1,
+                Description = "4 ch 24VDC relay - compete unit",
+                Unit = "ea",
+                Rate = 25500,
+                Req = 0
+            }
+            );
+            return relayItems;
+        }
+
+
         public InventoryItems GetAllInventoryItems()
         {
             InventoryItems inventoryItems = new InventoryItems();
             inventoryItems.Plcs = GetAllPLCItems();
             inventoryItems.Hmis = GetAllHMIItems();
             inventoryItems.Vsds = GetAllVSDItems();
+            inventoryItems.Relays = GetAllRelayItems();
             return inventoryItems;
         }
     }

@@ -20,5 +20,10 @@ namespace AlveoManagementCommon.Interfaces
             get;
             set;
         }
+        public List<RelayItem> Relays
+        {
+            get;
+            set;
+        }
     }
 }

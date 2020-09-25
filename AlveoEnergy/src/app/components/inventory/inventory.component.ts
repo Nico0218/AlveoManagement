@@ -5,6 +5,7 @@ import { PlcItem } from '../../models/inventory/plc-item';
 import { InventoryService } from '../../services/inventory.service';
 import { HmiItem } from '../../models/inventory/hmi-item';
 import { VsdItem } from '../../models/inventory/vsd-item';
+import { RelayItem } from '../../models/inventory/relay-item';
 
 @Component({
   selector: 'inventory',
@@ -15,6 +16,7 @@ export class InventoryComponent {
   PLC_DATA: PlcItem[];
   HMI_DATA: HmiItem[];
   VSD_DATA: VsdItem[];
+  RELAY_DATA: RelayItem[];
 
   constructor(private inventoryService: InventoryService) {
 
@@ -27,6 +29,8 @@ export class InventoryComponent {
   displayedHmiColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
   vsdItemsList = new MatTableDataSource();
   displayedVsdColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
+  relayItemsList = new MatTableDataSource();
+  displayedRelayColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
 
   //filters displayed plc results in form
   applyPlcFilter(event: Event) {
@@ -42,6 +46,11 @@ export class InventoryComponent {
 
   //filters displayed vsd results in form
   applyVsdFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.vsdItemsList.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyRelayFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.vsdItemsList.filter = filterValue.trim().toLowerCase();
   }
@@ -85,6 +94,16 @@ export class InventoryComponent {
         map(vsdItems => {
           this.VSD_DATA = vsdItems;
           this.vsdItemsList.data = this.VSD_DATA;
+        }),
+        take(1)
+      )
+      .subscribe();
+
+      this.inventoryService.GetAllRelayItems()
+      .pipe(
+        map(relayItems => {
+          this.RELAY_DATA = relayItems;
+          this.relayItemsList.data = this.RELAY_DATA;
         }),
         take(1)
       )

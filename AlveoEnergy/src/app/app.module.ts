@@ -36,6 +36,8 @@ import { ErrorInterceptor } from './basic-gaurd/error.interceptor';
 import { fakeBackendProvider } from './basic-gaurd/fake-backend';
 import { QuoteComponent } from './components/quote/quote.component';
 import { CustomerService } from './services/customers.service';
+import { VpnComponent } from "./components/vpn_passwords/vpn.component";
+
 
 
 
@@ -53,7 +55,8 @@ import { CustomerService } from './services/customers.service';
     OrdersComponent,
     QRCodeGenComponent,
     LoginComponent,
-    QuoteComponent
+    QuoteComponent,
+    VpnComponent
   ],
   imports: [
     HttpClientModule,
@@ -70,7 +73,8 @@ import { CustomerService } from './services/customers.service';
     MatInputModule,
     QRCodeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [
     ConfigService,

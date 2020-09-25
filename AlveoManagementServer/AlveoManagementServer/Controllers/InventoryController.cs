@@ -38,6 +38,13 @@ namespace AlveoManagementServer.Controllers
             return new ObjectResult(inventoryService.GetAllVSDItems());
         }
 
+        [HttpGet("GetAllRelayItems")]
+        public ActionResult GetAllRelayItems()
+        {
+            logger.LogInformation("Getting all Relay items");
+            return new ObjectResult(inventoryService.GetAllRelayItems());
+        }
+
         [HttpGet("GetAllInventoryItems")]
         public ActionResult GetAllInventoryItems()
         {

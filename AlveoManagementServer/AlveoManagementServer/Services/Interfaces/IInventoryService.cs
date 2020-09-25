@@ -8,6 +8,7 @@ namespace AlveoManagementServer.Services.Interfaces
         List<PlcItem> GetAllPLCItems();
         List<HmiItem> GetAllHMIItems();
         List<VsdItem> GetAllVSDItems();
+        List<RelayItem> GetAllRelayItems();
         InventoryItems GetAllInventoryItems();
     }
 }
