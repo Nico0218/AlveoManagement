@@ -2,10 +2,17 @@ import { Customer } from '../customers/customers';
 import { Personnel } from '../personnel/personnel';
 
 export class Quote{
+    customer: Customer;
+    orderNr: string;
+    projectName: string;
+    forAttention: string;
     date:  Date;
     quoteNumber: string;
-    custId: string;
     validUntil: Date;
-    quoteCustomer: Customer;
-    preparedBy: Personnel;
+    quoteItems: any;
+    subTotal: number;
+    taxRate: number;
+    taxDue: number;
+    otherCosts: number;
+    quoteTotal: number;
 }

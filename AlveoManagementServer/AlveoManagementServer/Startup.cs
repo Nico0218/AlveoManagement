@@ -31,6 +31,7 @@ namespace AlveoManagementServer
             services.AddScoped<IGanttDataService, GanttDataService>();
             services.AddScoped<IStartupService, StartupService>();
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IQuoteService, QuoteService>();
 
             services.AddControllers()
                 .AddJsonOptions(options => {

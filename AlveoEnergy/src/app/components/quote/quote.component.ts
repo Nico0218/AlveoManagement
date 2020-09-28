@@ -5,9 +5,11 @@ import { Customer } from '../../models/customers/customers';
 import { map, take } from 'rxjs/operators';
 import { CustomerService } from '../../services/customers.service';
 import { InventoryService } from '../../services/inventory.service';
+import { QuoteService } from '../../services/quote.service';
 import { from } from 'rxjs';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -16,11 +18,14 @@ import html2canvas from 'html2canvas';
 	templateUrl: './quote.component.html',
 })
 export class QuoteComponent implements OnInit {
+	QUOTE_DATA: any;
 
-
-	constructor(private customerService: CustomerService, private inventoryService: InventoryService) {
+	 constructor(private customerService: CustomerService, private inventoryService: InventoryService, private quoteService: QuoteService) {
 
 	}
+
+	quoteList = new MatTableDataSource();
+	displayedQuoteColumnsList: string[] = ['quote', 'project', 'valid', 'attention'];
 
 	public preparedBy = "";
 	public preparedByEmail = "";
@@ -52,6 +57,11 @@ export class QuoteComponent implements OnInit {
 	public curUser;
 	public curItem;
 	public date;
+
+	applyQuoteFilter(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.quoteList.filter = filterValue.trim().toLowerCase();
+	  }
 
 	public convertToPDF()
 	{
@@ -134,6 +144,17 @@ export class QuoteComponent implements OnInit {
 		  take(1)
 		)
 		.subscribe();
+
+			this.quoteService.GetAllQuotes()
+		  .pipe(
+			map(quotes => {
+			  this.QUOTE_DATA = quotes;
+			  this.quoteList.data = this.QUOTE_DATA;
+			}),
+			take(1)
+		  )
+		  .subscribe();
+
 		}
 	
 

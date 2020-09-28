@@ -37,7 +37,7 @@ import { fakeBackendProvider } from './basic-gaurd/fake-backend';
 import { QuoteComponent } from './components/quote/quote.component';
 import { CustomerService } from './services/customers.service';
 import { VpnComponent } from "./components/vpn_passwords/vpn.component";
-
+import { QuoteService } from './services/quote.service';
 
 
 
@@ -90,6 +90,7 @@ import { VpnComponent } from "./components/vpn_passwords/vpn.component";
     GanttService,
     PersonnelService,
     CustomerService,
+    QuoteService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider

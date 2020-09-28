@@ -17,7 +17,6 @@ export class PersonnelComponent {
 
 	}
 
-	debugger;
 	personnelList = new MatTableDataSource();
   	displayedPersonnelColumnsList: string[] = ['idnum', 'fullName', 'position', 'employementDate', 'contactNum'];
 
