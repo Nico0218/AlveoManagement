@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace AlveoManagementServer
@@ -34,16 +33,20 @@ namespace AlveoManagementServer
             services.AddScoped<IQuoteService, QuoteService>();
 
             services.AddControllers()
-                .AddJsonOptions(options => {
+                .AddJsonOptions(options =>
+                {
                     options.JsonSerializerOptions.PropertyNamingPolicy = null;
                 });
 
-            services.AddSwaggerGen(c => {
+            services.AddSwaggerGen(c =>
+            {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Alveo Management API V1", Version = "v1" });
             });
 
-            services.AddCors(options => {
-                options.AddPolicy(AllowAllCors, builder => {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowAllCors, builder =>
+                {
                     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
@@ -57,7 +60,8 @@ namespace AlveoManagementServer
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c => {
+            app.UseSwaggerUI(c =>
+            {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Alveo Management API V1");
                 c.RoutePrefix = string.Empty;
             });

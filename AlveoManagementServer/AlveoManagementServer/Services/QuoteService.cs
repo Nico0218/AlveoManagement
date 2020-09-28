@@ -1,7 +1,6 @@
 ﻿using AlveoManagementCommon.Classes;
 using AlveoManagementServer.Services.Interfaces;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Any;
 using System;
 using System.Collections.Generic;
 
@@ -26,14 +25,15 @@ namespace AlveoManagementServer.Services
                 orderNr = "ord523",
                 projectName = "test project",
                 forAttention = "test attention 1",
-                date = new DateTime(),
+                date = DateTime.Today.ToString("dd/MM/yyyy"),
                 quoteNumber = "EQ20-035",
-                validUntil = new DateTime().AddDays(30),
+                validUntil = DateTime.Today.AddDays(30).ToString("dd/MM/yyyy"),
                 subTotal = 10000,
                 taxRate = 15,
                 taxDue = 1500,
                 otherCosts = 0,
-                quoteTotal = 11500
+                quoteTotal = 11500,
+                status = "Quoted"
             }
                   );
             quote.Add(new Quote()
@@ -41,16 +41,17 @@ namespace AlveoManagementServer.Services
                 orderNr = "ord524",
                 projectName = "test project",
                 forAttention = "test attention 2",
-                date = new DateTime(),
+                date = DateTime.Today.ToString("dd/MM/yyyy"),
                 quoteNumber = "EQ20-036",
-                validUntil = new DateTime().AddDays(30),
+                validUntil = DateTime.Today.AddDays(30).ToString("dd/MM/yyyy"),
                 subTotal = 20000,
                 taxRate = 15,
                 taxDue = 3000,
                 otherCosts = 0,
-                quoteTotal = 23000
+                quoteTotal = 23000,
+                status = "invoiced"
             }
-      );
+                );
             return quote;
         }
 

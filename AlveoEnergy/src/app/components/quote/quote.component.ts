@@ -25,7 +25,7 @@ export class QuoteComponent implements OnInit {
 	}
 
 	quoteList = new MatTableDataSource();
-	displayedQuoteColumnsList: string[] = ['quote', 'project', 'valid', 'attention'];
+	displayedQuoteColumnsList: string[] = ['quote', 'project', 'valid', 'attention', 'status'];
 
 	public preparedBy = "";
 	public preparedByEmail = "";
@@ -65,6 +65,7 @@ export class QuoteComponent implements OnInit {
 
 	public convertToPDF()
 	{
+	window.scroll(0,0);
 	let pdf = new jspdf.jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
 	debugger;
 	var data1 = document.getElementById('quote');
@@ -150,10 +151,12 @@ export class QuoteComponent implements OnInit {
 			map(quotes => {
 			  this.QUOTE_DATA = quotes;
 			  this.quoteList.data = this.QUOTE_DATA;
+			  console.log(this.QUOTE_DATA)
 			}),
 			take(1)
 		  )
 		  .subscribe();
+		  
 
 		}
 	

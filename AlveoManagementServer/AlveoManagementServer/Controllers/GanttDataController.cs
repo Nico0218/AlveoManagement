@@ -1,5 +1,4 @@
-﻿using AlveoManagementServer.Services;
-using AlveoManagementServer.Services.Interfaces;
+﻿using AlveoManagementServer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

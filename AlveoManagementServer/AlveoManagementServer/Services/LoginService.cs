@@ -29,7 +29,7 @@ namespace AlveoManagementServer.Services
                 lastName = "Spangenberg"
             }
                   );
-            
+
             return users;
         }
     }

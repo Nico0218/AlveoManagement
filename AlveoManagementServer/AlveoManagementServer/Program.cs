@@ -27,7 +27,8 @@ namespace AlveoManagementServer
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(configureLogging => { 
+                .ConfigureLogging(configureLogging =>
+                {
                     configureLogging.AddLog4Net("log4net.config");
                     configureLogging.AddConsole();
                     configureLogging.SetMinimumLevel(LogLevel.Information);

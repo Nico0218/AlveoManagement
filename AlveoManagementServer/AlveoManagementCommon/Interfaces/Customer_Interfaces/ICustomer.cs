@@ -1,6 +1,4 @@
-﻿using AlveoManagementCommon.Interfaces;
-
-namespace AlveoManagementCommon.Interfaces
+﻿namespace AlveoManagementCommon.Interfaces
 {
     public interface ICustomer
     {

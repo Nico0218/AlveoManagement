@@ -1,6 +1,4 @@
 ﻿using AlveoManagementCommon.Interfaces;
-using System;
-using System.Xml.Serialization;
 
 namespace AlveoManagementCommon.Classes
 {

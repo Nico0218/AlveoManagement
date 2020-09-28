@@ -9,6 +9,6 @@ namespace AlveoManagementCommon.Classes
         public string password { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public string authdata {get; set; }
+        public string authdata { get; set; }
     }
 }
