@@ -65,7 +65,7 @@ namespace AlveoManagementServer.Services
                     ganttLink.Add(new GanttLink()
                     {
                         id = (int)(Int64)selectResult["id"],
-                        //source = (int)(Int64)selectResult["source"],
+                        //source = (Int32)selectResult["source"],
                         //target = (int)(Int64)selectResult["target"],
                         //type = (string)selectResult["type"]
                     }

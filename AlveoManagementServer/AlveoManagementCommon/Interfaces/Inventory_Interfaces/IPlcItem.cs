@@ -8,6 +8,6 @@
         public string Description { get; set; }
         public string Unit { get; set; }
         public int Req { get; set; }
-        public int Rate { get; set; }
+        public double Rate { get; set; }
     }
 }
