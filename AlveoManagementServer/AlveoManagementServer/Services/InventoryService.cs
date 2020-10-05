@@ -1,8 +1,11 @@
 ﻿using AlveoManagementCommon.Classes;
 using AlveoManagementServer.Services.Interfaces;
+using AlveoManagementServer.SQLite;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace AlveoManagementServer.Services
 {
@@ -15,153 +18,38 @@ namespace AlveoManagementServer.Services
             this.logger = logger;
         }
 
+        Database databaseObject = new Database();
+
         public List<PlcItem> GetAllPLCItems()
         {
             logger.LogDebug("Getting all PLC items");
             List<PlcItem> plcItems = new List<PlcItem>();
-            plcItems.Add(new PlcItem()
+            string selectPLC = "SELECT * FROM Customers";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectPLC, databaseObject.dataConnection);
+            databaseObject.OpenConnection();
+            SQLiteDataReader selectResult = selectCommand.ExecuteReader();
+            if (selectResult.HasRows)
             {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71212 DC/DC/DC",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 1,
-                Description = "S71200 1212 plc",
-                Unit = "ea",
-                Rate = 8500,
-                Req = 0
+                while (selectResult.Read())
+                {
+                    Console.WriteLine("name: {0} - customerID: {1}", selectResult["name"], selectResult["custID"]);
+                    plcItems.Add(new PlcItem()
+                    {
+                        ID = (int)(Int64)selectResult["id"],
+                        Name = (string)selectResult["name"],
+                        Make = (string)selectResult["make"],
+                        PartNumber = (string)selectResult["partNumber"],
+                        Qty = (int)(Int64)selectResult["qty"],
+                        Description = (string)selectResult["description"],
+                        Unit = (string)selectResult["unit"],
+                        Rate = (int)selectResult["Rate"],
+                        Req = (int)selectResult["req"]
+                    }
+                    );
+                    Console.WriteLine("done");
+                }
             }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71214 DC/DC/DC",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 7,
-                Description = "S71200 1214 plc",
-                Unit = "ea",
-                Rate = 9000,
-                Req = 0
-            }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71211 DC/DC/DC",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 2,
-                Description = "S71200 1211 plc",
-                Unit = "ea",
-                Rate = 7000,
-                Req = 0
-            }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71215 DC/DC/DC",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 1,
-                Description = "S71200 1215 plc",
-                Unit = "ea",
-                Rate = 11000,
-                Req = 0
-            }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71217 DC/DC/DC",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 3,
-                Description = "S71200 1217 plc",
-                Unit = "ea",
-                Rate = 12000,
-                Req = 0
-            }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71512 DC/DC/DC",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 7,
-                Description = "S71500 1512 plc",
-                Unit = "ea",
-                Rate = 17000,
-                Req = 0
-            }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71515 DC/DC/DC",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 3,
-                Description = "S71500 1515 plc",
-                Unit = "ea",
-                Rate = 19000,
-                Req = 0
-            }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71517 DC/DC/DC",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 9,
-                Description = "S71500 1517 plc",
-                Unit = "ea",
-                Rate = 23500,
-                Req = 0
-            }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71212 Relay/Relay/Relay",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 1,
-                Description = "S71200 1212 relay plc",
-                Unit = "ea",
-                Rate = 6500,
-                Req = 0
-            }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71217 Relay/Relay/Relay",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 1,
-                Description = "S71200 1217 relay plc",
-                Unit = "ea",
-                Rate = 8500,
-                Req = 0
-            }
-            );
-            plcItems.Add(new PlcItem()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "S71215 Relay/Relay/Relay",
-                Make = "Siemens",
-                PartNumber = "45665-5644-2852",
-                Qty = 8,
-                Description = "S71200 1215 relay plc",
-                Unit = "ea",
-                Rate = 7500,
-                Req = 0
-            }
-            );
+            databaseObject.CloseConnection();
             return plcItems;
         }
 
@@ -171,7 +59,7 @@ namespace AlveoManagementServer.Services
             List<HmiItem> hmiItems = new List<HmiItem>();
             hmiItems.Add(new HmiItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 1,
                 Name = "12' Basic Panel",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
@@ -184,7 +72,7 @@ namespace AlveoManagementServer.Services
             );
             hmiItems.Add(new HmiItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 2,
                 Name = "4' Basic Panel",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
@@ -197,7 +85,7 @@ namespace AlveoManagementServer.Services
             );
             hmiItems.Add(new HmiItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 3,
                 Name = "10' Basic Panel",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
@@ -210,7 +98,7 @@ namespace AlveoManagementServer.Services
             );
             hmiItems.Add(new HmiItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 4,
                 Name = "7' Basic Panel",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
@@ -230,7 +118,7 @@ namespace AlveoManagementServer.Services
             List<VsdItem> vsdItems = new List<VsdItem>();
             vsdItems.Add(new VsdItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 5,
                 Name = "G120x",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
@@ -243,7 +131,7 @@ namespace AlveoManagementServer.Services
             );
             vsdItems.Add(new VsdItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 6,
                 Name = "V20",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
@@ -256,7 +144,7 @@ namespace AlveoManagementServer.Services
             );
             vsdItems.Add(new VsdItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 7,
                 Name = "G120C",
                 Make = "Siemens",
                 PartNumber = "45665-5644-2852",
@@ -276,7 +164,7 @@ namespace AlveoManagementServer.Services
             List<RelayItem> relayItems = new List<RelayItem>();
             relayItems.Add(new RelayItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 1,
                 Name = "2ch 24VDC Relay",
                 Make = "Siemens",
                 PartNumber = "LZS:RT4A4L24",
@@ -289,7 +177,7 @@ namespace AlveoManagementServer.Services
             );
             relayItems.Add(new RelayItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 2,
                 Name = "2ch 220vac Relay",
                 Make = "Siemens",
                 PartNumber = "LZS:RT4A4L220",
@@ -302,7 +190,7 @@ namespace AlveoManagementServer.Services
             );
             relayItems.Add(new RelayItem()
             {
-                ID = Guid.NewGuid().ToString(),
+                ID = 3,
                 Name = "4ch 24vdc relay",
                 Make = "Siemens",
                 PartNumber = "LZS:RT8A8L24",

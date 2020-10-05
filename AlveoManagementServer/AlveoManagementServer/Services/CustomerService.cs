@@ -1,7 +1,10 @@
 ﻿using AlveoManagementCommon.Classes;
 using AlveoManagementServer.Services.Interfaces;
+using AlveoManagementServer.SQLite;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace AlveoManagementServer.Services
 {
@@ -15,47 +18,39 @@ namespace AlveoManagementServer.Services
         }
 
 
+        Database databaseObject = new Database();
+
         public List<Customer> GetAllCustomerData()
         {
             logger.LogDebug("Getting all Customer information");
             List<Customer> customer = new List<Customer>();
-            customer.Add(new Customer()
+            string selectQuery = "SELECT * FROM Customers";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectQuery, databaseObject.dataConnection);
+            databaseObject.OpenConnection();
+            SQLiteDataReader selectResult = selectCommand.ExecuteReader();
+            if (selectResult.HasRows)
             {
-                id = 1,
-                name = "Customer 1",
-                addrLine1 = "test str 1",
-                addrLine2 = "Strand, gantz plaza, 7140",
-                taxNumber = "259845632574",
-                contactNumber = "021 548 6589",
-                email = "customer1@mail.com",
-                customerID = "cust-id-01"
+                while (selectResult.Read())
+                {
+                    Console.WriteLine("name: {0} - customerID: {1}", selectResult["name"], selectResult["custID"]);
+                    customer.Add(new Customer()
+                    {
+                        id = (int)(Int64)selectResult["id"],
+                        name = (string)selectResult["name"],
+                        addrLine1 = (string)selectResult["addr1"],
+                        addrLine2 = (string)selectResult["addr2"],
+                        taxNumber = (string)selectResult["taxNumber"],
+                        contactNumber = (string)selectResult["contactNumber"],
+                        email = (string)selectResult["email"],
+                        customerID = (string)selectResult["custID"]
+                    }
+                    );
+                    Console.WriteLine("done");
+                }
             }
-                  );
-            customer.Add(new Customer()
-            {
-                id = 2,
-                name = "Customer 2",
-                addrLine1 = "test str 2",
-                addrLine2 = "Strand, gantz plaza, 7140",
-                taxNumber = "25648572154",
-                contactNumber = "021 548 4856",
-                email = "customer2@mail.com",
-                customerID = "cust-id-02"
-            }
-                  );
-            customer.Add(new Customer()
-            {
-                id = 3,
-                name = "Customer 3",
-                addrLine1 = "test str 3",
-                addrLine2 = "Strand, gantz plaza, 7140",
-                taxNumber = "21548565895",
-                contactNumber = "021 658 9512",
-                email = "customer3@mail.com",
-                customerID = "cust-id-03"
-            }
-                  );
+            databaseObject.CloseConnection();
             return customer;
         }
+        
     }
 }

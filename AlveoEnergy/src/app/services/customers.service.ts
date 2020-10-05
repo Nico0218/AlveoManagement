@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Customer } from '../models/customers/customers';
 import { map, catchError } from 'rxjs/operators';
 import { Environment } from '../classes/environment';
+import { Console } from 'console';
 
 @Injectable()
 export class CustomerService {
@@ -22,5 +23,6 @@ export class CustomerService {
               return ii;
             }),
           );
+          
       }
 }

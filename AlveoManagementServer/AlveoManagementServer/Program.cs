@@ -36,7 +36,7 @@ namespace AlveoManagementServer
             Console.ReadKey();*/
 
             //select from database
-            string selectQuery = "SELECT * FROM test";
+            /*string selectQuery = "SELECT * FROM Cusomers";
             SQLiteCommand testCommand = new SQLiteCommand(selectQuery, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = testCommand.ExecuteReader();
@@ -48,7 +48,7 @@ namespace AlveoManagementServer
                 }
             }
             databaseObject.CloseConnection();
-            Console.ReadKey();
+            Console.ReadKey();*/
 
 
 

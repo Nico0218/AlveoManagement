@@ -2,7 +2,7 @@
 {
     public interface IModeBase
     {
-        string ID { get; set; }
+        int ID { get; set; }
         string Name { get; set; }
     }
 }

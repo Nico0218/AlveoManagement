@@ -2,6 +2,9 @@
 using AlveoManagementServer.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Data.SQLite;
+using System;
+using AlveoManagementServer.SQLite;
 
 namespace AlveoManagementServer.Services
 {
@@ -14,71 +17,36 @@ namespace AlveoManagementServer.Services
             this.logger = logger;
         }
 
+        Database databaseObject = new Database();
 
         public List<GanttData> GetAllGanttData()
         {
             logger.LogDebug("Getting all gantt data");
             List<GanttData> ganttData = new List<GanttData>();
-            ganttData.Add(new GanttData()
+            string selectData = "SELECT * FROM GanttData";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectData, databaseObject.dataConnection);
+            databaseObject.OpenConnection();
+            SQLiteDataReader selectResult = selectCommand.ExecuteReader();
+            if (selectResult.HasRows)
             {
-                id = 1,
-                text = "Zoar",
-                start_date = "2020-09-04",
-                duration = 2,
-                color = "blue",
-                end_date = "2020-09-06",
-                progress = 0,
-                parent = 0
+                while (selectResult.Read())
+                {
+                    ganttData.Add(new GanttData()
+                    {
+                        id = (int)(Int64)selectResult["id"],
+                        text = (string)selectResult["text"],
+                        start_date = (string)selectResult["startDate"],
+                        duration = (int)(Int64)selectResult["duration"],
+                        color = (string)selectResult["color"],
+                        end_date = (string)selectResult["endDate"],
+                        progress = (int)(double)selectResult["progress"],
+                        parent = (int)(Int64)selectResult["parent"]
+                    }
+                    );
+                    Console.WriteLine("done");
+                }
             }
-                  );
-            ganttData.Add(new GanttData()
-            {
-                id = 2,
-                text = "Finish Container Work",
-                start_date = "2020-09-04",
-                duration = 1,
-                color = "green",
-                parent = 1,
-                end_date = "2020-09-05",
-                progress = 0
-            }
-            );
-            ganttData.Add(new GanttData()
-            {
-                id = 3,
-                text = "Pack Items For Zoar",
-                start_date = "2020-09-05",
-                duration = 1,
-                color = "red",
-                parent = 1,
-                end_date = "2020-09-06",
-                progress = 0
-            }
-            );
-            ganttData.Add(new GanttData()
-            {
-                id = 4,
-                text = "Test",
-                start_date = "2020-09-04",
-                duration = 2,
-                color = "blue",
-                end_date = "2020-10-06",
-                progress = 0,
-                parent = 0
-            }
-      );
-            ganttData.Add(new GanttData()
-            {
-                id = 5,
-                text = "Test 2",
-                start_date = "2020-10-04",
-                duration = 2,
-                color = "blue",
-                end_date = "2020-10-28",
-                progress = 0,
-                parent = 0
-            }
-);
+            databaseObject.CloseConnection();
             return ganttData;
         }
 
@@ -86,22 +54,25 @@ namespace AlveoManagementServer.Services
         {
             logger.LogDebug("Getting all gantt links");
             List<GanttLink> ganttLink = new List<GanttLink>();
-            ganttLink.Add(new GanttLink()
+            string selectLinks = "SELECT * FROM GanttData";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectLinks, databaseObject.dataConnection);
+            databaseObject.OpenConnection();
+            SQLiteDataReader selectResult = selectCommand.ExecuteReader();
+            if (selectResult.HasRows)
             {
-                id = 1,
-                source = 1,
-                target = 2,
-                type = "1"
+                while (selectResult.Read())
+                {
+                    ganttLink.Add(new GanttLink()
+                    {
+                        id = (int)(Int64)selectResult["id"],
+                        //source = (int)(Int64)selectResult["source"],
+                        //target = (int)(Int64)selectResult["target"],
+                        //type = (string)selectResult["type"]
+                    }
+                    );
+                }
             }
-            );
-            ganttLink.Add(new GanttLink()
-            {
-                id = 2,
-                source = 2,
-                target = 3,
-                type = "0"
-            }
-            );
+            databaseObject.CloseConnection();
             return ganttLink;
         }
         public GanttObjWrapper CombineGanttData()
@@ -115,3 +86,5 @@ namespace AlveoManagementServer.Services
 
 
 };
+
+
