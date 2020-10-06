@@ -5,22 +5,34 @@ namespace AlveoManagementCommon.Classes
 {
     public class InventoryItems : IInventoryItems
     {
-        public List<HmiItem> Hmis
+        public List<Item> Hmis
         {
             get;
             set;
         }
-        public List<PlcItem> Plcs
+        public List<Item> Plcs
         {
             get;
             set;
         }
-        public List<VsdItem> Vsds
+        public List<Item> Vsds
         {
             get;
             set;
         }
-        public List<RelayItem> Relays
+        public List<Item> Relays
+        {
+            get;
+            set;
+        }
+
+        public List<Item> Contactors
+        {
+            get;
+            set;
+        }
+
+        public List<Item> Isolators
         {
             get;
             set;

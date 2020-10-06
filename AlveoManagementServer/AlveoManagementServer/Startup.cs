@@ -35,6 +35,7 @@ namespace AlveoManagementServer
             services.AddScoped<IStartupService, StartupService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IQuoteService, QuoteService>();
+            services.AddScoped<IProjectService, ProjectService>();
 
             services.AddControllers()
                 .AddJsonOptions(options =>

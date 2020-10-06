@@ -3,6 +3,8 @@ using AlveoManagementServer.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
+using AlveoManagementServer.SQLite;
 
 namespace AlveoManagementServer.Services
 {
@@ -15,43 +17,39 @@ namespace AlveoManagementServer.Services
             this.logger = logger;
         }
 
+        Database databaseObject = new Database();
 
         public List<Quote> GetAllQuotes()
         {
             logger.LogDebug("Getting all quotes");
             List<Quote> quote = new List<Quote>();
-            quote.Add(new Quote()
+            string selectQuotes = "SELECT * FROM Quotes";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectQuotes, databaseObject.dataConnection);
+            databaseObject.OpenConnection();
+            SQLiteDataReader selectResult = selectCommand.ExecuteReader();
+            if (selectResult.HasRows)
             {
-                orderNr = "ord523",
-                projectName = "test project",
-                forAttention = "test attention 1",
-                date = DateTime.Today.ToString("dd/MM/yyyy"),
-                quoteNumber = "EQ20-035",
-                validUntil = DateTime.Today.AddDays(30).ToString("dd/MM/yyyy"),
-                subTotal = 10000,
-                taxRate = 15,
-                taxDue = 1500,
-                otherCosts = 0,
-                quoteTotal = 11500,
-                status = "Quoted"
+                while (selectResult.Read())
+                {
+                    quote.Add(new Quote()
+                    {
+                        orderNr = (string)selectResult["orderNr"],
+                        projectName = (string)selectResult["projName"],
+                        forAttention = (string)selectResult["forAtt"],
+                        date = (string)selectResult["date"],
+                        quoteNumber = (string)selectResult["quoteNr"],
+                        validUntil = (string)selectResult["validUntil"],
+                        subTotal = (double)selectResult["subTotal"],
+                        taxRate = (double)selectResult["taxRate"],
+                        taxDue = (double)selectResult["taxDue"],
+                        otherCosts = (double)selectResult["otherCosts"],
+                        quoteTotal = (double)selectResult["quoteTotal"],
+                        status = (string)selectResult["status"]
+                    }
+                    );
+                }
             }
-                  );
-            quote.Add(new Quote()
-            {
-                orderNr = "ord524",
-                projectName = "test project",
-                forAttention = "test attention 2",
-                date = DateTime.Today.ToString("dd/MM/yyyy"),
-                quoteNumber = "EQ20-036",
-                validUntil = DateTime.Today.AddDays(30).ToString("dd/MM/yyyy"),
-                subTotal = 20000,
-                taxRate = 15,
-                taxDue = 3000,
-                otherCosts = 0,
-                quoteTotal = 23000,
-                status = "invoiced"
-            }
-                );
+            databaseObject.CloseConnection();
             return quote;
         }
 

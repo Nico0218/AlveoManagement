@@ -6,4 +6,5 @@ export class Task {
 	Progress: number;
 	Duration: number;
 	Parent: number;
+	type: string;
 }

@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { map, take } from 'rxjs/operators';
-import { PlcItem } from '../../models/inventory/plc-item';
+import { ModelItem } from '../../models/inventory/ModelItem';
 import { InventoryService } from '../../services/inventory.service';
-import { HmiItem } from '../../models/inventory/hmi-item';
-import { VsdItem } from '../../models/inventory/vsd-item';
-import { RelayItem } from '../../models/inventory/relay-item';
 
 @Component({
   selector: 'inventory',
@@ -13,10 +10,12 @@ import { RelayItem } from '../../models/inventory/relay-item';
   templateUrl: './inventory.component.html',
 })
 export class InventoryComponent {
-  PLC_DATA: PlcItem[];
-  HMI_DATA: HmiItem[];
-  VSD_DATA: VsdItem[];
-  RELAY_DATA: RelayItem[];
+  PLC_DATA: ModelItem[];
+  HMI_DATA: ModelItem[];
+  VSD_DATA: ModelItem[];
+  RELAY_DATA: ModelItem[];
+  CONTACTOR_DATA: ModelItem[];
+  ISOLATOR_DATA: ModelItem[];
 
   constructor(private inventoryService: InventoryService) {
 
@@ -31,6 +30,10 @@ export class InventoryComponent {
   displayedVsdColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
   relayItemsList = new MatTableDataSource();
   displayedRelayColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
+  contactorItemsList = new MatTableDataSource();
+  displayedContactorColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
+  isolatorsList = new MatTableDataSource();
+  displayedIsolatorColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
 
   //filters displayed plc results in form
   applyPlcFilter(event: Event) {
@@ -55,18 +58,15 @@ export class InventoryComponent {
     this.vsdItemsList.filter = filterValue.trim().toLowerCase();
   }
 
-  getPLCRecord(row){
-    console.log(row);
+  applyContactorFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.contactorItemsList.filter = filterValue.trim().toLowerCase();
   }
 
-  getHMIRecord(row){
-    console.log(row);
+  applyIsolatorFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.isolatorsList.filter = filterValue.trim().toLowerCase();
   }
-
-  getVSDRecord(row){
-    console.log(row);
-  }
-
 
   ngOnInit() {
     this.inventoryService.GetAllPlcItems()//This function builds and returns a Observable
@@ -104,6 +104,26 @@ export class InventoryComponent {
         map(relayItems => {
           this.RELAY_DATA = relayItems;
           this.relayItemsList.data = this.RELAY_DATA;
+        }),
+        take(1)
+      )
+      .subscribe();
+
+      this.inventoryService.GetAllContactorItems()
+      .pipe(
+        map(contactorItems => {
+          this.CONTACTOR_DATA = contactorItems;
+          this.contactorItemsList.data = this.CONTACTOR_DATA;
+        }),
+        take(1)
+      )
+      .subscribe();
+
+      this.inventoryService.GetAllIsolators()
+      .pipe(
+        map(isolators => {
+          this.ISOLATOR_DATA = isolators;
+          this.isolatorsList.data = this.ISOLATOR_DATA;
         }),
         take(1)
       )

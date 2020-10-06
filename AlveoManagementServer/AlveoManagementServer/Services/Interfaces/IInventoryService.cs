@@ -5,10 +5,12 @@ namespace AlveoManagementServer.Services.Interfaces
 {
     public interface IInventoryService
     {
-        List<PlcItem> GetAllPLCItems();
-        List<HmiItem> GetAllHMIItems();
-        List<VsdItem> GetAllVSDItems();
-        List<RelayItem> GetAllRelayItems();
+        List<Item> GetAllPLCItems();
+        List<Item> GetAllHMIItems();
+        List<Item> GetAllVSDItems();
+        List<Item> GetAllRelayItems();
+        List<Item> GetAllContactors();
+        List<Item> GetAllIsolators();
         InventoryItems GetAllInventoryItems();
     }
 }

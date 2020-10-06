@@ -20,10 +20,10 @@ namespace AlveoManagementServer.Services
 
         Database databaseObject = new Database();
 
-        public List<PlcItem> GetAllPLCItems()
+        public List<Item> GetAllPLCItems()
         {
             logger.LogDebug("Getting all PLC items");
-            List<PlcItem> plcItems = new List<PlcItem>();
+            List<Item> plcItems = new List<Item>();
             string selectPLC = "SELECT * FROM PLCItems";
             SQLiteCommand selectCommand = new SQLiteCommand(selectPLC, databaseObject.dataConnection);
             databaseObject.OpenConnection();
@@ -32,7 +32,7 @@ namespace AlveoManagementServer.Services
             {
                 while (selectResult.Read())
                 {
-                    plcItems.Add(new PlcItem()
+                    plcItems.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
@@ -51,10 +51,10 @@ namespace AlveoManagementServer.Services
             return plcItems;
         }
 
-        public List<HmiItem> GetAllHMIItems()
+        public List<Item> GetAllHMIItems()
         {
             logger.LogDebug("Getting all HMI items");
-            List<HmiItem> hmiItems = new List<HmiItem>();
+            List<Item> hmiItems = new List<Item>();
             string selectHMI = "SELECT * FROM HMIItems";
             SQLiteCommand selectCommand = new SQLiteCommand(selectHMI, databaseObject.dataConnection);
             databaseObject.OpenConnection();
@@ -63,7 +63,7 @@ namespace AlveoManagementServer.Services
             {
                 while (selectResult.Read())
                 {
-                    hmiItems.Add(new HmiItem()
+                    hmiItems.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
@@ -82,10 +82,10 @@ namespace AlveoManagementServer.Services
             return hmiItems;
         }
 
-        public List<VsdItem> GetAllVSDItems()
+        public List<Item> GetAllVSDItems()
         {
             logger.LogDebug("Getting all VSD items");
-            List<VsdItem> vsdItems = new List<VsdItem>();
+            List<Item> vsdItems = new List<Item>();
             string selectVSD = "SELECT * FROM VSDItems";
             SQLiteCommand selectCommand = new SQLiteCommand(selectVSD, databaseObject.dataConnection);
             databaseObject.OpenConnection();
@@ -94,7 +94,7 @@ namespace AlveoManagementServer.Services
             {
                 while (selectResult.Read())
                 {
-                    vsdItems.Add(new VsdItem()
+                    vsdItems.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
@@ -113,10 +113,10 @@ namespace AlveoManagementServer.Services
             return vsdItems;
         }
 
-        public List<RelayItem> GetAllRelayItems()
+        public List<Item> GetAllRelayItems()
         {
             logger.LogDebug("Getting all Relay items");
-            List<RelayItem> relayItems = new List<RelayItem>();
+            List<Item> relayItems = new List<Item>();
             string selectRelay = "SELECT * FROM VSDItems";
             SQLiteCommand selectCommand = new SQLiteCommand(selectRelay, databaseObject.dataConnection);
             databaseObject.OpenConnection();
@@ -125,7 +125,7 @@ namespace AlveoManagementServer.Services
             {
                 while (selectResult.Read())
                 {
-                    relayItems.Add(new RelayItem()
+                    relayItems.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
@@ -145,6 +145,68 @@ namespace AlveoManagementServer.Services
             return relayItems;
         }
 
+        public List<Item> GetAllContactors()
+        {
+            logger.LogDebug("Getting all Contactor items");
+            List<Item> contactors = new List<Item>();
+            string selectContactor = "SELECT * FROM Contactors";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectContactor, databaseObject.dataConnection);
+            databaseObject.OpenConnection();
+            SQLiteDataReader selectResult = selectCommand.ExecuteReader();
+            if (selectResult.HasRows)
+            {
+                while (selectResult.Read())
+                {
+                    contactors.Add(new Item()
+                    {
+                        ID = (Int32)(Int64)selectResult["id"],
+                        Name = (string)selectResult["name"],
+                        Make = (string)selectResult["make"],
+                        PartNumber = (string)selectResult["partNumber"],
+                        Qty = (Int32)(Int64)selectResult["qty"],
+                        Description = (string)selectResult["description"],
+                        Unit = (string)selectResult["unit"],
+                        Rate = (double)selectResult["Rate"],
+                        Req = (Int32)(Int64)selectResult["req"]
+                    }
+                    );
+                }
+            }
+            databaseObject.CloseConnection();
+            return contactors;
+        }
+
+        public List<Item> GetAllIsolators()
+        {
+            logger.LogDebug("Getting all Isolators");
+            List<Item> isolators = new List<Item>();
+            string selectIsolator = "SELECT * FROM Isolators";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectIsolator, databaseObject.dataConnection);
+            databaseObject.OpenConnection();
+            SQLiteDataReader selectResult = selectCommand.ExecuteReader();
+            if (selectResult.HasRows)
+            {
+                while (selectResult.Read())
+                {
+                    isolators.Add(new Item()
+                    {
+                        ID = (Int32)(Int64)selectResult["id"],
+                        Name = (string)selectResult["name"],
+                        Make = (string)selectResult["make"],
+                        PartNumber = (string)selectResult["partNumber"],
+                        Qty = (Int32)(Int64)selectResult["qty"],
+                        Description = (string)selectResult["description"],
+                        Unit = (string)selectResult["unit"],
+                        Rate = (double)selectResult["Rate"],
+                        Req = (Int32)(Int64)selectResult["req"]
+                    }
+                    );
+                }
+            }
+            databaseObject.CloseConnection();
+            return isolators;
+        }
+
 
         public InventoryItems GetAllInventoryItems()
         {
@@ -153,6 +215,7 @@ namespace AlveoManagementServer.Services
             inventoryItems.Hmis = GetAllHMIItems();
             inventoryItems.Vsds = GetAllVSDItems();
             inventoryItems.Relays = GetAllRelayItems();
+            inventoryItems.Contactors = GetAllContactors();
             return inventoryItems;
         }
     }

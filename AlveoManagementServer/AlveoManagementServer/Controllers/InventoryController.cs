@@ -45,6 +45,20 @@ namespace AlveoManagementServer.Controllers
             return new ObjectResult(inventoryService.GetAllRelayItems());
         }
 
+        [HttpGet("GetAllContactors")]
+        public ActionResult GetAllContactors()
+        {
+            logger.LogInformation("Getting all Contactors");
+            return new ObjectResult(inventoryService.GetAllContactors());
+        }
+
+        [HttpGet("GetAllIsolators")]
+        public ActionResult GetAllIsolators()
+        {
+            logger.LogInformation("Getting all Isolators");
+            return new ObjectResult(inventoryService.GetAllIsolators());
+        }
+
         [HttpGet("GetAllInventoryItems")]
         public ActionResult GetAllInventoryItems()
         {

@@ -1,16 +1,15 @@
-import { ModelBase } from '../model-base';
-import { Guid } from '../../classes/guid';
 
-export class Projects extends ModelBase {
-    public Number: Guid;
+
+
+export class Projects {
+    public ID: string;
+    public Number: string;
     public Name: string;
     public StartDate: string;
     public EndDate: string;
     public Leader: string;
 
     constructor() {
-        super();
-
     }
 
     ToJson(): string {

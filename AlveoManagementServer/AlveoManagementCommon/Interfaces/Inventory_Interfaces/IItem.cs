@@ -1,7 +1,9 @@
 ﻿namespace AlveoManagementCommon.Interfaces
 {
-    public interface IRelayItem : IModeBase
+    public interface IItem
     {
+        int ID { get; set; }
+        string Name { get; set; }
         string Make { get; set; }
         string PartNumber { get; set; }
         int Qty { get; set; }

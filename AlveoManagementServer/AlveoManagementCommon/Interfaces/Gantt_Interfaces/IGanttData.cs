@@ -10,5 +10,6 @@
         public int duration { get; set; }
         public int parent { get; set; }
         public string color { get; set; }
+        public string type { get; set; }
     }
 }

@@ -2,10 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Guid } from '../classes/guid';
-import { HmiItem } from '../models/inventory/hmi-item';
-import { PlcItem } from '../models/inventory/plc-item';
-import { VsdItem } from '../models/inventory/vsd-item';
-import { RelayItem } from '../models/inventory/relay-item';
+import { ModelItem } from '../models/inventory/modelItem';
 import { map, catchError } from 'rxjs/operators';
 import { Environment } from '../classes/environment';
 import { Inventory } from '../models/inventory/inventory';
@@ -20,10 +17,10 @@ export class InventoryService {
     return `${Environment.apiUrl}/Inventory`;
   }
 
-  public GetAllPlcItems(): Observable<PlcItem[]> {
+  public GetAllPlcItems(): Observable<ModelItem[]> {
     return this.httpClient.get(`${this.controllerURL}/GetAllPLCItems`)
       .pipe(
-        map((ii: PlcItem[]) => {
+        map((ii: ModelItem[]) => {
           return ii;
         }),
         catchError(ii => {
@@ -33,10 +30,10 @@ export class InventoryService {
       );
   }
 
-  public GetAllHmiItems(): Observable<HmiItem[]> {
+  public GetAllHmiItems(): Observable<ModelItem[]> {
     return this.httpClient.get(`${this.controllerURL}/GetAllHMIItems`)
       .pipe(
-        map((ii: HmiItem[]) => {
+        map((ii: ModelItem[]) => {
           return ii;
         }),
         catchError(ii => {
@@ -45,10 +42,10 @@ export class InventoryService {
       );
   }
 
-  public GetAllVsdItems(): Observable<VsdItem[]> {
+  public GetAllVsdItems(): Observable<ModelItem[]> {
     return this.httpClient.get(`${this.controllerURL}/GetAllVSDItems`)
       .pipe(
-        map((ii: VsdItem[]) => {
+        map((ii: ModelItem[]) => {
           return ii;
         }),
         catchError(ii => {
@@ -57,15 +54,33 @@ export class InventoryService {
       );
   }
 
-  public GetAllRelayItems(): Observable<RelayItem[]> {
+  public GetAllRelayItems(): Observable<ModelItem[]> {
     return this.httpClient.get(`${this.controllerURL}/GetAllRelayItems`)
       .pipe(
-        map((ii: RelayItem[]) => {
+        map((ii: ModelItem[]) => {
           return ii;
         }),
         catchError(ii => {
           return of(this.getRelayError());
         })
+      );
+  }
+
+  public GetAllContactorItems(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllContactors`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllIsolators(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllIsolators`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
       );
   }
 
@@ -80,7 +95,7 @@ export class InventoryService {
 
   // Method to report communication issue
   private getPlcError() {
-    var PlcData: PlcItem[] = [];
+    var PlcData: ModelItem[] = [];
     var plcItem = this.buildPlcError("Could not retrieve PLC Data", "Check Connection", "Error :");
     PlcData.push(plcItem);
 
@@ -89,7 +104,7 @@ export class InventoryService {
   }
 
   private getHmiError() {
-    var HmiData: HmiItem[] = [];
+    var HmiData: ModelItem[] = [];
     var HmiItem = this.buildHmiError("Could not retrieve Hmi Data", "Check Connection", "Error");
     HmiData.push(HmiItem);
     return HmiData;
@@ -97,21 +112,21 @@ export class InventoryService {
   }
 
   private getVsdError() {
-    var VsdData: VsdItem[] = [];
+    var VsdData: ModelItem[] = [];
     var vsdItem = this.buildVsdItem("Could not retrieve VSD Data", "Check Connection", "Error");
     VsdData.push(vsdItem);
     return VsdData;
   }
 
   private getRelayError() {
-    var RelayData: RelayItem[] = [];
+    var RelayData: ModelItem[] = [];
     var relayItem = this.buildRelayItem("Could not retrieve Relay Data", "Check Connection", "Error");
     RelayData.push(relayItem);
     return RelayData;
   }
 
-  private buildPlcError(name: string, make: string, partnumber: string): PlcItem {
-    var plcItem = new PlcItem();
+  private buildPlcError(name: string, make: string, partnumber: string): ModelItem {
+    var plcItem = new ModelItem();
     plcItem.ID = Guid.newGuid();
     plcItem.Name = name;
     plcItem.Make = make;
@@ -119,8 +134,8 @@ export class InventoryService {
     return plcItem;
   }
 
-  private buildHmiError(name: string, make: string, partnumber: string): HmiItem {
-    var hmiItem = new HmiItem();
+  private buildHmiError(name: string, make: string, partnumber: string): ModelItem {
+    var hmiItem = new ModelItem();
     hmiItem.ID = Guid.newGuid();
     hmiItem.Name = name;
     hmiItem.Make = make;
@@ -128,8 +143,8 @@ export class InventoryService {
     return hmiItem;
   }
 
-  private buildVsdItem(name: string, make: string, partnumber: string): VsdItem {
-    var vsdItem = new VsdItem();
+  private buildVsdItem(name: string, make: string, partnumber: string): ModelItem {
+    var vsdItem = new ModelItem();
     vsdItem.ID = Guid.newGuid();
     vsdItem.Name = name;
     vsdItem.Make = make;
@@ -137,8 +152,8 @@ export class InventoryService {
     return vsdItem;
   }
 
-  private buildRelayItem(name: string, make: string, partnumber: string): RelayItem {
-    var relayItem = new RelayItem();
+  private buildRelayItem(name: string, make: string, partnumber: string): ModelItem {
+    var relayItem = new ModelItem();
     relayItem.ID = Guid.newGuid();
     relayItem.Name = name;
     relayItem.Make = make;

@@ -2,7 +2,7 @@
 
 namespace AlveoManagementCommon.Classes
 {
-    public class RelayItem : IRelayItem
+    public class Item : IItem
     {
         public int ID { get; set; }
         public string Name { get; set; }

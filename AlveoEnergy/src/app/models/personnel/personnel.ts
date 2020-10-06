@@ -1,7 +1,8 @@
-import { ModelBase } from '../model-base';
+
 import { Guid } from '../../classes/guid';
 
-export class Personnel extends ModelBase {
+export class Personnel {
+    public ID: number;
     public IDNumber: string;
     public Name: string;
     public Position: string;
@@ -10,7 +11,6 @@ export class Personnel extends ModelBase {
     public Email: string;
 
     constructor() {
-        super();
 
     }
 

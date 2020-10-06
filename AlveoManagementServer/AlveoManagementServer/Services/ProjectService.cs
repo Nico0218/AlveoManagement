@@ -8,11 +8,11 @@ using AlveoManagementServer.SQLite;
 
 namespace AlveoManagementServer.Services
 {
-    public class PersonnelService : IPersonnelService
+    public class ProjectService : IProjectService
     {
-        private readonly ILogger<PersonnelService> logger;
+        private readonly ILogger<ProjectService> logger;
 
-        public PersonnelService(ILogger<PersonnelService> logger)
+        public ProjectService(ILogger<ProjectService> logger)
         {
             this.logger = logger;
         }
@@ -20,31 +20,33 @@ namespace AlveoManagementServer.Services
 
         Database databaseObject = new Database();
 
-        public List<Personnel> GetAllPersonnelDetails()
+        public List<Project> GetAllProjects()
         {
-            logger.LogDebug("Getting all Personnel Details");
-            List<Personnel> personnel = new List<Personnel>();
-            string selectPersonnel = "SELECT * FROM Personnel";
-            SQLiteCommand selectCommand = new SQLiteCommand(selectPersonnel, databaseObject.dataConnection);
+            logger.LogDebug("Getting all Projects");
+            List<Project> project = new List<Project>();
+            string selectProject = "SELECT * FROM GanttData WHERE type='project'";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectProject, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();
             if (selectResult.HasRows)
             {
                 while (selectResult.Read())
                 {
-                    personnel.Add(new Personnel()
+                    project.Add(new Project()
                     {
                         ID = (int)(Int64)selectResult["id"],
-                        Name = (string)selectResult["name"],
-                        Surname = (string)selectResult["surname"],
+                        Name = (string)selectResult["text"],
                         StartDate = (string)selectResult["startDate"],
-                        ContactNumber = (string)selectResult["contactNumber"]
+                        Duration = (Int32)(Int64)selectResult["duration"],
+                        EndDate = (string)selectResult["endDate"],
+                        ProjectNumber = (string)selectResult["projectNumber"],
+                        ProjectLeader = (string)selectResult["projectLeader"]
                     }
                     );
                 }
             }
             databaseObject.CloseConnection();
-            return personnel;
+            return project;
         }
     }
 }

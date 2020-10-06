@@ -14,11 +14,11 @@ namespace AlveoManagementCommon.Classes
         public string quoteNumber { get; set; }
         public string validUntil { get; set; }
         public Array quoteItems { get; set; }
-        public int subTotal { get; set; }
-        public int taxRate { get; set; }
-        public int taxDue { get; set; }
-        public int otherCosts { get; set; }
-        public int quoteTotal { get; set; }
+        public double subTotal { get; set; }
+        public double taxRate { get; set; }
+        public double taxDue { get; set; }
+        public double otherCosts { get; set; }
+        public double quoteTotal { get; set; }
         public string status { get; set; }
     }
 }

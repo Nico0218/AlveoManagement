@@ -54,7 +54,7 @@ namespace AlveoManagementServer.Services
         {
             logger.LogDebug("Getting all gantt links");
             List<GanttLink> ganttLink = new List<GanttLink>();
-            string selectLinks = "SELECT * FROM GanttData";
+            string selectLinks = "SELECT * FROM GanttLinks";
             SQLiteCommand selectCommand = new SQLiteCommand(selectLinks, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();
@@ -65,9 +65,9 @@ namespace AlveoManagementServer.Services
                     ganttLink.Add(new GanttLink()
                     {
                         id = (int)(Int64)selectResult["id"],
-                        //source = (Int32)selectResult["source"],
-                        //target = (int)(Int64)selectResult["target"],
-                        //type = (string)selectResult["type"]
+                        source = (Int32)(Int64)selectResult["source"],
+                        target = (Int32)(Int64)selectResult["target"],
+                        type = (string)selectResult["type"]
                     }
                     );
                 }

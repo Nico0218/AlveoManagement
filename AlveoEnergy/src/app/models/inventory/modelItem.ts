@@ -1,22 +1,25 @@
-import { ModelBase } from '../model-base';
 
-export class VsdItem extends ModelBase {
+export class ModelItem  {
+    public ID: string;
     public Name: string;
     public Make: string;
     public PartNumber: string;
     public Qty: number;
+    public Description: string;
+    public Unit: string;
+    public Rate: number;
+    public Req: number;
+    public Ammount: Number;
 
     constructor() {
-        super();
-
     }
 
     ToJson(): string {
         return JSON.stringify(this);
     }
 
-    static FromJson(jObj: any): VsdItem {
-        var inventoryItem = new VsdItem();
+    static FromJson(jObj: any): ModelItem {
+        var inventoryItem = new ModelItem();
         inventoryItem.ID = jObj.ID;
         inventoryItem.Name = jObj.Name;
         inventoryItem.PartNumber = jObj.PartNumber;
