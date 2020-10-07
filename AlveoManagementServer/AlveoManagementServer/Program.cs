@@ -20,9 +20,6 @@ namespace AlveoManagementServer
 
         public static async Task Main(string[] args)
         {
-
-            Database databaseObject = new Database();
-
             /*//insert into database
             string insertQuery = "INSERT INTO test ('name', 'surname') VALUES (@name, @surname)";
             SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, databaseObject.dataConnection);

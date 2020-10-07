@@ -84,6 +84,177 @@ export class InventoryService {
       );
   }
 
+  public GetAllBrackets(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllBrackets`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllDistribution(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllDistribution`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllEthernet(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllEthernet`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllFans(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllFans`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllFlowmeters(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllFlowmeters`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllFuseholders(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllFuseholders`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllMisc(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllMisc`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllPlcaux(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllPlcaux`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+  
+  public GetAllPsu(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllPsu`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllPanel(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllPanel`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllPlugs(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllPlugs`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllPower(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllPower`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllSensors(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllSensors`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllStarters(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllStarters`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllSurge(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllSurge`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllSwitch(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllSwitch`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllTransformer(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllTransformer`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllUps(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllUps`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
+  public GetAllVsdaux(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllVsdaux`)
+      .pipe(
+        map((ii: ModelItem[]) => {
+          return ii;
+        }),
+      );
+  }
+
   public GetAllInventoryItems(): Observable<Inventory[]> {
     return this.httpClient.get(`${this.controllerURL}/GetAllInventoryItems`)
       .pipe(

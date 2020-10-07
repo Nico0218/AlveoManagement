@@ -223,6 +223,7 @@
 
   </mat-tab>
 
+
   <mat-tab label="Isolators">
 
     <mat-form-field *ngIf="isolatorsList && isolatorsList.data">
@@ -267,6 +268,845 @@
 
   </mat-tab>
 
+
+  <mat-tab label="Brackets">
+
+    <mat-form-field *ngIf="bracketsList && bracketsList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applybracketFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="bracketsList && bracketsList.data" mat-table [dataSource]="bracketsList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedBracketColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedBracketColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+
+  <mat-tab label="Distribution">
+
+    <mat-form-field *ngIf="distributionList && distributionList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applydistributionFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="distributionList && distributionList.data" mat-table [dataSource]="distributionList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedDistributionColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedDistributionColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+
+  <mat-tab label="Ethernet">
+
+    <mat-form-field *ngIf="ethernetList && ethernetList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyEthernetFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="ethernetList && ethernetList.data" mat-table [dataSource]="ethernetList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedEthernetColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedEthernetColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+
+  <mat-tab label="Fans">
+
+    <mat-form-field *ngIf="fansList && fansList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFansFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="fansList && fansList.data" mat-table [dataSource]="fansList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedFansColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedFansColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Flowmeters">
+
+    <mat-form-field *ngIf="flowmetersList && flowmetersList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFlowmetersFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="flowmetersList && flowmetersList.data" mat-table [dataSource]="flowmetersList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedFLowmetersColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedFlowmetersColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Fuseholders">
+
+    <mat-form-field *ngIf="fuseholdersList && fuseholdersList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFuseholdersFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="fuseholdersList && fuseholdersList.data" mat-table [dataSource]="fuseholdersList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedFuseholdersColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedFuseholdersColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Misc">
+
+    <mat-form-field *ngIf="miscList && miscList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyMiscFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="miscList && miscList.data" mat-table [dataSource]="miscList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedMiscColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedMiscColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="PLC Aux">
+
+    <mat-form-field *ngIf="plcauxList && plcauxList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyPlcauxFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="plcauxList && plcauxList.data" mat-table [dataSource]="plcauxList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedPlcauxColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedPlcauxColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="PSU">
+
+    <mat-form-field *ngIf="psuList && psuList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyPsuFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="psuList && psuList.data" mat-table [dataSource]="psuList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedPsuColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedPsuColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Panels">
+
+    <mat-form-field *ngIf="panelList && panelList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyPanelFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="panelList && panelList.data" mat-table [dataSource]="panelList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedPanelColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedPanelColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Plugs">
+
+    <mat-form-field *ngIf="plugsList && plugsList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyPlugsFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="plugsList && plugsList.data" mat-table [dataSource]="plugslList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedPlugsColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedPlugsColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Power Monitoring">
+
+    <mat-form-field *ngIf="powerList && powerList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyPowerFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="powerList && powerList.data" mat-table [dataSource]="powerlList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedPowerColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedPowerColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Sensors">
+
+    <mat-form-field *ngIf="sensorsList && sensorsList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applySensorsFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="sensorsList && sensorsList.data" mat-table [dataSource]="sensorsList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedSensorsColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedSensorsColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Starters">
+
+    <mat-form-field *ngIf="startersList && startersList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyStartersFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="startersList && startersList.data" mat-table [dataSource]="startersList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedStartersColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedStartersColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Surge Arrestors">
+
+    <mat-form-field *ngIf="surgeList && surgeList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applySurgeFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="surgeList && surgeList.data" mat-table [dataSource]="surgeList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedSurgeColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedSurgeColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Switchgear">
+
+    <mat-form-field *ngIf="switchList && switchList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applySwitchFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="switchList && switchList.data" mat-table [dataSource]="switchList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedSwitchColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedSwitchColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="Transformer">
+
+    <mat-form-field *ngIf="transformerList && transformerList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyTransformerFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="transformerList && transformerList.data" mat-table [dataSource]="transformerList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedTransformerColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedTransformerColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="UPS">
+
+    <mat-form-field *ngIf="upsList && upsList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyUpsFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="upsList && upsList.data" mat-table [dataSource]="upsList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedUpsColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedUpsColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
+
+  <mat-tab label="VSD Aux">
+
+    <mat-form-field *ngIf="vsdauxList && vsdauxList.data">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyVsdauxFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table *ngIf="vsdauxList && vsdauxList.data" mat-table [dataSource]="vsdauxList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> Part Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.PartNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let element"> {{element.Make}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Qty}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedVsdauxColumnsList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedVsdauxColumnsList;"></tr>
+    </table>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </mat-tab>
 
 
 </mat-tab-group>

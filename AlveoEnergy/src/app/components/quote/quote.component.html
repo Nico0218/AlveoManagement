@@ -82,9 +82,9 @@
             <button class="btn btn-primary" (click)="ShowHide()">Add Quote Items</button><button (click)="convertToPDF()">save Quote</button>
             
             <div id="addItems" style="display: none;">
-                <table style="margin-left: 30px; width: 800px;" *ngFor="let item of inventory | keyvalue">
+                <table style="margin-left: 30px; width: 1500px;" *ngFor="let item of inventory | keyvalue">
                     <th  style=" text-align: center; width: auto; background-color:grey; color: white;" >{{item.key}}</th>
-                    <tr *ngFor='let elem of item.value'><input type="checkbox" style="margin-right: 10px;"><span style="display: inline-block; margin-right: 80px; min-width: 210px!important;">{{ elem.Description }}</span>  <span style="display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Unit}}</span>  <span style="display: inline-block; margin-right: 20px; min-width: 80px!important;">R{{elem.Rate}}</span>  
+                    <tr *ngFor='let elem of item.value'><input type="checkbox" style="margin-right: 10px;"><span style="font-size:12px; display: inline-block; margin-right: 80px; min-width: 730px!important;">{{ elem.Description }}</span>  <span style="font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Unit}}</span>  <span style="font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">R{{elem.Rate}}</span>  
                         quantity : <input style="width: 50px;" type="number"> Total: R{{ elem.Rate * elem.Req}}
                     </tr>
                 </table>
@@ -94,9 +94,9 @@
             <div id="container">
             <div  id="quote">
             <header>
-                <img style="height: 150px; width: 400px; margin-left: 80px;" alt="" src="../../../assets/img/Alveo Energy Logo Colour.jpg"><h1 style=" float: right; margin-top: 30px; margin-right: 80px;">QUOTE</h1>
+                <img style="height: 5%; width: 43%; margin-left: 80px;" alt="" src="../../../assets/img/Alveo Energy Logo Colour.jpg"><h1 style="font-size: 40px; float: right; margin-top: 30px; margin-right: 80px;">QUOTE</h1>
             </header>
-            <div><table  style="margin-left: 80px; float: left;">
+            <div><table  style="font-size: 24px; margin-left: 80px; float: left;">
                 <tr>
                     <td>Address:</td>
                     <td style="padding-left: 118px;">30 Mynhardt St</td>
@@ -118,7 +118,7 @@
                     <td style="padding-left: 118px;">{{preparedByEmail}}</td>
                 </tr>
             </table>
-            <table style="float: right; margin-right: 80px;">
+            <table style="font-size: 24px; float: right; margin-right: 80px;">
                 <tr>
                     <td style="text-align: right;">DATE:</td>
                     <td style="padding-left: 80px;">{{quoteDate}}</td>
@@ -137,45 +137,45 @@
                 </tr>
             </table>
             </div>
-            <table style="margin-left: 80px; width: 500px; clear: both;">
+            <table style="font-size: 24px; margin-left: 80px; width: 600px; clear: both;">
                 <tr>
                     <td style="background-color: rgb(120, 180, 0); color: white;">Customer</td>
                     <td style="background-color: rgb(120, 180, 0);"></td>
                 </tr>
                 <tr>
                     <td>ORDER NO:</td>
-                    <td>{{orderNumber}}</td>
+                    <td style="padding-left: 60px;">{{orderNumber}}</td>
                 </tr>
                 <tr>
                     <td>PROJECT:</td>
-                    <td>{{projectName}}</td>
+                    <td style="padding-left: 60px;">{{projectName}}</td>
                 </tr>
                 <tr>
                     <td>ATTENTION:</td>
-                    <td>{{attention}}</td>
+                    <td style="padding-left: 60px;">{{attention}}</td>
                 </tr>
                 <tr>
                     <td>PREPARED FOR:</td>
-                    <td>{{preparedFor}}</td>
+                    <td style="padding-left: 60px;">{{preparedFor}}</td>
                 </tr>
                 <tr>
                     <td>ADDRESS:</td>
-                    <td>{{customerAddress1}}</td>
+                    <td style="padding-left: 60px;">{{customerAddress1}}</td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>{{customerAddress2}}</td>
+                    <td style="padding-left: 60px;">{{customerAddress2}}</td>
                 </tr>
                 <tr>
                     <td>PHONE:</td>
-                    <td>{{customerContactNumber}}</td>
+                    <td style="padding-left: 60px;">{{customerContactNumber}}</td>
                 </tr>
                 <tr>
                     <td>EMAIL:</td>
-                    <td>{{customerEmail}}</td>
+                    <td style="padding-left: 60px;">{{customerEmail}}</td>
                 </tr>
             </table>
-            <table style="margin-left: 80px; margin-right: 80px; width: 90%;" id="quoteTable">
+            <table style="font-size: 20px; margin-left: 80px; margin-right: 80px; width: 90%;" id="quoteTable">
                 <th  style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Description</th>
                 <th  style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Req</th>
                 <th  style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Unit</th>
@@ -281,7 +281,7 @@
                 </tr>
             </table>
             
-            <table style=" float: right; margin-right: 80px; margin-top: 15px;">
+            <table style="font-size: 24px; float: right; margin-right: 80px; margin-top: 15px;">
                 <tr>
                     <td style="width: auto; text-align: left; width: 120px;">Subtotal: </td>
                     <td style="text-align: right;"> R<!--{{quoteSubTotal}}-->10 000.00</td>
@@ -303,8 +303,8 @@
                     <td style="text-align: right;"> R<!--{{quoteTotal}}-->11 500.00</td>
                 </tr>
             </table>
-            <p style=" text-align:center; clear:both">Please see terms and conditions on page 2</p>
-            <table style=" width: 800px; border: 1px solid black; margin-left: 250px; margin-bottom: 120px;">
+            <p style="font-size: 24px; text-align:center; clear:both">Please see terms and conditions on page 2</p>
+            <table style="font-size: 24px; width: 800px; border: 1px solid black; margin-left: 250px; margin-bottom: 120px;">
                 <tr>
                     <td style=" border: 1px solid black; width: 450px; height: 80px;">
                         Customer Acceptance:
