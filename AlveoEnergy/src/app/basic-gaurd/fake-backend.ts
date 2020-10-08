@@ -5,7 +5,13 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from '../models/login/user';
 
-const users: User[] = [{ id: 1, username: 'admin', password: 'ThisAdminPass', firstName: 'Tinus', lastName: 'Spangenberg' , email: "tinus@alveowater.co.za"}];
+const users: User[] = [
+    { id: 1, username: 'admin', password: 'ThisAdminPass', firstName: 'Tinus', lastName: 'Spangenberg' , email: "tinus@alveowater.co.za"},
+    { id: 2, username: 'Morne', password: 'MV@Manage258', firstName: 'Morne', lastName: 'Viljoen', email: 'Morne.viljoen@alveoenergy.co.za'},
+    { id: 3, username: 'Kobus', password: 'KB@Manage456', firstName: 'Kobus', lastName: 'Burger', email: 'kobus.burger@alveoenergy.co.za'},
+    { id: 4, username: "D'andre", password: 'DV@Manage159', firstName: "D'andre", lastName: 'vosloo', email: 'dandre.vosloo@alveoenergy.co.za'},
+    { id: 5, username: 'Gerhard', password: 'GK@Manage357', firstName: 'Gerhard', lastName: 'Kieser', email: 'gerhard.kieser@alveoenergy.co.za'}
+];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {

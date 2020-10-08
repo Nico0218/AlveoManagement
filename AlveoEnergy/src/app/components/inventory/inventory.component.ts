@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Console } from 'console';
 import { map, take } from 'rxjs/operators';
 import { ModelItem } from '../../models/inventory/ModelItem';
 import { InventoryService } from '../../services/inventory.service';
@@ -10,466 +11,163 @@ import { InventoryService } from '../../services/inventory.service';
   templateUrl: './inventory.component.html',
 })
 export class InventoryComponent {
-  PLC_DATA: ModelItem[];
-  HMI_DATA: ModelItem[];
-  VSD_DATA: ModelItem[];
-  RELAY_DATA: ModelItem[];
-  CONTACTOR_DATA: ModelItem[];
-  ISOLATOR_DATA: ModelItem[];
-  BRACKET_DATA: ModelItem[];
-  DISTRIBUTION_DATA: ModelItem[];
-  ETHERNET_DATA: ModelItem[];
-  FANS_DATA: ModelItem[];
-  FLOWMETERS_DATA: ModelItem[];
-  FUSEHOLDERS_DATA: ModelItem[];
-  MISC_DATA: ModelItem[];
-  PLCAUX_DATA: ModelItem[];
-  PSU_DATA: ModelItem[];
-  PANEL_DATA: ModelItem[];
-  PLUGS_DATA: ModelItem[];
-  POWER_DATA: ModelItem[];
-  SENSORS_DATA: ModelItem[];
-  STARTERS_DATA: ModelItem[];
-  SURGE_DATA: ModelItem[];
-  SWITCH_DATA: ModelItem[];
-  TRANSFORMER_DATA: ModelItem[];
-  UPS_DATA: ModelItem[];
-  VSDAUX_DATA: ModelItem[];
+  AUTOMATION_DATA: ModelItem[];
+  CABLETRAYS_DATA: ModelItem[];
+  EXTRAS_DATA: ModelItem[];
+  INSTRUMENTATION_DATA: ModelItem[];
+  LABOUR_DATA: ModelItem[];
+  OTHER_DATA: ModelItem[];
+  MONITORING_DATA: ModelItem[];
+  SWITCHGEAR_DATA: ModelItem[];
+
 
   constructor(private inventoryService: InventoryService) {
 
   }
 
   //creates data sources for plc, hmi and vsd items for list population
-  plcItemsList = new MatTableDataSource();
-  displayedPlcColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  hmiItemsList = new MatTableDataSource();
-  displayedHmiColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  vsdItemsList = new MatTableDataSource();
-  displayedVsdColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  relayItemsList = new MatTableDataSource();
-  displayedRelayColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  contactorItemsList = new MatTableDataSource();
-  displayedContactorColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  isolatorsList = new MatTableDataSource();
-  displayedIsolatorColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  bracketsList = new MatTableDataSource();
-  displayedBracketColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  distributionList = new MatTableDataSource();
-  displayedDistributionColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  ethernetList = new MatTableDataSource();
-  displayedEthernetColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  fansList = new MatTableDataSource();
-  displayedFansColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  flowmetersList = new MatTableDataSource();
-  displayedFlowmetersColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  fuseholdersList = new MatTableDataSource();
-  displayedFuseholdersColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  miscList = new MatTableDataSource();
-  displayedMiscColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  plcauxList = new MatTableDataSource();
-  displayedPlcauxColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  psuList = new MatTableDataSource();
-  displayedPsuColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  panelList = new MatTableDataSource();
-  displayedPanelColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  plugsList = new MatTableDataSource();
-  displayedPlugsColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  powerList = new MatTableDataSource();
-  displayedPowerColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  sensorsList = new MatTableDataSource();
-  displayedSensorsColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  startersList = new MatTableDataSource();
-  displayedStartersColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  surgeList = new MatTableDataSource();
-  displayedSurgeColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  switchList = new MatTableDataSource();
-  displayedSwitchColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  transformerList = new MatTableDataSource();
-  displayedTransformerColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  upsList = new MatTableDataSource();
-  displayedUpsColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
-  vsdauxList = new MatTableDataSource();
-  displayedVsdauxColumnsList: string[] = ['id', 'partNumber', 'name', 'Make', 'Qty'];
+  automationList = new MatTableDataSource();
+  displayedAutomationColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
+  cabletraysList = new MatTableDataSource();
+  displayedCabletraysColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
+  extrasList = new MatTableDataSource();
+  displayedExtrasColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
+  instrumentationList = new MatTableDataSource();
+  displayedInstrumentationColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
+  labourList = new MatTableDataSource();
+  displayedLabourColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
+  otherList = new MatTableDataSource();
+  displayedOtherColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
+  monitoringList = new MatTableDataSource();
+  displayedMonitoringColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
+  switchgearList = new MatTableDataSource();
+  displayedSwitchgearColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
+  
 
   //filters displayed plc results in form
-  applyPlcFilter(event: Event) {
+  applyAutomationFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.plcItemsList.filter = filterValue.trim().toLowerCase();
+    this.automationList.filter = filterValue.trim().toLowerCase();
   }
 
   //filters displayed hmi results in form
-  applyHmiFilter(event: Event) {
+  applyCabletraysFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.hmiItemsList.filter = filterValue.trim().toLowerCase();
+    this.cabletraysList.filter = filterValue.trim().toLowerCase();
   }
 
   //filters displayed vsd results in form
-  applyVsdFilter(event: Event) {
+  applyExtrasFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.vsdItemsList.filter = filterValue.trim().toLowerCase();
+    this.extrasList.filter = filterValue.trim().toLowerCase();
   }
 
-  applyRelayFilter(event: Event) {
+  applyInstrumentationFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.vsdItemsList.filter = filterValue.trim().toLowerCase();
+    this.instrumentationList.filter = filterValue.trim().toLowerCase();
   }
 
-  applyContactorFilter(event: Event) {
+  applyLabourFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.contactorItemsList.filter = filterValue.trim().toLowerCase();
+    this.labourList.filter = filterValue.trim().toLowerCase();
   }
 
-  applyIsolatorFilter(event: Event) {
+  applyOtherFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.isolatorsList.filter = filterValue.trim().toLowerCase();
+    this.otherList.filter = filterValue.trim().toLowerCase();
   }
 
-  applyBracketFilter(event: Event) {
+  applyMonitoringFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.bracketsList.filter = filterValue.trim().toLowerCase();
+    this.monitoringList.filter = filterValue.trim().toLowerCase();
   }
 
-  applyDistributionFilter(event: Event) {
+  applySwitchgearFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.distributionList.filter = filterValue.trim().toLowerCase();
+    this.switchgearList.filter = filterValue.trim().toLowerCase();
   }
 
-  applyEthernetFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.ethernetList.filter = filterValue.trim().toLowerCase();
-  }
 
-  applyFansFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.fansList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyFlowmetersFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.flowmetersList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyFuseholdersFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.fuseholdersList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyMiscFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.miscList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyPlcauxFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.plcauxList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyPsuFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.psuList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyPanelFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.panelList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyPlugsFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.plugsList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyPowerFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.powerList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applySensorsFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.sensorsList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyStartersFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.startersList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applySurgeFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.startersList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applySwitchFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.switchList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyTransformerFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.transformerList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyUpsFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.upsList.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyVsdauxFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.vsdauxList.filter = filterValue.trim().toLowerCase();
-  }
 
   ngOnInit() {
-    this.inventoryService.GetAllPlcItems()//This function builds and returns a Observable
+    this.inventoryService.GetAllAutomation()//This function builds and returns a Observable
       .pipe( // pipe allows us to define actions or "effects" that should happen with the Observable - Note at this point the Observable has not "Run" yet
-        map(plcItems => { // https://www.learnrxjs.io/learn-rxjs/operators/transformation/map
-          this.PLC_DATA = plcItems;
-          this.plcItemsList.data = this.PLC_DATA;
+        map(automation => { // https://www.learnrxjs.io/learn-rxjs/operators/transformation/map
+          this.AUTOMATION_DATA = automation;
+          this.automationList.data = this.AUTOMATION_DATA;
         }),
         take(1) // https://www.learnrxjs.io/learn-rxjs/operators/filtering/take
       )
       .subscribe();// Subscribe starts the execution of the Observable
 
-      this.inventoryService.GetAllHmiItems()
+      this.inventoryService.GetAllCabletrays()
       .pipe(
-        map(hmiItems => {
-          this.HMI_DATA = hmiItems;
-          this.hmiItemsList.data = this.HMI_DATA;
+        map(cabletrays => {
+          this.CABLETRAYS_DATA = cabletrays;
+          this.cabletraysList.data = this.CABLETRAYS_DATA;
         }),
         take(1)
       )
       .subscribe();
 
-      this.inventoryService.GetAllVsdItems()
+      this.inventoryService.GetAllExtras()
       .pipe(
-        map(vsdItems => {
-          this.VSD_DATA = vsdItems;
-          this.vsdItemsList.data = this.VSD_DATA;
+        map(extras => {
+          this.EXTRAS_DATA = extras;
+          this.extrasList.data = this.EXTRAS_DATA;
         }),
         take(1)
       )
       .subscribe();
 
-      this.inventoryService.GetAllRelayItems()
+      this.inventoryService.GetAllInstrumentation()
       .pipe(
-        map(relayItems => {
-          this.RELAY_DATA = relayItems;
-          this.relayItemsList.data = this.RELAY_DATA;
+        map(instrumentation => {
+          this.INSTRUMENTATION_DATA = instrumentation;
+          this.instrumentationList.data = this.INSTRUMENTATION_DATA;
         }),
         take(1)
       )
       .subscribe();
 
-      this.inventoryService.GetAllContactorItems()
+      this.inventoryService.GetAllLabour()
       .pipe(
-        map(contactorItems => {
-          this.CONTACTOR_DATA = contactorItems;
-          this.contactorItemsList.data = this.CONTACTOR_DATA;
+        map(labour => {
+          this.LABOUR_DATA = labour;
+          this.labourList.data = this.LABOUR_DATA;
         }),
         take(1)
       )
       .subscribe();
 
-      this.inventoryService.GetAllIsolators()
+      this.inventoryService.GetAllMonitoring()
       .pipe(
-        map(isolators => {
-          this.ISOLATOR_DATA = isolators;
-          this.isolatorsList.data = this.ISOLATOR_DATA;
+        map(monitoring => {
+          this.MONITORING_DATA = monitoring;
+          this.monitoringList.data = this.MONITORING_DATA;
         }),
         take(1)
       )
       .subscribe();
 
-      this.inventoryService.GetAllBrackets()
+      this.inventoryService.GetAllOther()
       .pipe(
-        map(brackets => {
-          this.BRACKET_DATA = brackets;
-          this.bracketsList.data = this.BRACKET_DATA;
+        map(other => {
+          this.OTHER_DATA = other;
+          this.otherList.data = this.OTHER_DATA;
         }),
         take(1)
       )
       .subscribe();
 
-      this.inventoryService.GetAllDistribution()
+      this.inventoryService.GetAllSwitchgear()
       .pipe(
-        map(distribution => {
-          this.DISTRIBUTION_DATA = distribution;
-          this.distributionList.data = this.DISTRIBUTION_DATA;
+        map(switchgear => {
+          this.SWITCHGEAR_DATA = switchgear;
+          this.switchgearList.data = this.SWITCHGEAR_DATA;
         }),
         take(1)
       )
       .subscribe();
-
-      this.inventoryService.GetAllEthernet()
-      .pipe(
-        map(ethernet => {
-          this.ETHERNET_DATA = ethernet;
-          this.ethernetList.data = this.ETHERNET_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllFans()
-      .pipe(
-        map(fans => {
-          this.FANS_DATA = fans;
-          this.fansList.data = this.FANS_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllFlowmeters()
-      .pipe(
-        map(flowmeters => {
-          this.FLOWMETERS_DATA = flowmeters;
-          this.flowmetersList.data = this.FLOWMETERS_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllFuseholders()
-      .pipe(
-        map(fuseholders => {
-          this.FUSEHOLDERS_DATA = fuseholders;
-          this.fuseholdersList.data = this.FUSEHOLDERS_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllMisc()
-      .pipe(
-        map(misc => {
-          this.MISC_DATA = misc;
-          this.miscList.data = this.MISC_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllPlcaux()
-      .pipe(
-        map(plcaux => {
-          this.PLCAUX_DATA = plcaux;
-          this.plcauxList.data = this.PLCAUX_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllPsu()
-      .pipe(
-        map(psu => {
-          this.PSU_DATA = psu;
-          this.psuList.data = this.PSU_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllPanel()
-      .pipe(
-        map(panel => {
-          this.PANEL_DATA = panel;
-          this.panelList.data = this.PANEL_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllPlugs()
-      .pipe(
-        map(plugs => {
-          this.PLUGS_DATA = plugs;
-          this.plugsList.data = this.PLUGS_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllPower()
-      .pipe(
-        map(power => {
-          this.POWER_DATA = power;
-          this.powerList.data = this.POWER_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllSensors()
-      .pipe(
-        map(sensors => {
-          this.SENSORS_DATA = sensors;
-          this.sensorsList.data = this.SENSORS_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllStarters()
-      .pipe(
-        map(starters => {
-          this.STARTERS_DATA = starters;
-          this.startersList.data = this.STARTERS_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllSurge()
-      .pipe(
-        map(surge => {
-          this.SURGE_DATA = surge;
-          this.surgeList.data = this.SURGE_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllSwitch()
-      .pipe(
-        map(switches => {
-          this.SWITCH_DATA = switches;
-          this.switchList.data = this.SWITCH_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllTransformer()
-      .pipe(
-        map(transformer => {
-          this.TRANSFORMER_DATA = transformer;
-          this.transformerList.data = this.TRANSFORMER_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllUps()
-      .pipe(
-        map(ups => {
-          this.UPS_DATA = ups;
-          this.upsList.data = this.UPS_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
-      this.inventoryService.GetAllVsdaux()
-      .pipe(
-        map(vsdaux => {
-          this.VSDAUX_DATA = vsdaux;
-          this.vsdauxList.data = this.VSDAUX_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
-
   }
 }

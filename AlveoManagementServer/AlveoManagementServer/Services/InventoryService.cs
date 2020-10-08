@@ -37,12 +37,12 @@ namespace AlveoManagementServer.Services
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
-                        PartNumber = (string)selectResult["partNumber"],
-                        Qty = (Int32)(Int64)selectResult["qty"],
-                        Description = (string)selectResult["description"],
+                        PartNumber = (string)selectResult["partnumber"],
+                        Cost = (double)selectResult["cost"],
+                        Instock = (Int32)(Int64)selectResult["instock"],
+                        Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Rate = (double)selectResult["Rate"],
-                        Req = (Int32)(Int64)selectResult["req"]
+                        Category = "Automation"
                     }
                     );
                 }
@@ -53,220 +53,219 @@ namespace AlveoManagementServer.Services
 
         public List<Item> GetAllCabletrays()
         {
-            logger.LogDebug("Getting all HMI items");
-            List<Item> hmiItems = new List<Item>();
-            string selectHMI = "SELECT * FROM HMIItems";
-            SQLiteCommand selectCommand = new SQLiteCommand(selectHMI, databaseObject.dataConnection);
+            logger.LogDebug("Getting all Cables and trays");
+            List<Item> cable = new List<Item>();
+            string selectCT = "SELECT * FROM Cabletrays";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectCT, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();
             if (selectResult.HasRows)
             {
                 while (selectResult.Read())
                 {
-                    hmiItems.Add(new Item()
+                    cable.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
-                        Make = (string)selectResult["make"],
-                        PartNumber = (string)selectResult["partNumber"],
-                        Qty = (Int32)(Int64)selectResult["qty"],
-                        Description = (string)selectResult["description"],
+                        Supplier = (string)selectResult["supplier"],
+                        PartNumber = (string)selectResult["partnumber"],
+                        Cost = (double)selectResult["cost"],
+                        Instock = (Int32)(Int64)selectResult["instock"],
+                        Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Rate = (double)selectResult["Rate"],
-                        Req = (Int32)(Int64)selectResult["req"]
+                        Category = "Cabletrays"
                     }
                     );
                 }
             }
             databaseObject.CloseConnection();
-            return hmiItems;
+            return cable;
         }
 
         public List<Item> GetAllExtras()
         {
-            logger.LogDebug("Getting all VSD items");
-            List<Item> vsdItems = new List<Item>();
-            string selectVSD = "SELECT * FROM VSDItems";
-            SQLiteCommand selectCommand = new SQLiteCommand(selectVSD, databaseObject.dataConnection);
+            logger.LogDebug("Getting all Extras");
+            List<Item> extras = new List<Item>();
+            string selectExtras = "SELECT * FROM Extras";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectExtras, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();
             if (selectResult.HasRows)
             {
                 while (selectResult.Read())
                 {
-                    vsdItems.Add(new Item()
+                    extras.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
-                        Make = (string)selectResult["make"],
-                        PartNumber = (string)selectResult["partNumber"],
-                        Qty = (Int32)(Int64)selectResult["qty"],
-                        Description = (string)selectResult["description"],
+                        Supplier = (string)selectResult["supplier"],
+                        PartNumber = (string)selectResult["partnumber"],
+                        Cost = (double)selectResult["cost"],
+                        Instock = (Int32)(Int64)selectResult["instock"],
+                        Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Rate = (double)selectResult["Rate"],
-                        Req = (Int32)(Int64)selectResult["req"]
+                        Category = "Extras"
                     }
                     );
                 }
             }
             databaseObject.CloseConnection();
-            return vsdItems;
+            return extras;
         }
 
         public List<Item> GetAllInstrumentation()
         {
-            logger.LogDebug("Getting all Relay items");
-            List<Item> relayItems = new List<Item>();
-            string selectRelay = "SELECT * FROM RelayItems";
-            SQLiteCommand selectCommand = new SQLiteCommand(selectRelay, databaseObject.dataConnection);
+            logger.LogDebug("Getting all Instrumentation");
+            List<Item> instrumentation = new List<Item>();
+            string selectInstrumentation = "SELECT * FROM Instrumentation";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectInstrumentation, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();
             if (selectResult.HasRows)
             {
                 while (selectResult.Read())
                 {
-                    relayItems.Add(new Item()
+                    instrumentation.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
-                        Make = (string)selectResult["make"],
-                        PartNumber = (string)selectResult["partNumber"],
-                        Qty = (Int32)(Int64)selectResult["qty"],
-                        Description = (string)selectResult["description"],
+                        Supplier = (string)selectResult["supplier"],
+                        PartNumber = (string)selectResult["partnumber"],
+                        Cost = (double)selectResult["cost"],
+                        Instock = (Int32)(Int64)selectResult["instock"],
+                        Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Rate = (double)selectResult["Rate"],
-                        Req = (Int32)(Int64)selectResult["req"]
+                        Category = "Instrumentation"
                     }
                     );
-                    Console.WriteLine("done");
                 }
             }
             databaseObject.CloseConnection();
-            return relayItems;
+            return instrumentation;
         }
 
         public List<Item> GetAllLabour()
         {
-            logger.LogDebug("Getting all Contactor items");
-            List<Item> contactors = new List<Item>();
-            string selectContactor = "SELECT * FROM Contactors";
-            SQLiteCommand selectCommand = new SQLiteCommand(selectContactor, databaseObject.dataConnection);
+            logger.LogDebug("Getting all Labour");
+            List<Item> labour = new List<Item>();
+            string selectLabour = "SELECT * FROM Labour";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectLabour, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();
             if (selectResult.HasRows)
             {
                 while (selectResult.Read())
                 {
-                    contactors.Add(new Item()
+                    labour.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
-                        Make = (string)selectResult["make"],
-                        PartNumber = (string)selectResult["partNumber"],
-                        Qty = (Int32)(Int64)selectResult["qty"],
-                        Description = (string)selectResult["description"],
+                        Supplier = (string)selectResult["supplier"],
+                        PartNumber = (string)selectResult["partnumber"],
+                        Cost = (double)selectResult["cost"],
+                        Instock = (Int32)(Int64)selectResult["instock"],
+                        Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Rate = (double)selectResult["Rate"],
-                        Req = (Int32)(Int64)selectResult["req"]
+                        Category = "Labour"
                     }
                     );
                 }
             }
             databaseObject.CloseConnection();
-            return contactors;
+            return labour;
         }
 
         public List<Item> GetAllOther()
         {
-            logger.LogDebug("Getting all Isolators");
-            List<Item> isolators = new List<Item>();
-            string selectIsolator = "SELECT * FROM Isolators";
-            SQLiteCommand selectCommand = new SQLiteCommand(selectIsolator, databaseObject.dataConnection);
+            logger.LogDebug("Getting all Other");
+            List<Item> other = new List<Item>();
+            string selectOther = "SELECT * FROM Other";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectOther, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();
             if (selectResult.HasRows)
             {
                 while (selectResult.Read())
                 {
-                    isolators.Add(new Item()
+                    other.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
-                        Make = (string)selectResult["make"],
-                        PartNumber = (string)selectResult["partNumber"],
-                        Qty = (Int32)(Int64)selectResult["qty"],
-                        Description = (string)selectResult["description"],
+                        Supplier = (string)selectResult["supplier"],
+                        PartNumber = (string)selectResult["partnumber"],
+                        Cost = (double)selectResult["cost"],
+                        Instock = (Int32)(Int64)selectResult["instock"],
+                        Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Rate = (double)selectResult["Rate"],
-                        Req = (Int32)(Int64)selectResult["req"]
+                        Category = "Other"
                     }
                     );
                 }
             }
             databaseObject.CloseConnection();
-            return isolators;
+            return other;
         }
 
         public List<Item> GetAllMonitoring()
         {
-            logger.LogDebug("Getting all Brackets");
-            List<Item> brackets = new List<Item>();
-            string selectBrackets = "SELECT * FROM Brackets";
-            SQLiteCommand selectCommand = new SQLiteCommand(selectBrackets, databaseObject.dataConnection);
+            logger.LogDebug("Getting all Monitoring");
+            List<Item> monitoring = new List<Item>();
+            string selectMonitoring = "SELECT * FROM Remotemonitoring";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectMonitoring, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();
             if (selectResult.HasRows)
             {
                 while (selectResult.Read())
                 {
-                    brackets.Add(new Item()
+                    monitoring.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
-                        Make = (string)selectResult["make"],
-                        PartNumber = (string)selectResult["partNumber"],
-                        Qty = (Int32)(Int64)selectResult["qty"],
-                        Description = (string)selectResult["description"],
+                        Supplier = (string)selectResult["supplier"],
+                        PartNumber = (string)selectResult["partnumber"],
+                        Cost = (double)selectResult["cost"],
+                        Instock = (Int32)(Int64)selectResult["instock"],
+                        Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Rate = (double)selectResult["Rate"],
-                        Req = (Int32)(Int64)selectResult["req"]
+                        Category = "Monitoring"
                     }
                     );
                 }
             }
             databaseObject.CloseConnection();
-            return brackets;
+            return monitoring;
         }
 
         public List<Item> GetAllSwitchgear()
         {
-            logger.LogDebug("Getting all Distribution");
-            List<Item> distribution = new List<Item>();
-            string selectBrackets = "SELECT * FROM Distribution";
-            SQLiteCommand selectCommand = new SQLiteCommand(selectBrackets, databaseObject.dataConnection);
+            logger.LogDebug("Getting all Switchgear");
+            List<Item> switchgear = new List<Item>();
+            string selectSwitchgear = "SELECT * FROM Switchgear";
+            SQLiteCommand selectCommand = new SQLiteCommand(selectSwitchgear, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();
             if (selectResult.HasRows)
             {
                 while (selectResult.Read())
                 {
-                    distribution.Add(new Item()
+                    switchgear.Add(new Item()
                     {
                         ID = (Int32)(Int64)selectResult["id"],
                         Name = (string)selectResult["name"],
-                        Make = (string)selectResult["make"],
-                        PartNumber = (string)selectResult["partNumber"],
-                        Qty = (Int32)(Int64)selectResult["qty"],
-                        Description = (string)selectResult["description"],
+                        Supplier = (string)selectResult["supplier"],
+                        PartNumber = (string)selectResult["partnumber"],
+                        Cost = (double)selectResult["cost"],
+                        Instock = (Int32)(Int64)selectResult["instock"],
+                        Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Rate = (double)selectResult["Rate"],
-                        Req = (Int32)(Int64)selectResult["req"]
+                        Category = "Switchgear"
                     }
                     );
                 }
             }
             databaseObject.CloseConnection();
-            return distribution;
+            return switchgear;
         }
 
 

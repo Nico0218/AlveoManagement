@@ -17,57 +17,8 @@ export class InventoryService {
     return `${Environment.apiUrl}/Inventory`;
   }
 
-  public GetAllPlcItems(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllPLCItems`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-        catchError(ii => {
-          //Return Error //Could not retrieve Data//
-          return of(this.getPlcError());
-        })
-      );
-  }
-
-  public GetAllHmiItems(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllHMIItems`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-        catchError(ii => {
-          return of(this.getHmiError());
-        })
-      );
-  }
-
-  public GetAllVsdItems(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllVSDItems`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-        catchError(ii => {
-          return of(this.getVsdError());
-        })
-      );
-  }
-
-  public GetAllRelayItems(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllRelayItems`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-        catchError(ii => {
-          return of(this.getRelayError());
-        })
-      );
-  }
-
-  public GetAllContactorItems(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllContactors`)
+  public GetAllAutomation(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllAutomation`)
       .pipe(
         map((ii: ModelItem[]) => {
           return ii;
@@ -75,8 +26,8 @@ export class InventoryService {
       );
   }
 
-  public GetAllIsolators(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllIsolators`)
+  public GetAllCabletrays(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllCabletrays`)
       .pipe(
         map((ii: ModelItem[]) => {
           return ii;
@@ -84,8 +35,8 @@ export class InventoryService {
       );
   }
 
-  public GetAllBrackets(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllBrackets`)
+  public GetAllExtras(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllExtras`)
       .pipe(
         map((ii: ModelItem[]) => {
           return ii;
@@ -93,8 +44,8 @@ export class InventoryService {
       );
   }
 
-  public GetAllDistribution(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllDistribution`)
+  public GetAllInstrumentation(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllInstrumentation`)
       .pipe(
         map((ii: ModelItem[]) => {
           return ii;
@@ -102,8 +53,8 @@ export class InventoryService {
       );
   }
 
-  public GetAllEthernet(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllEthernet`)
+  public GetAllLabour(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllLabour`)
       .pipe(
         map((ii: ModelItem[]) => {
           return ii;
@@ -111,8 +62,8 @@ export class InventoryService {
       );
   }
 
-  public GetAllFans(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllFans`)
+  public GetAllOther(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllOther`)
       .pipe(
         map((ii: ModelItem[]) => {
           return ii;
@@ -120,8 +71,8 @@ export class InventoryService {
       );
   }
 
-  public GetAllFlowmeters(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllFlowmeters`)
+  public GetAllMonitoring(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllMonitoring`)
       .pipe(
         map((ii: ModelItem[]) => {
           return ii;
@@ -129,8 +80,8 @@ export class InventoryService {
       );
   }
 
-  public GetAllFuseholders(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllFuseholders`)
+  public GetAllSwitchgear(): Observable<ModelItem[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllSwitchgear`)
       .pipe(
         map((ii: ModelItem[]) => {
           return ii;
@@ -138,198 +89,12 @@ export class InventoryService {
       );
   }
 
-  public GetAllMisc(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllMisc`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllPlcaux(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllPlcaux`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-  
-  public GetAllPsu(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllPsu`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllPanel(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllPanel`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllPlugs(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllPlugs`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllPower(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllPower`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllSensors(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllSensors`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllStarters(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllStarters`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllSurge(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllSurge`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllSwitch(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllSwitch`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllTransformer(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllTransformer`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllUps(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllUps`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllVsdaux(): Observable<ModelItem[]> {
-    return this.httpClient.get(`${this.controllerURL}/GetAllVsdaux`)
-      .pipe(
-        map((ii: ModelItem[]) => {
-          return ii;
-        }),
-      );
-  }
-
-  public GetAllInventoryItems(): Observable<Inventory[]> {
+  public GetAllInventoryItems(): Observable<ModelItem[]> {
     return this.httpClient.get(`${this.controllerURL}/GetAllInventoryItems`)
       .pipe(
-        map((ii: Inventory[]) => {
+        map((ii: ModelItem[]) => {
           return ii;
         }),
       );
   }
-
-  // Method to report communication issue
-  private getPlcError() {
-    var PlcData: ModelItem[] = [];
-    var plcItem = this.buildPlcError("Could not retrieve PLC Data", "Check Connection", "Error :");
-    PlcData.push(plcItem);
-
-
-    return PlcData;
-  }
-
-  private getHmiError() {
-    var HmiData: ModelItem[] = [];
-    var HmiItem = this.buildHmiError("Could not retrieve Hmi Data", "Check Connection", "Error");
-    HmiData.push(HmiItem);
-    return HmiData;
-
-  }
-
-  private getVsdError() {
-    var VsdData: ModelItem[] = [];
-    var vsdItem = this.buildVsdItem("Could not retrieve VSD Data", "Check Connection", "Error");
-    VsdData.push(vsdItem);
-    return VsdData;
-  }
-
-  private getRelayError() {
-    var RelayData: ModelItem[] = [];
-    var relayItem = this.buildRelayItem("Could not retrieve Relay Data", "Check Connection", "Error");
-    RelayData.push(relayItem);
-    return RelayData;
-  }
-
-  private buildPlcError(name: string, make: string, partnumber: string): ModelItem {
-    var plcItem = new ModelItem();
-    plcItem.ID = Guid.newGuid();
-    plcItem.Name = name;
-    plcItem.Make = make;
-    plcItem.PartNumber = partnumber;
-    return plcItem;
-  }
-
-  private buildHmiError(name: string, make: string, partnumber: string): ModelItem {
-    var hmiItem = new ModelItem();
-    hmiItem.ID = Guid.newGuid();
-    hmiItem.Name = name;
-    hmiItem.Make = make;
-    hmiItem.PartNumber = partnumber;
-    return hmiItem;
-  }
-
-  private buildVsdItem(name: string, make: string, partnumber: string): ModelItem {
-    var vsdItem = new ModelItem();
-    vsdItem.ID = Guid.newGuid();
-    vsdItem.Name = name;
-    vsdItem.Make = make;
-    vsdItem.PartNumber = partnumber;
-    return vsdItem;
-  }
-
-  private buildRelayItem(name: string, make: string, partnumber: string): ModelItem {
-    var relayItem = new ModelItem();
-    relayItem.ID = Guid.newGuid();
-    relayItem.Name = name;
-    relayItem.Make = make;
-    relayItem.PartNumber = partnumber;
-    return relayItem;
-  }
-
 }

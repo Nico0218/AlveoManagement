@@ -1,15 +1,15 @@
 
 export class ModelItem  {
-    public ID: string;
+    public ID: number;
     public Name: string;
-    public Make: string;
+    public Supplier: string;
     public PartNumber: string;
-    public Qty: number;
-    public Description: string;
-    public Unit: string;
-    public Rate: number;
+    public Cost: number;
+    public Instock: number;
     public Req: number;
-    public Ammount: Number;
+    public Unit: string;
+    public Category: string;
+
 
     constructor() {
     }
@@ -22,9 +22,13 @@ export class ModelItem  {
         var inventoryItem = new ModelItem();
         inventoryItem.ID = jObj.ID;
         inventoryItem.Name = jObj.Name;
-        inventoryItem.PartNumber = jObj.PartNumber;
-        inventoryItem.Qty = jObj.Qty;
-        inventoryItem.Make = jObj.Make;
+        inventoryItem.Supplier = jObj.Supplier;
+        inventoryItem.PartNumber = jObj.Partnumber;
+        inventoryItem.Cost = jObj.Cost;
+        inventoryItem.Instock = jObj.Instock;
+        inventoryItem.Req = jObj.Req;
+        inventoryItem.Unit = jObj.Unit;
+        inventoryItem.Category = jObj.Category;
         return inventoryItem;
     }
 

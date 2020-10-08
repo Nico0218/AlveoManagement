@@ -76,6 +76,10 @@
           <label for="nProjectLeader">Project Leader<span>*</span></label>
           <input style="text-align: right;" id="nProjectLeader" type="text" name="projectLeaderInput" required/>
         </div>
+        <div class="item">
+          <label for="nProjectLeader">Gantt Color<span>*</span></label>
+          <input style="text-align: right;" id="nGanttColor" type="color" name="projecColorInput" required/>
+        </div>
       </div>
       <div class="btn-block">
         <button type="submit" >Submit</button>
@@ -84,4 +88,47 @@
   </div>
 
 </mat-tab>
+
+<mat-tab label="Add New Task">
+
+  <div class="testbox">
+    <form action="/">
+      <div class="banner">
+        <h1>Add New Task</h1>
+      </div>
+      <div class="colums">
+        <div class="item">
+          <label for="nTaskName"> Task Name<span>*</span></label>
+          <input style="text-align: right;" id="nTaskName" type="text" name="taskNameInput" required/>
+        </div>
+        <div class="item">
+          <label for="nTaskStart">Start Date<span>*</span></label>
+          <input style="text-align: right;" id="nTaskStart" type="date" name="taskStartInput" required/>
+        </div>
+        <div class="item">
+          <label for="nTaskend">End Date<span>*</span></label>
+          <input style="text-align: right;" id="nTaskend" type="date" name="taskEndInput" required/>
+        </div>
+        <div class="item">
+          <label for="nResponsiblePerson">Responsible Person<span>*</span></label>
+          <input style="text-align: right;" id="nResponsiblePerson" type="text" name="responsiblePersonInput" required/>
+        </div>
+        <div class="item">
+          <label for="nProjectLeader">Project Leader<span>*</span></label>
+          <input style="text-align: right;" id="nProjectLeader" type="text" name="projectLeaderInput" required/>
+        </div>
+        <div class="item">
+          <label for="nLinkedProject">Project<span>*</span></label>
+          <input style="text-align: right;" id="nLinkedProject" type="text" name="linkedProjectInput" required/>
+        </div>
+      </div>
+      <div class="btn-block">
+        <button type="submit" >Submit</button>
+      </div>
+    </form>
+  </div>
+
+</mat-tab>
+
+
 </mat-tab-group> 

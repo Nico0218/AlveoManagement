@@ -140,6 +140,7 @@ export class QuoteComponent implements OnInit {
 		.pipe(
 		  map(inventoryItems => {
 			this.inventory = inventoryItems;
+			debugger;
 			console.log(this.inventory)
 		  }),
 		  take(1)
@@ -151,7 +152,6 @@ export class QuoteComponent implements OnInit {
 			map(quotes => {
 			  this.QUOTE_DATA = quotes;
 			  this.quoteList.data = this.QUOTE_DATA;
-			  console.log(this.QUOTE_DATA)
 			}),
 			take(1)
 		  )

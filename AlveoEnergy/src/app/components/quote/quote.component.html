@@ -84,8 +84,8 @@
             <div id="addItems" style="display: none;">
                 <table style="margin-left: 30px; width: 1500px;" *ngFor="let item of inventory | keyvalue">
                     <th  style=" text-align: center; width: auto; background-color:grey; color: white;" >{{item.key}}</th>
-                    <tr *ngFor='let elem of item.value'><input type="checkbox" style="margin-right: 10px;"><span style="font-size:12px; display: inline-block; margin-right: 80px; min-width: 730px!important;">{{ elem.Description }}</span>  <span style="font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Unit}}</span>  <span style="font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">R{{elem.Rate}}</span>  
-                        quantity : <input style="width: 50px;" type="number"> Total: R{{ elem.Rate * elem.Req}}
+                    <tr style="border: 1px solid grey;" *ngFor='let elem of item.value'><input type="checkbox" style="margin-right: 10px;"><span style="font-size:12px; display: inline-block; margin-right: 80px; min-width: 350px!important;">{{ elem.Name }}</span><span style="text-align: right; font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Cost|currency:'R'}}</span><span style="font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Unit}}</span>  
+                        quantity : <input [(ngModel)]="qtyVal" style="width: 50px;" type="number"> Total: R{{ elem.Cost * qtyVal}}
                     </tr>
                 </table>
             </div>
