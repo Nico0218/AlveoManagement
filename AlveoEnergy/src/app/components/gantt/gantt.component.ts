@@ -23,6 +23,7 @@ export class GanttComponent implements OnInit, AfterViewInit {
 	//points to gantt chart container
 	@ViewChild('gantt_here') ganttContainer: ElementRef;
 
+
 	constructor(private ganttService: GanttService) {
 
 	}

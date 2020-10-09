@@ -1,15 +1,77 @@
-<zxing-scanner style="display: block;margin-left: auto;margin-right: auto;width: 40%;" #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="onCodeResult($event)"
->
-</zxing-scanner>
+<mat-tab-group>
 
-<section class="results" *ngIf="qrResultString">
-  <div>
-    <small>Result</small>
-    <strong>{{ qrResultString }}</strong>
-  </div>
-  <button mat-icon-button (click)="clearResult()">&times;</button>
-</section>
+  <mat-tab label="Inventory Out">
 
-<section>
-  
-</section>
+    <zxing-scanner style="display: block;margin-left: auto;margin-right: auto;width: 20%;" #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="InventoryScanOut($event)">
+    </zxing-scanner>
+
+    <section class="results" *ngIf="qrResultString">
+      <div>
+        <small>{{qrResultString}}</small>
+        <strong>Item Scan Success</strong>
+      </div>
+      <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+
+  </mat-tab>
+
+  <mat-tab label="Inventory In">
+
+    <zxing-scanner style="display: block;margin-left: auto;margin-right: auto;width: 20%;" #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="InventoryScanIn($event)">
+    </zxing-scanner>
+
+    <section class="results" *ngIf="qrResultString">
+      <div>
+        <small>{{qrResultString}}</small>
+        <strong>Item Scan Success</strong>
+      </div>
+      <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+
+  </mat-tab>
+
+  <mat-tab label="Project work Start">
+
+    <label>Project</label>
+    <zxing-scanner style="display: block;margin-left: auto;margin-right: auto;width: 20%;" #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="ProjectStart($event)">
+    </zxing-scanner>
+
+    <section class="results" *ngIf="qrResultString">
+      <div>
+        <small>{{qrResultString}}</small>
+        <strong>Project Scan Success</strong>
+      </div>
+      <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+
+    <label>Personnel</label>
+    <zxing-scanner style="display: block;margin-left: auto;margin-right: auto;width: 20%;" #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="ProjectLabour($event)">
+    </zxing-scanner>
+
+    <section class="results" *ngIf="qrResultString">
+      <div>
+        <small>{{qrResultString}}</small>
+        <strong>Labour Scan Success</strong>
+      </div>
+      <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+
+  </mat-tab>
+
+  <mat-tab label="Project work End">
+
+    <label>Project</label>
+    <zxing-scanner style="display: block;margin-left: auto;margin-right: auto;width: 20%;" #scanner [autostart]="false" [device]="selectedDevice" (scanSuccess)="ProjectEnd($event)">
+    </zxing-scanner>
+
+    <section class="results" *ngIf="qrResultString">
+      <div>
+        <small>{{qrResultString}}</small>
+        <strong>Project Scan Success</strong>
+      </div>
+      <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+
+  </mat-tab>
+
+</mat-tab-group>

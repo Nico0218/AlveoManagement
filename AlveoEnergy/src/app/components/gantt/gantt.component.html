@@ -1,13 +1,22 @@
+<mat-tab-group>
+    <mat-tab label="Project Gantt">
+        <div #gantt_here class='gantt-chart'></div>
+        <div>
+        <p>
+            Task Properties
+        </p>
+        <div style="border: 1px solid grey; height: 200px;">
+            <p style="color: grey;" id="taskNameDisplay">Task Name : </p>
+            <p style="color: grey;" id="taskStartDateDisplay">Task Start Date : </p>
+            <p style="color: grey;" id="taskEndDisplay">Task End Date : </p>
+            <p style="color: grey;" id="taskDurationDisplay">Task Duration : </p>
+        </div>
+        </div>
 
-<div #gantt_here class='gantt-chart'></div>
-<div>
-    <p>
-        Task Properties
-    </p>
-    <div style="border: 1px solid grey; height: 200px;">
-        <p style="color: grey;" id="taskNameDisplay">Task Name : </p>
-        <p style="color: grey;" id="taskStartDateDisplay">Task Start Date : </p>
-        <p style="color: grey;" id="taskEndDisplay">Task End Date : </p>
-        <p style="color: grey;" id="taskDurationDisplay">Task Duration : </p>
-    </div>
-</div>
+    </mat-tab>
+
+    <mat-tab label="Personnel Gantt">
+        <div #personnel_gantt class='gantt-chart'></div>
+    </mat-tab>
+
+</mat-tab-group>
