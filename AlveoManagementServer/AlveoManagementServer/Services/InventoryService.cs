@@ -39,5 +39,13 @@ namespace AlveoManagementServer.Services {
             parameters.Add(new Parameter() { ColumnName = "Category", DataType = "System.Int", Operator = DBProviderBase.Enums.ParamOperator.Equals, Value = inventoryItemType.ToString() });
             return dataService.GetObjectData<Item>(parameters);
         }
+
+        //Just some example code
+        public void AddItem() {
+            Item test = new Item();
+            dataService.InsertObjectData(test);
+            test.Name = "Test";
+            dataService.UpdateObjectData(test);
+        }
     }
 }

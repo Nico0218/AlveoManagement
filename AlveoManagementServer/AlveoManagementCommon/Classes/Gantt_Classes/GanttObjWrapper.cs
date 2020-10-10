@@ -1,18 +1,14 @@
 ﻿using System.Collections.Generic;
 
-namespace AlveoManagementCommon.Classes
-{
-    public class GanttObjWrapper
-    {
-        public List<GanttData> data
-        {
-            get;
-            set;
+namespace AlveoManagementCommon.Classes {
+    public class GanttObjWrapper {
+        public GanttObjWrapper() {
+            data = new List<GanttData>();
+            links = new List<GanttLink>();
         }
-        public List<GanttLink> links
-        {
-            get;
-            set;
-        }
+
+        public List<GanttData> data { get; set; }
+
+        public List<GanttLink> links { get; set; }
     }
 }
