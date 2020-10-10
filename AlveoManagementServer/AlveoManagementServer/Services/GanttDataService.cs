@@ -34,7 +34,7 @@ namespace AlveoManagementServer.Services
                 {
                     ganttData.Add(new GanttData()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         text = (string)selectResult["text"],
                         start_date = (string)selectResult["startDate"],
                         duration = (int)(Int64)selectResult["duration"],
@@ -66,7 +66,7 @@ namespace AlveoManagementServer.Services
                 {
                     ganttLink.Add(new GanttLink()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         source = (Int32)(Int64)selectResult["source"],
                         target = (Int32)(Int64)selectResult["target"],
                         type = (string)selectResult["type"],

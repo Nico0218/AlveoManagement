@@ -1,4 +1,5 @@
-﻿using AlveoManagementCommon.Interfaces;
+﻿using AlveoManagementCommon.Enums;
+using AlveoManagementCommon.Interfaces;
 
 namespace AlveoManagementCommon.Classes
 {
@@ -13,6 +14,6 @@ namespace AlveoManagementCommon.Classes
         public int Instock { get; set; }
         public int Req { get; set; }
         public string Unit { get; set; }
-        public string Category { get; set; }
+        public InventoryItemType Category { get; set; }
     }
 }

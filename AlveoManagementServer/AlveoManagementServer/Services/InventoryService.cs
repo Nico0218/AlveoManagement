@@ -1,4 +1,5 @@
 ﻿using AlveoManagementCommon.Classes;
+using AlveoManagementCommon.Enums;
 using AlveoManagementServer.Services.Interfaces;
 using AlveoManagementServer.SQLite;
 using Microsoft.Extensions.Logging;
@@ -34,7 +35,7 @@ namespace AlveoManagementServer.Services
                 {
                     automation.Add(new Item()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -42,7 +43,7 @@ namespace AlveoManagementServer.Services
                         Instock = (Int32)(Int64)selectResult["instock"],
                         Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Category = "Automation"
+                        Category = InventoryItemType.Automation
                     }
                     );
                 }
@@ -65,7 +66,7 @@ namespace AlveoManagementServer.Services
                 {
                     cable.Add(new Item()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -73,7 +74,7 @@ namespace AlveoManagementServer.Services
                         Instock = (Int32)(Int64)selectResult["instock"],
                         Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Category = "Cabletrays"
+                        Category = InventoryItemType.CableTrays
                     }
                     );
                 }
@@ -96,7 +97,7 @@ namespace AlveoManagementServer.Services
                 {
                     extras.Add(new Item()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -104,7 +105,7 @@ namespace AlveoManagementServer.Services
                         Instock = (Int32)(Int64)selectResult["instock"],
                         Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Category = "Extras"
+                        Category = InventoryItemType.Extras
                     }
                     );
                 }
@@ -127,7 +128,7 @@ namespace AlveoManagementServer.Services
                 {
                     instrumentation.Add(new Item()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -135,7 +136,7 @@ namespace AlveoManagementServer.Services
                         Instock = (Int32)(Int64)selectResult["instock"],
                         Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Category = "Instrumentation"
+                        Category = InventoryItemType.Instumentation
                     }
                     );
                 }
@@ -158,7 +159,7 @@ namespace AlveoManagementServer.Services
                 {
                     labour.Add(new Item()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -166,7 +167,7 @@ namespace AlveoManagementServer.Services
                         Instock = (Int32)(Int64)selectResult["instock"],
                         Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Category = "Labour"
+                        Category = InventoryItemType.Labour
                     }
                     );
                 }
@@ -189,7 +190,7 @@ namespace AlveoManagementServer.Services
                 {
                     other.Add(new Item()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -197,7 +198,7 @@ namespace AlveoManagementServer.Services
                         Instock = (Int32)(Int64)selectResult["instock"],
                         Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Category = "Other"
+                        Category = InventoryItemType.Other
                     }
                     );
                 }
@@ -220,7 +221,7 @@ namespace AlveoManagementServer.Services
                 {
                     monitoring.Add(new Item()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -228,7 +229,7 @@ namespace AlveoManagementServer.Services
                         Instock = (Int32)(Int64)selectResult["instock"],
                         Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Category = "Monitoring"
+                        Category = InventoryItemType.RemoteMonitoring
                     }
                     );
                 }
@@ -251,7 +252,7 @@ namespace AlveoManagementServer.Services
                 {
                     switchgear.Add(new Item()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -259,7 +260,7 @@ namespace AlveoManagementServer.Services
                         Instock = (Int32)(Int64)selectResult["instock"],
                         Req = (Int32)(Int64)selectResult["req"],
                         Unit = (string)selectResult["unit"],
-                        Category = "Switchgear"
+                        Category = InventoryItemType.Switchgear
                     }
                     );
                 }

@@ -34,7 +34,7 @@ namespace AlveoManagementServer.Services
                 {
                     personnel.Add(new Personnel()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         Surname = (string)selectResult["surname"],
                         StartDate = (string)selectResult["startDate"],

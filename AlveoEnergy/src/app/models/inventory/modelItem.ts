@@ -4,11 +4,12 @@ export class ModelItem  {
     public Name: string;
     public Supplier: string;
     public PartNumber: string;
+    public Qty: number;
     public Cost: number;
     public Instock: number;
     public Req: number;
     public Unit: string;
-    public Category: string;
+    public Category: number;
 
 
     constructor() {
@@ -24,6 +25,7 @@ export class ModelItem  {
         inventoryItem.Name = jObj.Name;
         inventoryItem.Supplier = jObj.Supplier;
         inventoryItem.PartNumber = jObj.Partnumber;
+        inventoryItem.Qty = jObj.Qty;
         inventoryItem.Cost = jObj.Cost;
         inventoryItem.Instock = jObj.Instock;
         inventoryItem.Req = jObj.Req;

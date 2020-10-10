@@ -1,4 +1,6 @@
-﻿namespace AlveoManagementCommon.Interfaces
+﻿using AlveoManagementCommon.Enums;
+
+namespace AlveoManagementCommon.Interfaces
 {
     public interface IItem : IDataModelBase
     {
@@ -9,6 +11,6 @@
         public int Instock { get; set; }
         public int Req { get; set; }
         public string Unit { get; set; }
-        public string Category { get; set; }
+        public InventoryItemType Category { get; set; }
     }
 }

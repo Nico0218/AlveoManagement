@@ -1,9 +1,7 @@
 ﻿using AlveoManagementCommon.Classes;
-using System;
 using System.Collections.Generic;
 
-namespace AlveoManagementCommon.Interfaces.Quote_Interfaces
-{
+namespace AlveoManagementCommon.Interfaces.Quote_Interfaces {
     interface IQuote : IDataModelBase
     {
         public List<Customer> customer { get; set; }
@@ -13,7 +11,7 @@ namespace AlveoManagementCommon.Interfaces.Quote_Interfaces
         public string date { get; set; }
         public string quoteNumber { get; set; }
         public string validUntil { get; set; }
-        public Array quoteItems { get; set; }
+        //public List<Item> quoteItems { get; set; }
         public double subTotal { get; set; }
         public double taxRate { get; set; }
         public double taxDue { get; set; }

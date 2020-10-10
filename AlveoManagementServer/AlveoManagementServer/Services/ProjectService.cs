@@ -34,7 +34,7 @@ namespace AlveoManagementServer.Services
                 {
                     project.Add(new Project()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["text"],
                         StartDate = (string)selectResult["startDate"],
                         Duration = (Int32)(Int64)selectResult["duration"],

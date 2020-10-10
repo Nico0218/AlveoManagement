@@ -15,6 +15,8 @@ namespace AlveoManagementCommon.Classes
         public string color { get; set; }
         public string gantttype { get; set; }
         public string personnel { get; set; }
+        public string ProjectLeader { get; set; }
+        public string ProjectNumber { get; set; }
 
     }
 }

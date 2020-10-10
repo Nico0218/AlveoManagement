@@ -35,7 +35,7 @@ namespace AlveoManagementServer.Services
                     Console.WriteLine("name: {0} - customerID: {1}", selectResult["name"], selectResult["custID"]);
                     customer.Add(new Customer()
                     {
-                        ID = (string)selectResult["id"],
+                        ID = selectResult["id"].ToString(),
                         Name = (string)selectResult["name"],
                         addrLine1 = (string)selectResult["addr1"],
                         addrLine2 = (string)selectResult["addr2"],
