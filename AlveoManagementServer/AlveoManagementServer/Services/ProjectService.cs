@@ -1,52 +1,38 @@
 ﻿using AlveoManagementCommon.Classes;
 using AlveoManagementServer.Services.Interfaces;
+using DBProviderBase.Classes;
+using DBProviderBase.Interfaces;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
-using AlveoManagementServer.SQLite;
 
-namespace AlveoManagementServer.Services
-{
-    public class ProjectService : IProjectService
-    {
+namespace AlveoManagementServer.Services {
+    public class ProjectService : IProjectService {
         private readonly ILogger<ProjectService> logger;
+        private readonly IDataService dataService;
 
-        public ProjectService(ILogger<ProjectService> logger)
-        {
+        public ProjectService(ILogger<ProjectService> logger, IDataService dataService) {
             this.logger = logger;
+            this.dataService = dataService;
         }
 
-
-        Database databaseObject = new Database();
-
-        public List<Project> GetAllProjects()
-        {
+        public List<Project> GetAllProjects() {
             logger.LogDebug("Getting all Projects");
-            List<Project> project = new List<Project>();
-            string selectProject = "SELECT * FROM GanttData WHERE gantttype='project'";
-            SQLiteCommand selectCommand = new SQLiteCommand(selectProject, databaseObject.dataConnection);
-            databaseObject.OpenConnection();
-            SQLiteDataReader selectResult = selectCommand.ExecuteReader();
-            if (selectResult.HasRows)
-            {
-                while (selectResult.Read())
-                {
-                    project.Add(new Project()
-                    {
-                        ID = selectResult["id"].ToString(),
-                        Name = (string)selectResult["text"],
-                        StartDate = (string)selectResult["startDate"],
-                        Duration = (Int32)(Int64)selectResult["duration"],
-                        EndDate = (string)selectResult["endDate"],
-                        ProjectNumber = (string)selectResult["projectNumber"],
-                        ProjectLeader = (string)selectResult["projectLeader"]
-                    }
-                    );
-                }
+            List<IParameter> parameters = new List<IParameter>();
+            parameters.Add(new Parameter() { ColumnName = "gantttype", DataType = "System.String", Operator = DBProviderBase.Enums.ParamOperator.Equals, Value = "project" });
+            List<GanttData> ganttData = dataService.GetObjectData<GanttData>(parameters);
+            List<Project> projects = new List<Project>();
+            foreach (var item in ganttData) {
+                projects.Add(new Project() { 
+                    ID = item.ID,
+                    Name = item.Name,
+                    StartDate = item.start_date,
+                    Duration = item.duration,
+                    EndDate = item.end_date,
+                    ProjectNumber = item.ProjectNumber,
+                    ProjectLeader = item.ProjectLeader
+                });
             }
-            databaseObject.CloseConnection();
-            return project;
+            return projects;
         }
     }
 }

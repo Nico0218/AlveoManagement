@@ -41,7 +41,6 @@ namespace AlveoManagementServer.Services
             dataService.CreatOrAlterObjectTable<User>();
             dataService.CreatOrAlterObjectTable<Personnel>();
             dataService.CreatOrAlterObjectTable<Warning>();
-            dataService.CreatOrAlterObjectTable<Project>();
             dataService.CreatOrAlterObjectTable<Quote>();
             logger.LogDebug("Completed table maintenance.");
         }
