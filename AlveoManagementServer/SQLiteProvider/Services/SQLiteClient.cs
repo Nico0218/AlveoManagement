@@ -54,12 +54,9 @@ namespace SQLiteProvider.Services {
             }
         }
 
-        public void CreatOrAlterObjectTable<T>() {
-            T obj = (T)Activator.CreateInstance(typeof(T));
-            string tableName = GetTableName(obj);
-
-            //Get list of tables and check if it exists
+        private bool TableExists(object obj, string tableName) {
             bool tableExist = false;
+            //Get list of tables and check if it exists
             using (SqliteConnection sqliteConnection = new SqliteConnection(ConnectionString)) {
                 using (SqliteCommand cmd = sqliteConnection.CreateCommand()) {
                     cmd.CommandText = $"SELECT name FROM sqlite_master WHERE type='table' AND name={tableName};";
@@ -76,8 +73,15 @@ namespace SQLiteProvider.Services {
                     sqliteConnection.Close();
                 }
             }
+            return tableExist;
+        }
+
+        public void CreatOrAlterObjectTable<T>() {
+            T obj = (T)Activator.CreateInstance(typeof(T));
+            string tableName = GetTableName(obj);
+
             //The table exist and we just need to modify it
-            if (tableExist) {
+            if (TableExists(obj, tableName)) {
                 //SQLLite does not have alter column functionality so we have to do some magic
                 DataTable schemaTable;
                 using (SqliteConnection sqliteConnection = new SqliteConnection(ConnectionString)) {
@@ -136,7 +140,8 @@ namespace SQLiteProvider.Services {
                         sqliteConnection.Open();
                         string oldTableName = GetTableName(obj, "old");
                         //Delete old table if it somehow exists from a previous attempt
-                        ExecuteNonQuery($"DROP TABLE {oldTableName}", sqliteConnection);
+                        if (TableExists(obj, oldTableName))
+                            ExecuteNonQuery($"DROP TABLE {oldTableName}", sqliteConnection);
 
                         using (SqliteTransaction sqliteTransaction = sqliteConnection.BeginTransaction()) {
                             try {

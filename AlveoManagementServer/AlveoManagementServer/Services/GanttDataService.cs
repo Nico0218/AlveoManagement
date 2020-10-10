@@ -100,7 +100,7 @@ namespace AlveoManagementServer.Services
                     {
                         newGanttData.Add(new GanttData()
                         {
-                            id = count,
+                            ID = count.ToString(),
                             text = ganttData[index].personnel,
                             start_date = ganttData[index].start_date,
                             duration = ganttData[index].duration,
@@ -120,7 +120,7 @@ namespace AlveoManagementServer.Services
                             {
                                 newGanttData.Add(new GanttData()
                                 {
-                                    id = count,
+                                    ID = count.ToString(),
                                     text = ganttData[index].personnel,
                                     start_date = ganttData[index].start_date,
                                     duration = ganttData[index].duration,
