@@ -24,3 +24,7 @@ AlveoManagementServer/GoogleSheets/bin/
 AlveoManagementServer/GoogleSheets/obj/
 
 AlveoEnergy/debug.log
+
+AlveoManagementServer/SQLiteProvider/bin/
+
+AlveoManagementServer/SQLiteProvider/obj/

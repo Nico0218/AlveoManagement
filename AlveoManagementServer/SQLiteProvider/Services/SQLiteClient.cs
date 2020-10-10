@@ -247,13 +247,7 @@ namespace SQLiteProvider.Services {
                             while (result.Read()) {
                                 obj = (T)Activator.CreateInstance(typeof(T));
                                 foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties()) {
-                                    if (propertyInfo.PropertyType == typeof(string)) {
-                                        propertyInfo.SetValue(obj, result.GetString(propertyInfo.Name));
-                                    } else if (propertyInfo.PropertyType == typeof(bool)) {
-                                        propertyInfo.SetValue(obj, result.GetBoolean(propertyInfo.Name));
-                                    } else {
-                                        throw new NotImplementedException($"Data type {propertyInfo.PropertyType} not handled.");
-                                    }
+                                    GetCDataType(propertyInfo, obj, result);
                                 }
                                 results.Add(obj);
                             }
@@ -363,6 +357,26 @@ namespace SQLiteProvider.Services {
             }
 
             return mySqlDataType;
+        }
+
+        private void GetCDataType(PropertyInfo propertyInfo, object obj, SqliteDataReader result) {
+            if (propertyInfo.PropertyType == typeof(string)) {
+                propertyInfo.SetValue(obj, result.GetString(propertyInfo.Name));
+            } else if (propertyInfo.PropertyType == typeof(DateTime)) {
+                propertyInfo.SetValue(obj, result.GetDateTime(propertyInfo.Name));
+            } else if (propertyInfo.PropertyType == typeof(int)) {
+                propertyInfo.SetValue(obj, result.GetInt32(propertyInfo.Name));
+            } else if (propertyInfo.PropertyType == typeof(bool)) {
+                propertyInfo.SetValue(obj, result.GetBoolean(propertyInfo.Name));
+            } else if (propertyInfo.PropertyType.IsEnum) {
+                propertyInfo.SetValue(obj, Enum.Parse(propertyInfo.PropertyType, result.GetString(propertyInfo.Name)));
+            } else if (propertyInfo.PropertyType == typeof(float)) {
+                propertyInfo.SetValue(obj, result.GetFloat(propertyInfo.Name));
+            } else if (propertyInfo.PropertyType == typeof(double)) {
+                propertyInfo.SetValue(obj, result.GetDouble(propertyInfo.Name));
+            } else {
+                throw new NotImplementedException($"Data type {propertyInfo.PropertyType} not handled.");
+            }
         }
 
         private void CreateNewTable<T>(T obj, string tableName, SqliteConnection sqliteConnection = null) {
