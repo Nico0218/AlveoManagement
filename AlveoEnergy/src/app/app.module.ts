@@ -38,6 +38,7 @@ import { QuoteComponent } from './components/quote/quote.component';
 import { CustomerService } from './services/customers.service';
 import { VpnComponent } from "./components/vpn_passwords/vpn.component";
 import { QuoteService } from './services/quote.service';
+import { PersonnelGanttComponent } from "./personnel_gantt/personnel.gantt.component";
 
 
 
@@ -56,7 +57,8 @@ import { QuoteService } from './services/quote.service';
     QRCodeGenComponent,
     LoginComponent,
     QuoteComponent,
-    VpnComponent
+    VpnComponent,
+    PersonnelGanttComponent
   ],
   imports: [
     HttpClientModule,
