@@ -4,7 +4,7 @@ namespace AlveoManagementCommon.Classes
 {
     public class Project : IProject
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string Name { get; set; }
         public string StartDate { get; set; }
         public int Duration { get; set; }

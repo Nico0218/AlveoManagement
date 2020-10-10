@@ -1,9 +1,7 @@
 ﻿namespace AlveoManagementCommon.Interfaces
 {
-    public interface IItem
+    public interface IItem : IDataModelBase
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
         public string Supplier { get; set; }
         public string PartNumber { get; set; }
         public int Qty { get; set; }

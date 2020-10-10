@@ -19,7 +19,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AlveoManagementCommon\AlveoManagementCommon.csproj" />
+    <ProjectReference Include="..\DBProviderBase\DBProviderBase.csproj" />
     <ProjectReference Include="..\GoogleSheets\GoogleSheets.csproj" />
+    <ProjectReference Include="..\SQLiteProvider\SQLiteProvider.csproj" />
   </ItemGroup>
 
 

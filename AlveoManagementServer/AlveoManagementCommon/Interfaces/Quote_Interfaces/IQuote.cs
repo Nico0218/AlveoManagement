@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AlveoManagementCommon.Interfaces.Quote_Interfaces
 {
-    interface IQuote
+    interface IQuote : IDataModelBase
     {
         public List<Customer> customer { get; set; }
         public string orderNr { get; set; }

@@ -1,8 +1,7 @@
 ﻿namespace AlveoManagementCommon.Interfaces
 {
-    public interface IGanttData
+    public interface IGanttData: IDataModelBase
     {
-        public int id { get; set; }
         public string start_date { get; set; }
         public string end_date { get; set; }
         public string text { get; set; }

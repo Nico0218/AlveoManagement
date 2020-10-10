@@ -1,9 +1,7 @@
 ﻿namespace AlveoManagementCommon.Interfaces
 {
-    public interface IProject
+    public interface IProject : IDataModelBase
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
         public string StartDate { get; set; }
         public int Duration { get; set; }
         public string EndDate { get; set; }

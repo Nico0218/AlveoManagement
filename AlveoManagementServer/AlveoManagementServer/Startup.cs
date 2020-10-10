@@ -1,6 +1,8 @@
 using AlveoManagementServer.Services;
 using AlveoManagementServer.Services.Interfaces;
-using AlveoManagementServer.SQLite;
+using DBProviderBase.Classes;
+using DBProviderBase.Enums;
+using DBProviderBase.Interfaces;
 //using GoogleSheets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,14 +10,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SQLiteProvider.Services;
 using System;
-using System.IO;
 
 namespace AlveoManagementServer
 {
     public class Startup
     {
-
+        private const string msgDataStoreTypeError = "Not supported data store type";
         private readonly string AllowAllCors = "AllowAllCors";
 
         public Startup(IConfiguration configuration)
@@ -28,6 +30,21 @@ namespace AlveoManagementServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Init DB provider
+            ConnectionSettings connectionSettings = new ConnectionSettings();
+
+            services.Configure<ConnectionSettings>(Configuration.GetSection(typeof(ConnectionSettings).Name));
+
+            DBProviderType dataStoreType = (DBProviderType)Enum.Parse(typeof(DBProviderType), Configuration.GetSection($"{typeof(ConnectionSettings).Name}:DataStoreType").Value.ToString());
+            switch (dataStoreType)
+            {
+                case DBProviderType.SQLiteProvider:
+                    services.AddSingleton<IDataService, SQLiteClient>();
+                    break;
+                default:
+                    throw new Exception(msgDataStoreTypeError);
+            }
+
             //services.AddScoped<IGoogleSheetsService, GoogleSheetsService>();            
             services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<IPersonnelService, PersonnelService>();

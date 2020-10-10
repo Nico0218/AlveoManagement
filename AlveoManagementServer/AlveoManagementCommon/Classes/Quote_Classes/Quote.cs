@@ -6,6 +6,8 @@ namespace AlveoManagementCommon.Classes
 {
     public class Quote : IQuote
     {
+        public string ID { get; set; }
+        public string Name { get; set; }
         public List<Customer> customer { get; set; }
         public string orderNr { get; set; }
         public string projectName { get; set; }

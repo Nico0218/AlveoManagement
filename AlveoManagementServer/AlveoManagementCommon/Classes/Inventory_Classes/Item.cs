@@ -4,7 +4,7 @@ namespace AlveoManagementCommon.Classes
 {
     public class Item : IItem
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string Name { get; set; }
         public string Supplier { get; set; }
         public string PartNumber { get; set; }

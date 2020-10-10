@@ -1,9 +1,7 @@
 ﻿namespace AlveoManagementCommon.Interfaces
 {
-    public interface IPersonnel
+    public interface IPersonnel : IDataModelBase
     {
-        int ID { get; set; }
-        string Name { get; set; }
         string Surname { get; set; }
 
         string StartDate { get; set; }

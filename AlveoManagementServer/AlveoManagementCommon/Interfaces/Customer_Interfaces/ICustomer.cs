@@ -1,9 +1,7 @@
 ﻿namespace AlveoManagementCommon.Interfaces
 {
-    public interface ICustomer
+    public interface ICustomer: IDataModelBase
     {
-        public int id { get; set; }
-        public string name { get; set; }
         public string addrLine1 { get; set; }
         public string addrLine2 { get; set; }
         public string contact { get; set; }

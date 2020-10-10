@@ -2,10 +2,9 @@
 
 namespace AlveoManagementCommon.Interfaces.Personnel_Interfaces
 {
-    public interface IWarning
+    public interface IWarning : IDataModelBase
     {
-        public string fName { get; set; }
-        public string lName { get; set; }
+        public string LastName { get; set; }
         public DateTime ncrdate { get; set; }
         public string details { get; set; }
         public string companyComments { get; set; }

@@ -1,16 +1,18 @@
-﻿using Microsoft.VisualBasic;
+﻿using AlveoManagementCommon.Interfaces.Personnel_Interfaces;
+using System;
 
-namespace AlveoManagementCommon.Classes.Personnel_Classes
+namespace AlveoManagementCommon.Classes
 {
-    public class Warning
+    public class Warning : IWarning
     {
-        public string fName { get; set; }
-        public string lName { get; set; }
-        public DateAndTime ncrDate { get; set; }
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public DateTime ncrdate { get; set; }
         public string details { get; set; }
         public string companyCmments { get; set; }
         public string employeeComments { get; set; }
         public bool final { get; set; }
-
+        public string companyComments { get; set; }
     }
 }

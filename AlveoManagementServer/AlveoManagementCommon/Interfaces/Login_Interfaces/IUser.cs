@@ -2,13 +2,11 @@
 
 namespace AlveoManagementCommon.Interfaces.Login_Interfaces
 {
-    public interface IUser
+    public interface IUser : IDataModelBase
     {
-        public string id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string authdata { get; set; }
+        public string LastName { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string AuthData { get; set; }
     }
 }

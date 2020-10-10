@@ -34,7 +34,7 @@ namespace AlveoManagementServer.Services
                 {
                     automation.Add(new Item()
                     {
-                        ID = (Int32)(Int64)selectResult["id"],
+                        ID = (string)selectResult["id"],
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -65,7 +65,7 @@ namespace AlveoManagementServer.Services
                 {
                     cable.Add(new Item()
                     {
-                        ID = (Int32)(Int64)selectResult["id"],
+                        ID = (string)selectResult["id"],
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -96,7 +96,7 @@ namespace AlveoManagementServer.Services
                 {
                     extras.Add(new Item()
                     {
-                        ID = (Int32)(Int64)selectResult["id"],
+                        ID = (string)selectResult["id"],
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -127,7 +127,7 @@ namespace AlveoManagementServer.Services
                 {
                     instrumentation.Add(new Item()
                     {
-                        ID = (Int32)(Int64)selectResult["id"],
+                        ID = (string)selectResult["id"],
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -158,7 +158,7 @@ namespace AlveoManagementServer.Services
                 {
                     labour.Add(new Item()
                     {
-                        ID = (Int32)(Int64)selectResult["id"],
+                        ID = (string)selectResult["id"],
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -189,7 +189,7 @@ namespace AlveoManagementServer.Services
                 {
                     other.Add(new Item()
                     {
-                        ID = (Int32)(Int64)selectResult["id"],
+                        ID = (string)selectResult["id"],
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -220,7 +220,7 @@ namespace AlveoManagementServer.Services
                 {
                     monitoring.Add(new Item()
                     {
-                        ID = (Int32)(Int64)selectResult["id"],
+                        ID = (string)selectResult["id"],
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
@@ -251,7 +251,7 @@ namespace AlveoManagementServer.Services
                 {
                     switchgear.Add(new Item()
                     {
-                        ID = (Int32)(Int64)selectResult["id"],
+                        ID = (string)selectResult["id"],
                         Name = (string)selectResult["name"],
                         Supplier = (string)selectResult["supplier"],
                         PartNumber = (string)selectResult["partnumber"],
