@@ -1,12 +1,9 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { SelectControlValueAccessor } from '@angular/forms';
 import 'dhtmlx-gantt';
 import { map } from 'rxjs/operators';
 import { GanttService } from '../../services/gantt.service';
 
-
 var gantt = require('dhtmlx-gantt');
-
 
 @Component({
 	encapsulation: ViewEncapsulation.None,
@@ -34,7 +31,7 @@ export class GanttComponent implements OnInit, AfterViewInit {
 		this.ganttService.GetGanttDataWrapper()
 			.pipe(
 				map(ganttObjWrapper => {
-					console.log(ganttObjWrapper);
+					gantt.gantt.clearAll(); 
 					gantt.gantt.parse(ganttObjWrapper);
 				})
 			)

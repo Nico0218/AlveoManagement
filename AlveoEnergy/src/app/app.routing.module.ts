@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule} from '@angular/router'; 
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './basic-gaurd/auth.gaurd';
 import { GanttComponent } from './components/gantt/gantt.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
-import { ProjectsComponent } from './components/projects/projects.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
+import { LoginComponent } from './components/login/login.component';
+import { OrdersComponent } from './components/orders/orders.component';
 import { PersonnelComponent } from './components/personnel/personnel.component';
 import { PersonnelAddComponent } from './components/personnel/personnelAdd/personnelAdd.component';
-import { ScannerComponent } from './components/scanner/scanner.component';
-import { OrdersComponent } from './components/orders/orders.component';
+import { PersonnelGanttComponent } from './components/personnel_gantt/personnel.gantt.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 import { QRCodeGenComponent } from './components/qr-code-generator/qr-code-gen.component';
-import { LoginComponent } from './components/login/login.component';
-import { AuthGuard } from './basic-gaurd/auth.gaurd';
 import { QuoteComponent } from './components/quote/quote.component';
-import { InvoiceComponent } from './components/invoice/invoice.component';
+import { ScannerComponent } from './components/scanner/scanner.component';
 import { VpnComponent } from './components/vpn_passwords/vpn.component';
-import { PersonnelGanttComponent } from './personnel_gantt/personnel.gantt.component';
 
 const routes: Routes = [
     { path: '',redirectTo:'login-component', pathMatch: 'full'},
@@ -31,7 +31,6 @@ const routes: Routes = [
     { path: 'vpn-component' , component: VpnComponent, canActivate: [AuthGuard] },
     { path: 'personnel.gantt-component' , component: PersonnelGanttComponent, canActivate: [AuthGuard] }
 ]; 
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

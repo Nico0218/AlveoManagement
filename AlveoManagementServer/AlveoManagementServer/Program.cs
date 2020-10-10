@@ -8,8 +8,6 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace AlveoManagementServer {
-
-
     public class Program {
 
         public static async Task Main(string[] args) {

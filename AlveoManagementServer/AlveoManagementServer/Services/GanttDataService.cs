@@ -40,14 +40,14 @@ namespace AlveoManagementServer.Services {
                 if (ganttData[index].gantttype == "task") {
                     if (newGanttData.Count == 0) {
                         newGanttData.Add(new GanttData() {
-                            ID = count.ToString(),
+                            id = count.ToString(),
                             text = ganttData[index].personnel,
                             start_date = ganttData[index].start_date,
                             duration = ganttData[index].duration,
                             color = ganttData[index].color,
                             end_date = ganttData[index].end_date,
                             progress = ganttData[index].progress,
-                            parent = 0,
+                            parent = "",
                         }
                         );
                         count = count + 1;
@@ -55,17 +55,17 @@ namespace AlveoManagementServer.Services {
                         for (var i = 0; i < newGanttData.Count; i++) {
                             if (ganttData[index].personnel != newGanttData[i].text) {
                                 newGanttData.Add(new GanttData() {
-                                    ID = count.ToString(),
+                                    id = count.ToString(),
                                     text = ganttData[index].personnel,
                                     start_date = ganttData[index].start_date,
                                     duration = ganttData[index].duration,
                                     color = ganttData[index].color,
                                     end_date = ganttData[index].end_date,
                                     progress = ganttData[index].progress,
-                                    parent = 0,
+                                    parent = "",
                                 }
                                 );
-                                count = count + 1;
+                                count++;
                             }
                         }
                     }
