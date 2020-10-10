@@ -13,6 +13,7 @@ import { AuthGuard } from './basic-gaurd/auth.gaurd';
 import { QuoteComponent } from './components/quote/quote.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { VpnComponent } from './components/vpn_passwords/vpn.component';
+import { PersonnelGanttComponent } from './personnel_gantt/personnel.gantt.component';
 
 const routes: Routes = [
     { path: '',redirectTo:'login-component', pathMatch: 'full'},
@@ -27,7 +28,8 @@ const routes: Routes = [
     { path: 'invoice-component', component: InvoiceComponent, canActivate: [AuthGuard]  },
     { path: 'qr-code-component', component: QRCodeGenComponent, canActivate: [AuthGuard]  },
     { path: 'quote-component', component: QuoteComponent, canActivate: [AuthGuard]  },
-    { path: 'vpn-component' , component: VpnComponent, canActivate: [AuthGuard] }
+    { path: 'vpn-component' , component: VpnComponent, canActivate: [AuthGuard] },
+    { path: 'personnel.gantt-component' , component: PersonnelGanttComponent, canActivate: [AuthGuard] }
 ]; 
 
 

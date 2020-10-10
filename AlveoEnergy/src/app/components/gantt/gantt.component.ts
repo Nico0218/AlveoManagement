@@ -30,7 +30,7 @@ export class GanttComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit(): void {
 
 		//initializes gantt chart and parses fetched data from backend
-		this.setGanttStyleConfig("week");
+		this.setGanttStyleConfig();
 		gantt.gantt.init(this.ganttContainer.nativeElement);
 
 		this.ganttService.GetGanttDataWrapper()
@@ -63,32 +63,7 @@ export class GanttComponent implements OnInit, AfterViewInit {
 	}
 
 	//sets gantt styling and layout
-	private setGanttStyleConfig(level) {
-		switch (level) {
-			case "week":
-				var weekScaleTemplate = function (date) {
-				  var dateToStr = gantt.gantt.date.date_to_str("%d %M");
-				  var endDate = gantt.gantt.date.add(gantt.gantt.date.add(date, 1, "week"), -1, "day");
-				  return dateToStr(date) + " - " + dateToStr(endDate);
-				};
-				gantt.gantt.config.scales = [
-					{unit: "week", step: 1, format: weekScaleTemplate},
-					{unit: "day", step: 1, format: "%D"}];
-				gantt.gantt.config.scale_height = 50;
-				break;
-			case "month":
-				gantt.gantt.config.scales =[
-					{unit: "month", step: 1, format: "%F, %Y"},
-					{unit: "day", step: 1, format: "%j, %D"}];
-				gantt.gantt.config.scale_height = 50;
-				break;
-			default:
-				gantt.gantt.config.scales = [
-					{unit: "year", step: 1, format: "%Y"},
-					{unit: "month", step: 1, format: "%M"}];
-				gantt.gantt.config.scale_height = 90;
-				break;
-		}
+	private setGanttStyleConfig() {
 		gantt.gantt.config.xml_date = '%Y-%m-%d %H:%i';
 		gantt.gantt.config.layout = {
 			css: "gantt_container",

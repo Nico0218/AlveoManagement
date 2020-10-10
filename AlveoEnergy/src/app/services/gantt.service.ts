@@ -43,4 +43,13 @@ export class GanttService {
           }),
         );
     }
+
+    public GetGanttDataPersonnel(): Observable<GanttObjWrapper> {
+      return this.httpClient.get(`${this.controllerURL}/GetGanttDataPersonnel`)
+        .pipe(
+          map((ii: GanttObjWrapper) => {
+            return ii;
+          }),
+        );
+    }
 }

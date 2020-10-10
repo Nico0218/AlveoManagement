@@ -13,6 +13,8 @@ namespace AlveoManagementCommon.Classes
         public int duration { get; set; }
         public int parent { get; set; }
         public string color { get; set; }
-        public string type { get; set; }        
+        public string gantttype { get; set; }
+        public string personnel { get; set; }
+
     }
 }

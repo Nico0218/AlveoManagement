@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System;
 using AlveoManagementServer.SQLite;
+using System.Linq;
 
 namespace AlveoManagementServer.Services
 {
@@ -40,10 +41,11 @@ namespace AlveoManagementServer.Services
                         color = (string)selectResult["color"],
                         end_date = (string)selectResult["endDate"],
                         progress = (int)(double)selectResult["progress"],
-                        parent = (int)(Int64)selectResult["parent"]
+                        parent = (int)(Int64)selectResult["parent"],
+                        personnel = (string)selectResult["personnel"],
+                        gantttype = (string)selectResult["gantttype"]
                     }
                     );
-                    Console.WriteLine("done");
                 }
             }
             databaseObject.CloseConnection();
@@ -67,7 +69,7 @@ namespace AlveoManagementServer.Services
                         ID = (string)selectResult["id"],
                         source = (Int32)(Int64)selectResult["source"],
                         target = (Int32)(Int64)selectResult["target"],
-                        type = (string)selectResult["type"]
+                        type = (string)selectResult["type"],
                     }
                     );
                 }
@@ -81,6 +83,63 @@ namespace AlveoManagementServer.Services
             ganttObjWrapper.data = GetAllGanttData();
             ganttObjWrapper.links = GetAllGanttLinks();
             return ganttObjWrapper;
+        }
+
+        public GanttObjWrapper CombineGanttDataPersonnel()
+        {
+            GanttObjWrapper ganttObjPersonnel = new GanttObjWrapper();
+            List<GanttData> ganttData = GetAllGanttData();
+            List<GanttData> newGanttData = new List<GanttData>();
+            List<GanttLink> newGanttLink = new List<GanttLink>();
+            var count = 1;
+            for (var index = 0; index < ganttData.Count; index++)
+            {
+                if (ganttData[index].gantttype == "task")
+                {
+                    if (newGanttData.Count == 0)
+                    {
+                        newGanttData.Add(new GanttData()
+                        {
+                            id = count,
+                            text = ganttData[index].personnel,
+                            start_date = ganttData[index].start_date,
+                            duration = ganttData[index].duration,
+                            color = ganttData[index].color,
+                            end_date = ganttData[index].end_date,
+                            progress = ganttData[index].progress,
+                            parent = 0,
+                        }
+                        );
+                        count = count + 1;
+                    }
+                    else
+                    {
+                        for (var i = 0; i < newGanttData.Count; i++)
+                        {
+                            if (ganttData[index].personnel != newGanttData[i].text)
+                            {
+                                newGanttData.Add(new GanttData()
+                                {
+                                    id = count,
+                                    text = ganttData[index].personnel,
+                                    start_date = ganttData[index].start_date,
+                                    duration = ganttData[index].duration,
+                                    color = ganttData[index].color,
+                                    end_date = ganttData[index].end_date,
+                                    progress = ganttData[index].progress,
+                                    parent = 0,
+                                }
+                                );
+                                count = count + 1;
+                            }
+                        }
+                    }
+                }
+
+            }
+            ganttObjPersonnel.data = newGanttData;
+            ganttObjPersonnel.links = newGanttLink;
+            return ganttObjPersonnel;
         }
     }
 

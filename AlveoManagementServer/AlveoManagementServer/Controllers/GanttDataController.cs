@@ -38,5 +38,12 @@ namespace AlveoManagementServer.Controllers
             return new ObjectResult(ganttDataService.CombineGanttData());
         }
 
+        [HttpGet("GetGanttDataPersonnel")]
+        public ActionResult GetGanttDataPersonnel()
+        {
+            logger.LogInformation("Getting all gantt personnel");
+            return new ObjectResult(ganttDataService.CombineGanttDataPersonnel());
+        }
+
     }
 }

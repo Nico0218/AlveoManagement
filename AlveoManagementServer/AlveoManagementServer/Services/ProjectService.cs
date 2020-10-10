@@ -24,7 +24,7 @@ namespace AlveoManagementServer.Services
         {
             logger.LogDebug("Getting all Projects");
             List<Project> project = new List<Project>();
-            string selectProject = "SELECT * FROM GanttData WHERE type='project'";
+            string selectProject = "SELECT * FROM GanttData WHERE gantttype='project'";
             SQLiteCommand selectCommand = new SQLiteCommand(selectProject, databaseObject.dataConnection);
             databaseObject.OpenConnection();
             SQLiteDataReader selectResult = selectCommand.ExecuteReader();

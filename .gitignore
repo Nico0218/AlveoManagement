@@ -22,3 +22,5 @@ AlveoManagementServer/AlveoManagementServer/Logs/
 AlveoManagementServer/GoogleSheets/bin/
 
 AlveoManagementServer/GoogleSheets/obj/
+
+AlveoEnergy/debug.log
