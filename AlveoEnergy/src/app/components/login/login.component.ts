@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../services/authentication.service';
+import { LoginRequest } from 'src/app/models/login/login-request';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -44,7 +45,8 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        var loginRequest: LoginRequest = { UserName: this.f.username.value, Password: this.f.password.value} ;
+        this.authenticationService.login(loginRequest)
             .pipe(first())
             .subscribe(
                 data => {

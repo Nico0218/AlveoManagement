@@ -1,10 +1,9 @@
 ﻿using AlveoManagementCommon.Classes;
-using System.Collections.Generic;
+using AlveoManagementCommon.Classes.Login_Classes;
 
-namespace AlveoManagementServer.Services.Interfaces
-{
+namespace AlveoManagementServer.Services.Interfaces {
     public interface ILoginService
     {
-        List<User> GetAuthorisation();
+        User Login(LoginRequest loginRequest);
     }
 }

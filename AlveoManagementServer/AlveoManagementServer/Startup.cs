@@ -46,6 +46,7 @@ namespace AlveoManagementServer
             }
 
             //services.AddScoped<IGoogleSheetsService, GoogleSheetsService>();            
+            services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<IPersonnelService, PersonnelService>();
             services.AddScoped<IGanttDataService, GanttDataService>();

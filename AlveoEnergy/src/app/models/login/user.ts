@@ -1,11 +1,11 @@
 import { Guid } from '../../classes/guid';
 
 export class User {
-    id: Guid;
-    username: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    authdata?: string;
-    email: string;
+    ID: Guid;
+    Name: string;
+    UserName: string;
+    Password: string;    
+    LastName: string;
+    Authdata?: string;
+    Email: string;
 }
