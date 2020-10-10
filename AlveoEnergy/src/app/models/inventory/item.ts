@@ -1,5 +1,5 @@
 
-export class ModelItem  {
+export class Item  {
     public ID: number;
     public Name: string;
     public Supplier: string;
@@ -19,8 +19,8 @@ export class ModelItem  {
         return JSON.stringify(this);
     }
 
-    static FromJson(jObj: any): ModelItem {
-        var inventoryItem = new ModelItem();
+    static FromJson(jObj: any): Item {
+        var inventoryItem = new Item();
         inventoryItem.ID = jObj.ID;
         inventoryItem.Name = jObj.Name;
         inventoryItem.Supplier = jObj.Supplier;

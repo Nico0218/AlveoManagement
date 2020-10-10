@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Console } from 'console';
 import { map, take } from 'rxjs/operators';
-import { ModelItem } from '../../models/inventory/ModelItem';
+import { Item } from '../../models/inventory/item';
 import { InventoryService } from '../../services/inventory.service';
 
 @Component({
@@ -11,14 +10,14 @@ import { InventoryService } from '../../services/inventory.service';
   templateUrl: './inventory.component.html',
 })
 export class InventoryComponent {
-  AUTOMATION_DATA: ModelItem[];
-  CABLETRAYS_DATA: ModelItem[];
-  EXTRAS_DATA: ModelItem[];
-  INSTRUMENTATION_DATA: ModelItem[];
-  LABOUR_DATA: ModelItem[];
-  OTHER_DATA: ModelItem[];
-  MONITORING_DATA: ModelItem[];
-  SWITCHGEAR_DATA: ModelItem[];
+  AUTOMATION_DATA: Item[];
+  CABLETRAYS_DATA: Item[];
+  EXTRAS_DATA: Item[];
+  INSTRUMENTATION_DATA: Item[];
+  LABOUR_DATA: Item[];
+  OTHER_DATA: Item[];
+  MONITORING_DATA: Item[];
+  SWITCHGEAR_DATA: Item[];
 
 
   constructor(private inventoryService: InventoryService) {
@@ -42,7 +41,7 @@ export class InventoryComponent {
   displayedMonitoringColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
   switchgearList = new MatTableDataSource();
   displayedSwitchgearColumnsList: string[] = ['name', 'supplier', 'partnumber', 'instock', 'cost'];
-  
+
 
   //filters displayed plc results in form
   applyAutomationFilter(event: Event) {
@@ -87,83 +86,32 @@ export class InventoryComponent {
     this.switchgearList.filter = filterValue.trim().toLowerCase();
   }
 
-
-
   ngOnInit() {
-    this.inventoryService.GetAllAutomation()//This function builds and returns a Observable
-      .pipe( // pipe allows us to define actions or "effects" that should happen with the Observable - Note at this point the Observable has not "Run" yet
-        map(automation => { // https://www.learnrxjs.io/learn-rxjs/operators/transformation/map
-          this.AUTOMATION_DATA = automation;
+    this.inventoryService.GetAllInventoryItems()
+      .pipe(
+        map(inventoryItems => {
+          this.AUTOMATION_DATA = inventoryItems.Automation;
           this.automationList.data = this.AUTOMATION_DATA;
-        }),
-        take(1) // https://www.learnrxjs.io/learn-rxjs/operators/filtering/take
-      )
-      .subscribe();// Subscribe starts the execution of the Observable
 
-      this.inventoryService.GetAllCabletrays()
-      .pipe(
-        map(cabletrays => {
-          this.CABLETRAYS_DATA = cabletrays;
+          this.CABLETRAYS_DATA = inventoryItems.Cabletrays;
           this.cabletraysList.data = this.CABLETRAYS_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
 
-      this.inventoryService.GetAllExtras()
-      .pipe(
-        map(extras => {
-          this.EXTRAS_DATA = extras;
+          this.EXTRAS_DATA = inventoryItems.Extras;
           this.extrasList.data = this.EXTRAS_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
 
-      this.inventoryService.GetAllInstrumentation()
-      .pipe(
-        map(instrumentation => {
-          this.INSTRUMENTATION_DATA = instrumentation;
+          this.INSTRUMENTATION_DATA = inventoryItems.Instrumentation;
           this.instrumentationList.data = this.INSTRUMENTATION_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
 
-      this.inventoryService.GetAllLabour()
-      .pipe(
-        map(labour => {
-          this.LABOUR_DATA = labour;
+          this.LABOUR_DATA = inventoryItems.Labour;
           this.labourList.data = this.LABOUR_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
 
-      this.inventoryService.GetAllMonitoring()
-      .pipe(
-        map(monitoring => {
-          this.MONITORING_DATA = monitoring;
+          this.MONITORING_DATA = inventoryItems.Monitoring;
           this.monitoringList.data = this.MONITORING_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
 
-      this.inventoryService.GetAllOther()
-      .pipe(
-        map(other => {
-          this.OTHER_DATA = other;
+          this.OTHER_DATA = inventoryItems.Other;
           this.otherList.data = this.OTHER_DATA;
-        }),
-        take(1)
-      )
-      .subscribe();
 
-      this.inventoryService.GetAllSwitchgear()
-      .pipe(
-        map(switchgear => {
-          this.SWITCHGEAR_DATA = switchgear;
+          this.SWITCHGEAR_DATA = inventoryItems.Switchgear;
           this.switchgearList.data = this.SWITCHGEAR_DATA;
         }),
         take(1)

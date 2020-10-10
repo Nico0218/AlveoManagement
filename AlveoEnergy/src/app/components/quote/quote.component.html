@@ -1,58 +1,51 @@
-
-
-
-
-
 <mat-tab-group>
     <mat-tab label="Quotes">
 
         <mat-form-field *ngIf="quoteList">
             <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyQuoteFilter($event)" placeholder="Ex. ium" #input>
-          </mat-form-field>
-          
-          <table style="width: 100%;" *ngIf="quoteList" mat-table [dataSource]="quoteList" class="mat-elevation-z8">
-          
+            <input matInput (keyup)="applyQuoteFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+
+        <table style="width: 100%;" *ngIf="quoteList" mat-table [dataSource]="quoteList" class="mat-elevation-z8">
+
             <ng-container matColumnDef="quote">
-              <th mat-header-cell *matHeaderCellDef> Quote Number </th>
-              <td mat-cell *matCellDef="let element"> {{element.quoteNumber}} </td>
+                <th mat-header-cell *matHeaderCellDef> Quote Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.quoteNumber}} </td>
             </ng-container>
-          
+
             <ng-container matColumnDef="project">
-              <th mat-header-cell *matHeaderCellDef> Project Name </th>
-              <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
+                <th mat-header-cell *matHeaderCellDef> Project Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
             </ng-container>
-          
+
             <ng-container matColumnDef="valid">
-              <th mat-header-cell *matHeaderCellDef> Valid Until </th>
-              <td mat-cell *matCellDef="let element"> {{element.validUntil}} </td>
+                <th mat-header-cell *matHeaderCellDef> Valid Until </th>
+                <td mat-cell *matCellDef="let element"> {{element.validUntil}} </td>
             </ng-container>
-          
+
             <ng-container matColumnDef="attention">
-              <th mat-header-cell *matHeaderCellDef> For Attention </th>
-              <td mat-cell *matCellDef="let element"> {{element.forAttention}} </td>
+                <th mat-header-cell *matHeaderCellDef> For Attention </th>
+                <td mat-cell *matCellDef="let element"> {{element.forAttention}} </td>
             </ng-container>
 
             <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef> Status </th>
-                <td [ngStyle]="{'background-color':element.status === 'Quoted' ? 'orange' : 'green' }"  mat-cell *matCellDef="let element"> {{element.status}} </td>
-              </ng-container>
-          
-          
+                <td [ngStyle]="{'background-color':element.status === 'Quoted' ? 'orange' : 'green' }" mat-cell
+                    *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+
             <tr mat-header-row *matHeaderRowDef="displayedQuoteColumnsList"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedQuoteColumnsList;"></tr>
-          
+
             <tr class="mat-row" *matNoDataRow>
-              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
             </tr>
-          
-          </table>
 
-  
+        </table>
     </mat-tab>
-  
-    <mat-tab label="Create New Quote">
 
+    <mat-tab label="Create New Quote">
         <div style="text-align: center; border: darkolivegreen 1px solid; margin-top: 10px;">
             <h2>Select Customer:</h2>
             <select *ngIf="customers" #selectElem (change)="setNewUser(selectElem.value)">
@@ -66,360 +59,436 @@
             <input type="text" [(ngModel)]="custProjectName">
             <h5>For Attention:</h5>
             <input type="text" [(ngModel)]="custForAttention">
-            
+
             <br>
             <br>
-            <button type="button" id="addButton"
-            class="btn btn-primary"
-            (click)="test();">
-            Add
+            <button type="button" id="addButton" class="btn btn-primary" (click)="test();">
+                Add
             </button>
-            </div>
-            <br>
-            <br>
-            
-            
-            <button class="btn btn-primary" (click)="ShowHide()">Add Quote Items</button><button (click)="convertToPDF()">save Quote</button>
-            
-            <div id="addItems" style="display: none;">
-                <table style="margin-left: 30px; width: 1500px;" *ngFor="let item of inventory | keyvalue">
-                    <th  style=" text-align: center; width: auto; background-color:grey; color: white;" >{{item.key}}</th>
-                    <tr style="border: 1px solid grey;" *ngFor='let elem of item.value'><input type="checkbox" style="margin-right: 10px;"><span style="font-size:12px; display: inline-block; margin-right: 80px; min-width: 350px!important;">{{ elem.Name }}</span><span style="text-align: right; font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Cost|currency:'R'}}</span><span style="font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Unit}}</span>  
-                        quantity : <input [(ngModel)]="qtyVal" style="width: 50px;" type="number"> Total: R{{ elem.Cost * qtyVal}}
+        </div>
+        <br>
+        <br>
+
+        <button class="btn btn-primary" (click)="ShowHide()">Add Quote Items</button><button
+            (click)="convertToPDF()">save Quote</button>
+
+        <div id="addItems" style="display: none;">
+            <table style="margin-left: 30px; width: 1500px;" *ngFor="let item of inventory | keyvalue">
+                <th style=" text-align: center; width: auto; background-color:grey; color: white;">{{item.key}}</th>
+                <tr style="border: 1px solid grey;" *ngFor='let elem of item.value'><input type="checkbox"
+                        style="margin-right: 10px;"><span
+                        style="font-size:12px; display: inline-block; margin-right: 80px; min-width: 350px!important;">{{ elem.Name }}</span><span
+                        style="text-align: right; font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Cost|currency:'R'}}</span><span
+                        style="font-size:12px; display: inline-block; margin-right: 20px; min-width: 80px!important;">{{elem.Unit}}</span>
+                    quantity : <input [(ngModel)]="qtyVal" style="width: 50px;" type="number"> Total:
+                    R{{ elem.Cost * qtyVal}}
+                </tr>
+            </table>
+        </div>
+
+
+        <div id="container">
+            <div id="quote">
+                <header>
+                    <img style="height: 5%; width: 43%; margin-left: 80px;" alt=""
+                        src="../../../assets/img/Alveo Energy Logo Colour.jpg">
+                    <h1 style="font-size: 40px; float: right; margin-top: 30px; margin-right: 80px;">QUOTE</h1>
+                </header>
+                <div>
+                    <table style="font-size: 24px; margin-left: 80px; float: left;">
+                        <tr>
+                            <td>Address:</td>
+                            <td style="padding-left: 118px;">30 Mynhardt St</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="padding-left: 118px;">Gantzz plaza, Strand, 7140</td>
+                        </tr>
+                        <tr>
+                            <td>Phone:</td>
+                            <td style="padding-left: 118px;">021 851 2576</td>
+                        </tr>
+                        <tr>
+                            <td>Prepared By:</td>
+                            <td style="padding-left: 118px;">{{preparedBy}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td style="padding-left: 118px;">{{preparedByEmail}}</td>
+                        </tr>
+                    </table>
+                    <table style="font-size: 24px; float: right; margin-right: 80px;">
+                        <tr>
+                            <td style="text-align: right;">DATE:</td>
+                            <td style="padding-left: 80px;">{{quoteDate}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">QUOTE#</td>
+                            <td style="padding-left: 80px;">{{quoteNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">Customer ID</td>
+                            <td style="padding-left: 80px;">{{customerID}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">Valid Until</td>
+                            <td style="padding-left: 80px;">{{quoteValid}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <table style="font-size: 24px; margin-left: 80px; width: 600px; clear: both;">
+                    <tr>
+                        <td style="background-color: rgb(120, 180, 0); color: white;">Customer</td>
+                        <td style="background-color: rgb(120, 180, 0);"></td>
+                    </tr>
+                    <tr>
+                        <td>ORDER NO:</td>
+                        <td style="padding-left: 60px;">{{orderNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>PROJECT:</td>
+                        <td style="padding-left: 60px;">{{projectName}}</td>
+                    </tr>
+                    <tr>
+                        <td>ATTENTION:</td>
+                        <td style="padding-left: 60px;">{{attention}}</td>
+                    </tr>
+                    <tr>
+                        <td>PREPARED FOR:</td>
+                        <td style="padding-left: 60px;">{{preparedFor}}</td>
+                    </tr>
+                    <tr>
+                        <td>ADDRESS:</td>
+                        <td style="padding-left: 60px;">{{customerAddress1}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="padding-left: 60px;">{{customerAddress2}}</td>
+                    </tr>
+                    <tr>
+                        <td>PHONE:</td>
+                        <td style="padding-left: 60px;">{{customerContactNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>EMAIL:</td>
+                        <td style="padding-left: 60px;">{{customerEmail}}</td>
+                    </tr>
+                </table>
+                <table style="font-size: 20px; margin-left: 80px; margin-right: 80px; width: 90%;" id="quoteTable">
+                    <th style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">
+                        Description</th>
+                    <th style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Req
+                    </th>
+                    <th style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Unit
+                    </th>
+                    <th style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Rate
+                    </th>
+                    <th style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">
+                        Ammount</th>
+                    <tr style="text-align: center;">
+                        <td>1</td>
+                        <td>one</td>
+                        <td>een</td>
+                        <td>test 1</td>
+                        <td>1.00</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>2</td>
+                        <td>two</td>
+                        <td>twee</td>
+                        <td>test 2</td>
+                        <td>2.00</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>3</td>
+                        <td>three</td>
+                        <td>drie</td>
+                        <td>test 3</td>
+                        <td>3.00</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>4</td>
+                        <td>four</td>
+                        <td>vier</td>
+                        <td>test 4</td>
+                        <td>4.00</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>5</td>
+                        <td>five</td>
+                        <td>vyf</td>
+                        <td>test 5</td>
+                        <td>5.00</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>6</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>7</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>8</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>9</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>10</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>11</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>12</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>13</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>14</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>15</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>16</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>17</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>18</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>19</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>20</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>18</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>19</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>20</td>
+                    </tr>
+                </table>
+
+                <table style="float: left; margin-left: 80px; margin-top: 40px;">
+                    <th style=" width: 320px; background-color: rgb(120, 180, 0); color: white;">
+                        NOTES
+                    </th>
+                    <tr>
+                        <td style="width: 315px;"><textarea
+                                style=" border: hidden; resize: none; width: 325px; height: 150px;"></textarea></td>
+                    </tr>
+                </table>
+
+                <table style="font-size: 24px; float: right; margin-right: 80px; margin-top: 15px;">
+                    <tr>
+                        <td style="width: auto; text-align: left; width: 120px;">Subtotal: </td>
+                        <td style="text-align: right;"> R
+                            <!--{{quoteSubTotal}}-->10 000.00</td>
+                    </tr>
+                    <tr>
+                        <td style="width: auto;text-align: left; width: 120px;">Tax Rate: </td>
+                        <td style="text-align: right;">
+                            <!--{{quoteTaxRate}}-->15%</td>
+                    </tr>
+                    <tr>
+                        <td style="width: auto;text-align: left; width: 120px;">Tax Due: </td>
+                        <td style="text-align: right;"> R
+                            <!--{{quoteTaxDue}}-->1 500.00</td>
+                    </tr>
+                    <tr>
+                        <td style="width: auto;text-align: left; width: 120px;">Other: </td>
+                        <td style="text-align: right;"> R
+                            <!--{{quoteOther}}-->0.00</td>
+                    </tr>
+                    <tr>
+                        <td style="width: auto;text-align: left; width: 120px;">TOTAL DUE: </td>
+                        <td style="text-align: right;"> R
+                            <!--{{quoteTotal}}-->11 500.00</td>
+                    </tr>
+                </table>
+                <p style="font-size: 24px; text-align:center; clear:both">Please see terms and conditions on page 2</p>
+                <table
+                    style="font-size: 24px; width: 800px; border: 1px solid black; margin-left: 250px; margin-bottom: 120px;">
+                    <tr>
+                        <td style=" border: 1px solid black; width: 450px; height: 80px;">
+                            Customer Acceptance:
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Print Name:</td>
+                        <td style=" border: 1px solid black; text-align: left;">Signature:</td>
                     </tr>
                 </table>
             </div>
-            
-            
-            <div id="container">
-            <div  id="quote">
-            <header>
-                <img style="height: 5%; width: 43%; margin-left: 80px;" alt="" src="../../../assets/img/Alveo Energy Logo Colour.jpg"><h1 style="font-size: 40px; float: right; margin-top: 30px; margin-right: 80px;">QUOTE</h1>
-            </header>
-            <div><table  style="font-size: 24px; margin-left: 80px; float: left;">
-                <tr>
-                    <td>Address:</td>
-                    <td style="padding-left: 118px;">30 Mynhardt St</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td style="padding-left: 118px;">Gantzz plaza, Strand, 7140</td>
-                </tr>
-                <tr>
-                    <td>Phone:</td>
-                    <td style="padding-left: 118px;">021 851 2576</td>
-                </tr>
-                <tr>
-                    <td>Prepared By:</td>
-                    <td style="padding-left: 118px;">{{preparedBy}}</td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td style="padding-left: 118px;">{{preparedByEmail}}</td>
-                </tr>
-            </table>
-            <table style="font-size: 24px; float: right; margin-right: 80px;">
-                <tr>
-                    <td style="text-align: right;">DATE:</td>
-                    <td style="padding-left: 80px;">{{quoteDate}}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: right;">QUOTE#</td>
-                    <td style="padding-left: 80px;">{{quoteNumber}}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: right;">Customer ID</td>
-                    <td style="padding-left: 80px;">{{customerID}}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: right;">Valid Until</td>
-                    <td style="padding-left: 80px;">{{quoteValid}}</td>
-                </tr>
-            </table>
-            </div>
-            <table style="font-size: 24px; margin-left: 80px; width: 600px; clear: both;">
-                <tr>
-                    <td style="background-color: rgb(120, 180, 0); color: white;">Customer</td>
-                    <td style="background-color: rgb(120, 180, 0);"></td>
-                </tr>
-                <tr>
-                    <td>ORDER NO:</td>
-                    <td style="padding-left: 60px;">{{orderNumber}}</td>
-                </tr>
-                <tr>
-                    <td>PROJECT:</td>
-                    <td style="padding-left: 60px;">{{projectName}}</td>
-                </tr>
-                <tr>
-                    <td>ATTENTION:</td>
-                    <td style="padding-left: 60px;">{{attention}}</td>
-                </tr>
-                <tr>
-                    <td>PREPARED FOR:</td>
-                    <td style="padding-left: 60px;">{{preparedFor}}</td>
-                </tr>
-                <tr>
-                    <td>ADDRESS:</td>
-                    <td style="padding-left: 60px;">{{customerAddress1}}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td style="padding-left: 60px;">{{customerAddress2}}</td>
-                </tr>
-                <tr>
-                    <td>PHONE:</td>
-                    <td style="padding-left: 60px;">{{customerContactNumber}}</td>
-                </tr>
-                <tr>
-                    <td>EMAIL:</td>
-                    <td style="padding-left: 60px;">{{customerEmail}}</td>
-                </tr>
-            </table>
-            <table style="font-size: 20px; margin-left: 80px; margin-right: 80px; width: 90%;" id="quoteTable">
-                <th  style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Description</th>
-                <th  style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Req</th>
-                <th  style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Unit</th>
-                <th  style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Rate</th>
-                <th  style=" text-align: center; width: auto; background-color: rgb(120, 180, 0); color: white;">Ammount</th>
-                <tr style="text-align: center;">
-                    <td>1</td>
-                    <td>one</td>
-                    <td>een</td>
-                    <td>test 1</td>
-                    <td>1.00</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>2</td>
-                    <td>two</td>
-                    <td>twee</td>
-                    <td>test 2</td>
-                    <td>2.00</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>3</td>
-                    <td>three</td>
-                    <td>drie</td>
-                    <td>test 3</td>
-                    <td>3.00</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>4</td>
-                    <td>four</td>
-                    <td>vier</td>
-                    <td>test 4</td>
-                    <td>4.00</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>5</td>
-                    <td>five</td>
-                    <td>vyf</td>
-                    <td>test 5</td>
-                    <td>5.00</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>6</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>7</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>8</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>9</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>10</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>11</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>12</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>13</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>14</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>15</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>16</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>17</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>18</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>19</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>20</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>18</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>19</td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>20</td>
-                </tr>
-            </table>
-            
-            <table style="float: left; margin-left: 80px; margin-top: 40px;">
-                <th style=" width: 320px; background-color: rgb(120, 180, 0); color: white;">
-                    NOTES
-                </th>
-                <tr>
-                    <td style="width: 315px;"><textarea style=" border: hidden; resize: none; width: 325px; height: 150px;"></textarea></td>
-                </tr>
-            </table>
-            
-            <table style="font-size: 24px; float: right; margin-right: 80px; margin-top: 15px;">
-                <tr>
-                    <td style="width: auto; text-align: left; width: 120px;">Subtotal: </td>
-                    <td style="text-align: right;"> R<!--{{quoteSubTotal}}-->10 000.00</td>
-                </tr>
-                <tr>
-                    <td style="width: auto;text-align: left; width: 120px;">Tax Rate: </td>
-                    <td style="text-align: right;"><!--{{quoteTaxRate}}-->15%</td>
-                </tr>
-                <tr>
-                    <td style="width: auto;text-align: left; width: 120px;">Tax Due: </td>
-                    <td style="text-align: right;"> R<!--{{quoteTaxDue}}-->1 500.00</td>
-                </tr>
-                <tr>
-                    <td style="width: auto;text-align: left; width: 120px;">Other: </td>
-                    <td style="text-align: right;"> R<!--{{quoteOther}}-->0.00</td>
-                </tr>
-                <tr>
-                    <td style="width: auto;text-align: left; width: 120px;">TOTAL DUE: </td>
-                    <td style="text-align: right;"> R<!--{{quoteTotal}}-->11 500.00</td>
-                </tr>
-            </table>
-            <p style="font-size: 24px; text-align:center; clear:both">Please see terms and conditions on page 2</p>
-            <table style="font-size: 24px; width: 800px; border: 1px solid black; margin-left: 250px; margin-bottom: 120px;">
-                <tr>
-                    <td style=" border: 1px solid black; width: 450px; height: 80px;">
-                        Customer Acceptance:
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Print Name:</td>
-                    <td style=" border: 1px solid black; text-align: left;">Signature:</td>
-                </tr>
-            </table>
-            </div>
             <div id="terms" style=" margin-top: 20px;">
                 <div style="margin-left: 20px; margin-top: 30px;">
-            <h2 style="margin-top: 40px; text-align: center; width: 100%; background-color: rgb(120, 180, 0); color: white;">Terms and Conditions</h2>
-            
-            <h4 style="text-decoration: underline;">1.ASSUMPTIONS</h4>
-            <h5 style="text-decoration: underline;">1.1 QUOTE SPECIFIC</h5>
-            <p>* Alveo Energy's quote assumptions, terms and conditions will take preference over any other contract signed.</p>
-            <br>
-            <h5 style="text-decoration: underline;">1.2 CLIENT RESPONSIBILITIES</h5>
-            <p>* Electricity will be available during installation for power tools and for commissioning.</p>
-            <p>* Access will be provided for the delivery and assembly of the equipment.</p>
-            <p>* The purchase and installation of any lighting which may be required for successful operation is the responsibility of the client</p>
-            <br>
-            <h4 style="text-decoration: underline;">2. GENERAL TERMS AND CONDITIONS</h4>
-            <h5 style="text-decoration: underline;">2.1 RISK AND OWNERSHIP</h5>
-            <p>Notwithstanding delivery of any goods to the client, ownership of equipment shall not pass to the client until 
-            Alveo Energy has received payment in full for all goods and services associated with the manufacture, installation </p>
-            <p>and commissioning of the equipment. If final settlement has not been received within six months after practical
-            completion of the plant, Alveo Energy reserves the right to recover and sell the plant or any part thereof to recover </p>
-            <p>costs. The client will forfeit their deposit and/or any amounts paid to date.</p>
-            <br>
-            <h5 style="text-decoration: underline;">2.2 COMPLETION</h5>
-            <p>Alveo Energy adheres to the General Conditions of Contract (GCC) for Construction Work (2015) requirements for
-            project completion as outlined in section 5.14 of the said contract. The GCC defines three completion milestones </p>
-            <p>with associated completion certificates in order to formalize the completions procedures on a project, namely 
-            Practical Completion, Completion and Final Approval. Alveo Energy prescribe to these projects milestone and the </p>
-            <p>employer/employer’s agent is advised to familiarize themselves with the contractual terms associated with these
-            milestones highlighted in section 5.14 of the GCC.</p>
-            <br>
-            <p>In addition to the three milestones described in the preceding paragraph, Alveo Energy further defines an 
-            additional milestone relevant to the packaged Mechanical and Electrical works generally provided by Alveo Energy. </p>
-            <p>This additional milestone is named Factory Acceptance Testing (FAT) and is defined as follows:</p>
-            <br>
-            <p>Simulated testing performed on the designed equipment following assembly of the equipment, where the 
-            simulated testing is required to verify that the assembled equipment can operate at its design capacity and </p>
-            <p>produce the required design products. Factory Acceptance Testing can be performed in the production factory or 
-            on a site as deemed suitable by the design engineer. The FAT must be performed according to the FAT checklists </p>
-            <p>and documentation and signed off by Alveo Energy’s responsible engineer. The Employer/Employers Agent is also 
-            required to witness and sign-off the FAT certificate in order to confirm acceptance of the FAT.</p>
-            <br>
-            <p>In such cases where Alveo Energy cannot reach completion as a results of circumstances and delays outside of
-            Alveo Energy’s control and during which a FAT has been completed, Alveo Energy will allow for a 6 month period </p>
-            <p>from the completion of the FAT after which the warranty and defects liability period will be deemed to have taken 
-            effect from the date of the factory acceptance test as recorded on the factory acceptance test certificate.</p>
-            <br>
-            <h5 style="text-decoration: underline;">2.3 WARRANTY, LIABILITY AND INDEMNITY</h5>
-            <p>Alveo Energy warrants the equipment against defective materials and workmanship for a period of one year from 
-            the date of completion, fair wear and tear excluded. The Warranty is subject to the following conditions:</p>
-            <p>a) The purchase price and all other due fees associated with the treatment plant have been fully paid.</p>
-            <p>b) The equipment has been correctly operated in accordance with the Operation and Maintenance manual.</p>
-            <p>c) The equipment has not been subjected to undue climatic conditions beyond its design capacity. This includes 
-             rain, spray, wind, heat and dust.</p>
-            <p>d) The warranty specifically excludes any damage caused by the client or client’s representative or that beyond 
-            the control of Alveo Energy.</p>
-            <p>e) The warranty does not apply to our electrical panels and equipment connected to poor quality temporary 
-            electricity generators. These generators provide unbalanced phases with varying voltages. If electrical instruments </p>
-            <p>and motors are damaged while connected to temporary power generators, we will not be able to honour our gaurantees</p>
-            <p>f) If the electrical panel is opened or tampered with, the warranty is null and void.</p>
-            <p>g) It is the client’s responsibility to protect the equipment against power surges, which could damage equipment.</p>
-            <p>h) Programming software is the Intellectual Property of Alveo Energy and shall not be distributed or communicated 
-            to third parties in any way.</p>
-            <p>i) The starting date of the warranty is when completion is reached.</p>
-            <p>Alveo Energy’s liability to the client shall in any event and under all circumstances be limited to the costs of 
-            remedying any defective workmanship, repairing any defective goods, or replacing any defective goods not capable of repair.</p>
-            <p>Alveo Energy shall under no circumstance whatsoever be liable for any loss of profit or any damages of whatsoever 
-            nature, direct or indirect, consequential or otherwise, suffered by the client or any other person or entity, </p>
-            <p>whether or not caused by the negligence of Alveo Energy, its agents or employees. Alveo Energy’s professional 
-            liability shall be limited to twice (2) the amount of the Design and Overheads fee.</p>
-            <br>
-            <h5 style="text-decoration: underline;">2.4 VARIATIONS</h5>
-            <p>Additional work, equipment or features requested by the client or consultant will be treated as Variation Orders 
-            (VO). Alveo Energy will price the VO for approval and will only proceed once the financial and time implications of </p>
-            <p>the VO have been approved.</p>
-            <br>
-            <h5 style="text-decoration: underline;">2.5 PAYMENT TERMS</h5>
-            <p>Our payment terms are as follows:</p>
-            <p>• 50% on acceptance of this proposal</p>
-            <p>• 40% after manufacturing completion and FAT</p>
-            <p>• 10% after commissioning</p>
-            <p>• Variation Orders will be invoiced on their signed acceptance</p>
-            <p>Alveo Energy will provide an Advance Payment Guarantee for the full sum of the works tendered on and awarder to Alveo Energy.</p>
-            <p>Alveo Energy will only commence with the project once the client signs the proposal where required and the 
-            deposit is reflected on the bank statement. Note that no allowance for an Advanced Payment Guarantee (APG) </p>
-            <p>has been made. All costs involved in obtaining an APG will be treated as a VO. Payment is required into a 
-            South African bank account belonging to Alveo Energy. Interest at SA prime plus 2% per annum will be charged on</p>
-            <p>late payments (calculated pro rata per day).</p>
-            <br>
-            <h5 style="text-decoration: underline;">2.6 DELIVERY</h5>
-            <p>Equipment are quoted ex works Cape Town unless stated otherwise. Transport cost of MCC's are dependent on the type and size of the MCC as well as the delivery destination. Refer to the proposal document for the offer on delivery</p>
-            <br>
-            <h5 style="text-decoration: underline;">2.7 DELAYS</h5>
-            <p>If long lead times are experienced on certain mechanical and electrical equipment, the client will be informed of 
-            expected delays or given an option to change the equipment to a similar approved product. Export or import, </p>
-            <p>shipping and transport delays are not under the control of Alveo Energy and thus Alveo Energy will not be held 
-            responsible for such delays. Severe weather, strikes, coups, terrorism, war, epidemics, etc. </p>
-            <p>(considered Force Majeure) or any such events that result in delays are out of the control of Alveo Energy and thus 
-            Alveo Energy will not be held responsible for such delays.</p>
-            <p>If work on site is held up due to the client having to complete work required for environmental compliance, 
-            such as obtain a WULA or an EIA, Alveo Energy will be allowed to continue with commissioning work as to invoice </p>
-            <p>the client in full.</p>
+                    <h2
+                        style="margin-top: 40px; text-align: center; width: 100%; background-color: rgb(120, 180, 0); color: white;">
+                        Terms and Conditions</h2>
+
+                    <h4 style="text-decoration: underline;">1.ASSUMPTIONS</h4>
+                    <h5 style="text-decoration: underline;">1.1 QUOTE SPECIFIC</h5>
+                    <p>* Alveo Energy's quote assumptions, terms and conditions will take preference over any other
+                        contract signed.</p>
+                    <br>
+                    <h5 style="text-decoration: underline;">1.2 CLIENT RESPONSIBILITIES</h5>
+                    <p>* Electricity will be available during installation for power tools and for commissioning.</p>
+                    <p>* Access will be provided for the delivery and assembly of the equipment.</p>
+                    <p>* The purchase and installation of any lighting which may be required for successful operation is
+                        the responsibility of the client</p>
+                    <br>
+                    <h4 style="text-decoration: underline;">2. GENERAL TERMS AND CONDITIONS</h4>
+                    <h5 style="text-decoration: underline;">2.1 RISK AND OWNERSHIP</h5>
+                    <p>Notwithstanding delivery of any goods to the client, ownership of equipment shall not pass to the
+                        client until
+                        Alveo Energy has received payment in full for all goods and services associated with the
+                        manufacture, installation </p>
+                    <p>and commissioning of the equipment. If final settlement has not been received within six months
+                        after practical
+                        completion of the plant, Alveo Energy reserves the right to recover and sell the plant or any
+                        part thereof to recover </p>
+                    <p>costs. The client will forfeit their deposit and/or any amounts paid to date.</p>
+                    <br>
+                    <h5 style="text-decoration: underline;">2.2 COMPLETION</h5>
+                    <p>Alveo Energy adheres to the General Conditions of Contract (GCC) for Construction Work (2015)
+                        requirements for
+                        project completion as outlined in section 5.14 of the said contract. The GCC defines three
+                        completion milestones </p>
+                    <p>with associated completion certificates in order to formalize the completions procedures on a
+                        project, namely
+                        Practical Completion, Completion and Final Approval. Alveo Energy prescribe to these projects
+                        milestone and the </p>
+                    <p>employer/employer’s agent is advised to familiarize themselves with the contractual terms
+                        associated with these
+                        milestones highlighted in section 5.14 of the GCC.</p>
+                    <br>
+                    <p>In addition to the three milestones described in the preceding paragraph, Alveo Energy further
+                        defines an
+                        additional milestone relevant to the packaged Mechanical and Electrical works generally provided
+                        by Alveo Energy. </p>
+                    <p>This additional milestone is named Factory Acceptance Testing (FAT) and is defined as follows:
+                    </p>
+                    <br>
+                    <p>Simulated testing performed on the designed equipment following assembly of the equipment, where
+                        the
+                        simulated testing is required to verify that the assembled equipment can operate at its design
+                        capacity and </p>
+                    <p>produce the required design products. Factory Acceptance Testing can be performed in the
+                        production factory or
+                        on a site as deemed suitable by the design engineer. The FAT must be performed according to the
+                        FAT checklists </p>
+                    <p>and documentation and signed off by Alveo Energy’s responsible engineer. The Employer/Employers
+                        Agent is also
+                        required to witness and sign-off the FAT certificate in order to confirm acceptance of the FAT.
+                    </p>
+                    <br>
+                    <p>In such cases where Alveo Energy cannot reach completion as a results of circumstances and delays
+                        outside of
+                        Alveo Energy’s control and during which a FAT has been completed, Alveo Energy will allow for a
+                        6 month period </p>
+                    <p>from the completion of the FAT after which the warranty and defects liability period will be
+                        deemed to have taken
+                        effect from the date of the factory acceptance test as recorded on the factory acceptance test
+                        certificate.</p>
+                    <br>
+                    <h5 style="text-decoration: underline;">2.3 WARRANTY, LIABILITY AND INDEMNITY</h5>
+                    <p>Alveo Energy warrants the equipment against defective materials and workmanship for a period of
+                        one year from
+                        the date of completion, fair wear and tear excluded. The Warranty is subject to the following
+                        conditions:</p>
+                    <p>a) The purchase price and all other due fees associated with the treatment plant have been fully
+                        paid.</p>
+                    <p>b) The equipment has been correctly operated in accordance with the Operation and Maintenance
+                        manual.</p>
+                    <p>c) The equipment has not been subjected to undue climatic conditions beyond its design capacity.
+                        This includes
+                        rain, spray, wind, heat and dust.</p>
+                    <p>d) The warranty specifically excludes any damage caused by the client or client’s representative
+                        or that beyond
+                        the control of Alveo Energy.</p>
+                    <p>e) The warranty does not apply to our electrical panels and equipment connected to poor quality
+                        temporary
+                        electricity generators. These generators provide unbalanced phases with varying voltages. If
+                        electrical instruments </p>
+                    <p>and motors are damaged while connected to temporary power generators, we will not be able to
+                        honour our gaurantees</p>
+                    <p>f) If the electrical panel is opened or tampered with, the warranty is null and void.</p>
+                    <p>g) It is the client’s responsibility to protect the equipment against power surges, which could
+                        damage equipment.</p>
+                    <p>h) Programming software is the Intellectual Property of Alveo Energy and shall not be distributed
+                        or communicated
+                        to third parties in any way.</p>
+                    <p>i) The starting date of the warranty is when completion is reached.</p>
+                    <p>Alveo Energy’s liability to the client shall in any event and under all circumstances be limited
+                        to the costs of
+                        remedying any defective workmanship, repairing any defective goods, or replacing any defective
+                        goods not capable of repair.</p>
+                    <p>Alveo Energy shall under no circumstance whatsoever be liable for any loss of profit or any
+                        damages of whatsoever
+                        nature, direct or indirect, consequential or otherwise, suffered by the client or any other
+                        person or entity, </p>
+                    <p>whether or not caused by the negligence of Alveo Energy, its agents or employees. Alveo Energy’s
+                        professional
+                        liability shall be limited to twice (2) the amount of the Design and Overheads fee.</p>
+                    <br>
+                    <h5 style="text-decoration: underline;">2.4 VARIATIONS</h5>
+                    <p>Additional work, equipment or features requested by the client or consultant will be treated as
+                        Variation Orders
+                        (VO). Alveo Energy will price the VO for approval and will only proceed once the financial and
+                        time implications of </p>
+                    <p>the VO have been approved.</p>
+                    <br>
+                    <h5 style="text-decoration: underline;">2.5 PAYMENT TERMS</h5>
+                    <p>Our payment terms are as follows:</p>
+                    <p>• 50% on acceptance of this proposal</p>
+                    <p>• 40% after manufacturing completion and FAT</p>
+                    <p>• 10% after commissioning</p>
+                    <p>• Variation Orders will be invoiced on their signed acceptance</p>
+                    <p>Alveo Energy will provide an Advance Payment Guarantee for the full sum of the works tendered on
+                        and awarder to Alveo Energy.</p>
+                    <p>Alveo Energy will only commence with the project once the client signs the proposal where
+                        required and the
+                        deposit is reflected on the bank statement. Note that no allowance for an Advanced Payment
+                        Guarantee (APG) </p>
+                    <p>has been made. All costs involved in obtaining an APG will be treated as a VO. Payment is
+                        required into a
+                        South African bank account belonging to Alveo Energy. Interest at SA prime plus 2% per annum
+                        will be charged on</p>
+                    <p>late payments (calculated pro rata per day).</p>
+                    <br>
+                    <h5 style="text-decoration: underline;">2.6 DELIVERY</h5>
+                    <p>Equipment are quoted ex works Cape Town unless stated otherwise. Transport cost of MCC's are
+                        dependent on the type and size of the MCC as well as the delivery destination. Refer to the
+                        proposal document for the offer on delivery</p>
+                    <br>
+                    <h5 style="text-decoration: underline;">2.7 DELAYS</h5>
+                    <p>If long lead times are experienced on certain mechanical and electrical equipment, the client
+                        will be informed of
+                        expected delays or given an option to change the equipment to a similar approved product. Export
+                        or import, </p>
+                    <p>shipping and transport delays are not under the control of Alveo Energy and thus Alveo Energy
+                        will not be held
+                        responsible for such delays. Severe weather, strikes, coups, terrorism, war, epidemics, etc.
+                    </p>
+                    <p>(considered Force Majeure) or any such events that result in delays are out of the control of
+                        Alveo Energy and thus
+                        Alveo Energy will not be held responsible for such delays.</p>
+                    <p>If work on site is held up due to the client having to complete work required for environmental
+                        compliance,
+                        such as obtain a WULA or an EIA, Alveo Energy will be allowed to continue with commissioning
+                        work as to invoice </p>
+                    <p>the client in full.</p>
+                </div>
             </div>
-            </div>
-            </div>
-  
+        </div>
+
     </mat-tab>
-</mat-tab-group> 
+</mat-tab-group>
