@@ -12,6 +12,5 @@ namespace AlveoManagementServer.Services.Interfaces
         GanttObjWrapper CombineGanttData();
 
         GanttObjWrapper CombineGanttDataPersonnel();
-
     }
 }

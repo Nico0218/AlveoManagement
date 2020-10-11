@@ -5,6 +5,7 @@ import { Projects } from '../models/projects/project';
 import { Guid } from '../classes/guid';
 import { map, catchError } from 'rxjs/operators';
 import { Environment } from '../classes/environment';
+import { dataProcessor } from 'gantt';
 
 @Injectable()
 export class ProjectService {
@@ -26,6 +27,10 @@ export class ProjectService {
             return of(this.getProjectError());
           })
         );
+    }
+
+    WriteProjectToDB(project:Projects): Observable<any> {
+      return this.httpClient.post(`${this.controllerURL}/WriteProjectToDB`, project)
     }
 
     private getProjectError() {

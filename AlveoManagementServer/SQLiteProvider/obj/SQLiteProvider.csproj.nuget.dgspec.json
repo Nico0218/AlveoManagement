@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj": {}
+    "F:\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj": {}
   },
   "projects": {
-    "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {
+    "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj",
+        "projectUniqueName": "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj",
         "projectName": "DBProviderBase",
-        "projectPath": "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj",
-        "packagesPath": "C:\\Users\\nwc7\\.nuget\\packages\\",
-        "outputPath": "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\obj\\",
+        "projectPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj",
+        "packagesPath": "C:\\Users\\Tspan\\.nuget\\packages\\",
+        "outputPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nwc7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tspan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -52,21 +52,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj": {
+    "F:\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj",
+        "projectUniqueName": "F:\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj",
         "projectName": "SQLiteProvider",
-        "projectPath": "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj",
-        "packagesPath": "C:\\Users\\nwc7\\.nuget\\packages\\",
-        "outputPath": "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\obj\\",
+        "projectPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj",
+        "packagesPath": "C:\\Users\\Tspan\\.nuget\\packages\\",
+        "outputPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nwc7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tspan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,8 +79,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {
-                "projectPath": "H:\\Code Repo\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj"
+              "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {
+                "projectPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj"
               }
             }
           }
@@ -126,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

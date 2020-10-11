@@ -54,35 +54,35 @@
       <div class="colums">
         <div class="item">
           <label for="nProjectNumber"> Project Number<span>*</span></label>
-          <input style="text-align: right;" id="nProjectNumber" type="text" name="projectNumberInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nProjectNumber" type="text" name="projectNumberInput" required/>
         </div>
         <div class="item">
           <label for="nProjectName"> Project Name<span>*</span></label>
-          <input style="text-align: right;" id="nProjectName" type="text" name="projectNameInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nProjectName" type="text" name="projectNameInput" required/>
         </div>
         <div class="item">
           <label for="nprojectStart">Start Date<span>*</span></label>
-          <input style="text-align: right;" id="nprojectStart" type="date" name="projectStartInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nprojectStart" type="date" name="projectStartInput" required/>
         </div>
         <div class="item">
           <label for="nProjectend">End Date<span>*</span></label>
-          <input style="text-align: right;" id="nProjectend" type="date" name="projectEndInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nProjectend" type="date" name="projectEndInput" required/>
         </div>
         <div class="item">
           <label for="nProjectEngineer">Project Engineer<span>*</span></label>
-          <input style="text-align: right;" id="nProjectEngineer" type="text" name="projectEngineerInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nProjectEngineer" type="text" name="projectEngineerInput" required/>
         </div>
         <div class="item">
           <label for="nProjectLeader">Project Leader<span>*</span></label>
-          <input style="text-align: right;" id="nProjectLeader" type="text" name="projectLeaderInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nProjectLeader" type="text" name="projectLeaderInput" required/>
         </div>
         <div class="item">
           <label for="nProjectLeader">Gantt Color<span>*</span></label>
-          <input style="text-align: right;" id="nGanttColor" type="color" name="projecColorInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nGanttColor" type="color" name="projecColorInput" required/>
         </div>
       </div>
       <div class="btn-block">
-        <button type="submit" >Submit</button>
+        <button type="submit" (click)="CreateProject(nProjectNumber, nProjectName, nprojectStart, nProjectend, nProjectEngineer, nProjectLeader, nGanttColor )" >Submit</button>
       </div>
     </form>
   </div>

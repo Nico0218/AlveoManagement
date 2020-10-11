@@ -1,13 +1,19 @@
-
+import { Guid } from 'src/app/classes/guid';
 
 
 export class Projects {
-    public ID: string;
-    public Number: string;
-    public Name: string;
+    public ID: Guid;
     public StartDate: string;
     public EndDate: string;
+    public Name: string;
+    public Progress: number;
+    public Duration: number;
+    public Parent: string;
+    public Color: string;
+    public Type: String;
+    public Personnel: string;
     public Leader: string;
+    public Number: string;
 
     constructor() {
     }
