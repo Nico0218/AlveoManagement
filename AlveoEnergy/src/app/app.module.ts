@@ -22,7 +22,6 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { LoginComponent } from './components/login/login.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { PersonnelComponent } from './components/personnel/personnel.component';
-import { PersonnelAddComponent } from './components/personnel/personnelAdd/personnelAdd.component';
 import { PersonnelGanttComponent } from './components/personnel_gantt/personnel.gantt.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { PropertiesComponent } from './components/properties/properties.component';
@@ -47,7 +46,6 @@ import { ScannerService} from './services/scanner.service';
     InventoryComponent,
     ProjectsComponent,
     PersonnelComponent,
-    PersonnelAddComponent,
     ScannerComponent,
     OrdersComponent,
     QRCodeGenComponent,

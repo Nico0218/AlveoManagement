@@ -44,4 +44,45 @@
 
 </mat-tab>
 
+<mat-tab label="Add Personnel">
+
+  <div class="testbox">
+    <form action="/">
+      <div class="banner">
+        <h1>Add New Personnel</h1>
+      </div>
+      <div class="colums">
+        <div class="item">
+          <label for="nProjectNumber"> First Name<span>*</span></label>
+          <input style="text-align: right;" [(ngModel)]="nName" type="text" name="projectNumberInput" required/>
+        </div>
+        <div class="item">
+          <label for="nProjectName"> Last Name<span>*</span></label>
+          <input style="text-align: right;" [(ngModel)]="nSurname" type="text" name="projectNameInput" required/>
+        </div>
+        <div class="item">
+          <label for="nprojectStart">Start Date<span>*</span></label>
+          <input style="text-align: right;" [(ngModel)]="nStart" type="date" name="projectStartInput" required/>
+        </div>
+        <div class="item">
+          <label for="nProjectend">Contact Number<span>*</span></label>
+          <input style="text-align: right;" [(ngModel)]="nContactNumber" type="text" name="projectEndInput" required/>
+        </div>
+        <div class="item">
+          <label for="nProjectLeader">Job Description<span>*</span></label>
+          <input style="text-align: right;" [(ngModel)]="nJobDescription" type="text" name="projectLeaderInput" required/>
+        </div>
+        <div class="item">
+          <label for="nProjectLeader">Task Color<span>*</span></label>
+          <input style="text-align: right;" [(ngModel)]="nTaskColor" type="color" name="projecColorInput" required/>
+        </div>
+      </div>
+      <div style="text-align: center; color: green; font-size: large;" id="alertPersonnel"></div>
+      <div class="btn-block">
+        <button type="submit" (click)="CreatePersonnel(nName, nSurname, nStart, nContactNumber, nJobDescription, nTaskColor )" >Submit</button>
+      </div>
+    </form>
+  </div>
+</mat-tab>
+
 </mat-tab-group> 

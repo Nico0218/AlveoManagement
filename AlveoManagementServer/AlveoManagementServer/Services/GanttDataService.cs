@@ -67,7 +67,7 @@ namespace AlveoManagementServer.Services {
                 newTask.duration = task.Duration;
                 newTask.progress = task.Progress;
                 newTask.parent = linkedProject.id;
-                newTask.color = task.Color;
+                newTask.color = linkedProject.color;
                 newTask.gantttype = task.Type;
                 newTask.personnel = person.ID;
                 newTask.ProjectLeader = linkedProject.ProjectLeader;
@@ -95,9 +95,9 @@ namespace AlveoManagementServer.Services {
         public GanttObjWrapper CombineGanttDataPersonnel() {
             GanttObjWrapper ganttObjPersonnel = new GanttObjWrapper();
 
-            List<IParameter> parameters = new List<IParameter>();
-            parameters.Add(new Parameter() { ColumnName = "JobDescription", DataType = "System.String", Operator = DBProviderBase.Enums.ParamOperator.Equals, Value = "Electrical Assistant" });
-            List<Personnel> personnel = dataService.GetObjectData<Personnel>(parameters);
+            //List<IParameter> parameters = new List<IParameter>();
+            //parameters.Add(new Parameter() { ColumnName = "JobDescription", DataType = "System.String", Operator = DBProviderBase.Enums.ParamOperator.Equals, Value = "Electrical Assistant" });
+            List<Personnel> personnel = dataService.GetObjectData<Personnel>()/*(parameters)*/;
             List<GanttData> ganttData = GetAllGanttData();
 
             foreach (Personnel person in personnel) {

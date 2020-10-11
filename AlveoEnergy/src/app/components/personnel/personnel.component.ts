@@ -3,6 +3,7 @@ import { PersonnelService } from '../../services/personnel.service';
 import { Personnel } from '../../models/personnel/personnel';
 import { MatTableDataSource } from '@angular/material/table';
 import { map, take } from 'rxjs/operators';
+import { Guid } from 'src/app/classes/guid';
 
 @Component({
 	selector: 'personnel',
@@ -27,6 +28,29 @@ export class PersonnelComponent {
 
 	  getPersonnelRecord(row){
 		  console.log(row);
+	  }
+
+	  CreatePersonnel(firstName: string, lastName: string, startDate: string, contactNumber: string, jobDescription: string, taskColor: string){
+		var alert = document.getElementById("alertPersonnel");
+		debugger;
+		if (firstName == undefined || lastName == undefined|| startDate == undefined || contactNumber == undefined || jobDescription == undefined) {
+			alert.style.color = "red";
+			alert.innerHTML = "Please ensure all fields have been filled in correctly!";
+
+		} else {
+			var personnel = new Personnel();
+			personnel.ID = Guid.newGuid();
+			personnel.Name = firstName;
+			personnel.Surname = lastName;
+			personnel.StartDate = startDate;
+			personnel.ContactNumber = contactNumber;
+			personnel.JobDescription = jobDescription;
+			personnel.Color = taskColor;
+			this.personnelService.SavePersonnel(personnel).subscribe();	
+			alert.style.color = "green";
+			alert.innerHTML = "Personnel has been Created!";
+		}
+
 	  }
 
     ngOnInit() {

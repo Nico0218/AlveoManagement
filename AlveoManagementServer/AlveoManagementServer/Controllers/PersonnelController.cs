@@ -1,6 +1,7 @@
 ﻿using AlveoManagementServer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using AlveoManagementCommon.Classes;
 
 namespace AlveoManagementServer.Controllers
 {
@@ -22,6 +23,15 @@ namespace AlveoManagementServer.Controllers
         {
             logger.LogInformation("Getting all personnel Details");
             return new ObjectResult(personnelService.GetAllPersonnelDetails());
+        }
+
+
+        [HttpPost("SavePersonnel")]
+        public ActionResult SaveTask(Personnel personnel)
+        {
+            logger.LogInformation("adding new project to DB");
+            personnelService.SavePersonnel(personnel);
+            return new ObjectResult("true");
         }
     }
 }

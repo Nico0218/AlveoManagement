@@ -6,6 +6,7 @@ namespace AlveoManagementServer.Services.Interfaces
     public interface IPersonnelService
     {
         List<Personnel> GetAllPersonnelDetails();
+        void SavePersonnel(Personnel personnel);
 
     }
 }

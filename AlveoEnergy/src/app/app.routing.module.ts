@@ -7,7 +7,6 @@ import { InvoiceComponent } from './components/invoice/invoice.component';
 import { LoginComponent } from './components/login/login.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { PersonnelComponent } from './components/personnel/personnel.component';
-import { PersonnelAddComponent } from './components/personnel/personnelAdd/personnelAdd.component';
 import { PersonnelGanttComponent } from './components/personnel_gantt/personnel.gantt.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { QRCodeGenComponent } from './components/qr-code-generator/qr-code-gen.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
     { path: 'inventory-component', component: InventoryComponent, canActivate: [AuthGuard]  },
     { path: 'projects-component', component: ProjectsComponent, canActivate: [AuthGuard]  },
     { path: 'personnel-component', component: PersonnelComponent, canActivate: [AuthGuard]  },
-    { path: 'personnelAdd-component', component: PersonnelAddComponent, canActivate: [AuthGuard]  },
     { path: 'scanner-component', component: ScannerComponent, canActivate: [AuthGuard]  },
     { path: 'orders-component', component: OrdersComponent, canActivate: [AuthGuard]  },
     { path: 'invoice-component', component: InvoiceComponent, canActivate: [AuthGuard]  },

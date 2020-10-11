@@ -28,6 +28,10 @@ export class PersonnelService {
         );
     }
 
+    SavePersonnel(personnel:Personnel): Observable<any> {
+      return this.httpClient.post(`${this.controllerURL}/SavePersonnel`, personnel);
+    }
+
     private getPersonnelError() {
         var PersonnelData: Personnel[] = [];
         var personnel = this.buildPersonnel("Cannot Retrieve Personnel Data", "Please Check Connection", "", "", "");
@@ -36,12 +40,13 @@ export class PersonnelService {
         return PersonnelData;
       }
 
-      private buildPersonnel(idNumber: string, name: string, position: string, employementDate: string, contactNumber: string): Personnel {
+      private buildPersonnel(name: string, surname: string, jobDescription: string, startDate: string, contactNumber: string): Personnel {
         var personnel = new Personnel();
-        personnel.IDNumber = idNumber;
+        personnel.ID = new Guid();
         personnel.Name = name;
-        personnel.Position = position;
-        personnel.EmploymentDate = employementDate;
+        personnel.Surname = surname;
+        personnel.JobDescription = jobDescription;
+        personnel.StartDate = startDate;
         personnel.ContactNumber = contactNumber;
         return personnel;
       }

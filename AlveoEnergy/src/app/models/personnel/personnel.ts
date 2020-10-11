@@ -2,13 +2,13 @@
 import { Guid } from '../../classes/guid';
 
 export class Personnel {
-    public ID: number;
-    public IDNumber: string;
+    public ID: Guid;
     public Name: string;
-    public Position: string;
-    public EmploymentDate: string;
+    public Surname: string;
+    public StartDate: string;
     public ContactNumber: string;
-    public Email: string;
+    public JobDescription: string;
+    public Color: string;
 
     constructor() {
 
@@ -20,11 +20,13 @@ export class Personnel {
 
     static FromJson(jObj: any): Personnel {
         var personnel = new Personnel();
-        personnel.IDNumber = jObj.ID;
+        personnel.ID = jObj.ID;
         personnel.Name = jObj.Name;
-        personnel.Position = jObj.Position;
-        personnel.EmploymentDate = jObj.EmploymentDate;
+        personnel.Surname = jObj.Surname;
+        personnel.StartDate = jObj.StartDate;
         personnel.ContactNumber = jObj.ContactNumber;
+        personnel.JobDescription = jObj.JobDescription;
+        personnel.Color = jObj.Color;
         return personnel;
     }
 

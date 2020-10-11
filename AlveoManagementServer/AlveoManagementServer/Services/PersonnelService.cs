@@ -21,5 +21,10 @@ namespace AlveoManagementServer.Services {
             logger.LogDebug("Getting all Personnel Details");
             return dataService.GetObjectData<Personnel>();
         }
+
+        public void SavePersonnel(Personnel personnel)
+        {
+            dataService.InsertObjectData(personnel);
+        }
     }
 }
