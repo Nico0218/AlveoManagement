@@ -24,11 +24,18 @@ export class Projects {
 
     static FromJson(jObj: any): Projects {
         var project = new Projects();
-        project.Number = jObj.ID;
-        project.Name = jObj.Name;
+        project.ID = jObj.ID;
         project.StartDate = jObj.StartDate;
         project.EndDate = jObj.EndDate;
+        project.Name = jObj.Name;
+        project.Progress = jObj.Progress;
+        project.Duration = jObj.Duration;
+        project.Parent = jObj.Parent;
+        project.Color = jObj.Color;
+        project.Type = jObj.Type;
+        project.Personnel = jObj.ProPersonnelgress;
         project.Leader = jObj.Leader;
+        project.Number = jObj.Number;
         return project;
     }
 

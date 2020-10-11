@@ -2,7 +2,7 @@
 
 namespace AlveoManagementCommon.Classes
 {
-    public class Project : IProject
+    public class Task : ITask
     {
         public string ID { get; set; }
         public string Name { get; set; }

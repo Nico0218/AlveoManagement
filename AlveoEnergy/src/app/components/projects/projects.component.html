@@ -69,10 +69,6 @@
           <input style="text-align: right;" [(ngModel)]="nProjectend" type="date" name="projectEndInput" required/>
         </div>
         <div class="item">
-          <label for="nProjectEngineer">Project Engineer<span>*</span></label>
-          <input style="text-align: right;" [(ngModel)]="nProjectEngineer" type="text" name="projectEngineerInput" required/>
-        </div>
-        <div class="item">
           <label for="nProjectLeader">Project Leader<span>*</span></label>
           <input style="text-align: right;" [(ngModel)]="nProjectLeader" type="text" name="projectLeaderInput" required/>
         </div>
@@ -82,7 +78,7 @@
         </div>
       </div>
       <div class="btn-block">
-        <button type="submit" (click)="CreateProject(nProjectNumber, nProjectName, nprojectStart, nProjectend, nProjectEngineer, nProjectLeader, nGanttColor )" >Submit</button>
+        <button type="submit" (click)="CreateProject(nProjectNumber, nProjectName, nprojectStart, nProjectend, nProjectLeader, nGanttColor )" >Submit</button>
       </div>
     </form>
   </div>
@@ -99,31 +95,27 @@
       <div class="colums">
         <div class="item">
           <label for="nTaskName"> Task Name<span>*</span></label>
-          <input style="text-align: right;" id="nTaskName" type="text" name="taskNameInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nTaskName" type="text" name="taskNameInput" required/>
         </div>
         <div class="item">
           <label for="nTaskStart">Start Date<span>*</span></label>
-          <input style="text-align: right;" id="nTaskStart" type="date" name="taskStartInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nTaskStart" type="date" name="taskStartInput" required/>
         </div>
         <div class="item">
           <label for="nTaskend">End Date<span>*</span></label>
-          <input style="text-align: right;" id="nTaskend" type="date" name="taskEndInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nTaskend" type="date" name="taskEndInput" required/>
         </div>
         <div class="item">
           <label for="nResponsiblePerson">Responsible Person<span>*</span></label>
-          <input style="text-align: right;" id="nResponsiblePerson" type="text" name="responsiblePersonInput" required/>
-        </div>
-        <div class="item">
-          <label for="nProjectLeader">Project Leader<span>*</span></label>
-          <input style="text-align: right;" id="nProjectLeader" type="text" name="projectLeaderInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nResponsiblePerson" type="text" name="responsiblePersonInput" required/>
         </div>
         <div class="item">
           <label for="nLinkedProject">Project<span>*</span></label>
-          <input style="text-align: right;" id="nLinkedProject" type="text" name="linkedProjectInput" required/>
+          <input style="text-align: right;" [(ngModel)]="nLinkedProject" type="text" name="linkedProjectInput" required/>
         </div>
       </div>
       <div class="btn-block">
-        <button type="submit" >Submit</button>
+        <button type="submit" (click)="CreateTask(nTaskName, nTaskStart, nTaskend, nResponsiblePerson, nLinkedProject)" >Submit</button>
       </div>
     </form>
   </div>

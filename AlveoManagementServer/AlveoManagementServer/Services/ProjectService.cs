@@ -27,8 +27,8 @@ namespace AlveoManagementServer.Services {
                     StartDate = item.start_date,
                     Duration = item.duration,
                     EndDate = item.end_date,
-                    ProjectNumber = item.ProjectNumber,
-                    ProjectLeader = item.ProjectLeader
+                    Number = item.ProjectNumber,
+                    Leader = item.ProjectLeader
                 });
             }
             return projects;

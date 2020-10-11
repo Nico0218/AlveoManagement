@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { Item } from 'src/app/models/inventory/item';
+import { ScannerService } from "../../services/scanner.service";
 
 @Component({
 	selector: 'scanner',
@@ -12,8 +14,8 @@ export class ScannerComponent implements AfterViewInit{
 
   selectedDevice: any = null;
   qrResultString: string;
-constructor(){
-
+constructor(private scannerService: ScannerService){
+	
 }
 
 clearResult(): void {
@@ -45,6 +47,10 @@ onCodeResult(resultString: string) {
 
 InventoryScanOut(resultString: string){
   //Check item scanned and remove quantity from DB and assign to project
+  var item = new Item();
+  item.PartNumber = resultString;
+  debugger;
+  // this.scannerService.RemoveItemFromInventory(item).subscribe();
 }
 
 InventoryScanIn(resultString: string){

@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { Projects } from '../../models/projects/project';
+import { Tasks } from "../../models/task";
 import { MatTableDataSource } from '@angular/material/table';
 import { map, take } from 'rxjs/operators';
 import { Guid } from 'src/app/classes/guid';
 import { GanttService } from "../../services/gantt.service";
+import { discardPeriodicTasks } from '@angular/core/testing';
+import { stringify } from 'querystring';
 
 
 @Component({
@@ -27,8 +30,8 @@ export class ProjectsComponent {
 
 		const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
 		  
-		var Project = new Projects;
-		Project.ID = new Guid;
+		var Project = new Projects();
+		Project.ID = Guid.newGuid();
 		Project.StartDate = projectStart;
 		Project.EndDate = projectEnd;
 		Project.Number = projectNumber;
@@ -40,7 +43,28 @@ export class ProjectsComponent {
 		Project.Type = "project";
 		Project.Personnel = "N/A"; 
 		Project.Leader = projectLeader;
-		this.projectService.WriteProjectToDB(Project);
+		this.projectService.SaveProject(Project).subscribe();
+	}
+
+	CreateTask(taskName: string, taskStart: string, taskEnd: string, responsiblePerson: string, taskProject: string){
+
+		const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
+
+		var Task = new Tasks();
+		Task.ID = Guid.newGuid();
+		Task.StartDate = taskStart;
+		Task.EndDate = taskEnd;
+		Task.Number = "";
+		Task.Name = taskName;
+		Task.Progress = 0.0;
+		Task.Duration = diffDays(new Date(taskStart), new Date(taskEnd));
+		Task.Parent = taskProject;
+		Task.Color = "";
+		Task.Type = "task";
+		Task.Personnel = responsiblePerson; 
+		Task.Leader = "";
+		this.projectService.SaveTask(Task).subscribe();
+
 	}
 
 	applyProjectFilter(event: Event) {

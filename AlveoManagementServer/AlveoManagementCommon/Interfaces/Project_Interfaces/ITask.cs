@@ -1,11 +1,7 @@
-﻿using AlveoManagementCommon.Interfaces;
-
-namespace AlveoManagementCommon.Classes
+﻿namespace AlveoManagementCommon.Interfaces
 {
-    public class Project : IProject
+    public interface ITask : IDataModelBase
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string Number { get; set; }

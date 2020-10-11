@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { GanttObjWrapper } from '../models/gantt/gantt-data';
-import { Task } from '../models/task';
+import { Tasks } from '../models/task';
 import { Link } from '../models/link';
 import { map, catchError } from 'rxjs/operators';
 import { Environment } from '../classes/environment';
@@ -17,10 +17,10 @@ export class GanttService {
       return `${Environment.apiUrl}/GanttData`;
     }
 
-    public GetAllGanttData(): Observable<Task[]> {
+    public GetAllGanttData(): Observable<Tasks[]> {
       return this.httpClient.get(`${this.controllerURL}/GetAllGanttData`)
         .pipe(
-          map((ii: Task[]) => {
+          map((ii: Tasks[]) => {
             return ii;
           }),
         );

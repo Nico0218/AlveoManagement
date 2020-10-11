@@ -20,15 +20,15 @@ export class QRCodeGenComponent{
         this.width = 256;
     }
 
-    public GeneratePartQR(qrPartNumber: string, qrPartName: string, qrPartDescription: string){
-        this.qrdata = "Part Number :" + qrPartNumber + "," + "Part Name :" + qrPartName + "," + "Part Description : " + qrPartDescription ;
+    public GeneratePartQR(qrPartNumber: string){
+        this.qrdata = "Part Number :" + qrPartNumber;
     }
 
-    public GeneratePersonnelQR(qrPersonName: string, qrPersonSurname:string, qrPersonContact:string){
-        this.qrdata = "First Name " + qrPersonName + "," + " Last Name " + qrPersonSurname + "," + " Contact Number " + qrPersonContact ;
+    public GeneratePersonnelQR(qrPersonName: string){
+        this.qrdata = "First Name " + qrPersonName;
     }
 
-    public GenerateProjectQR(qrProjectNumber: string, qrProjectName:string, qrProjectLead:string, qrProjectLocation:string, qrProjectStart:string, qrProjectDeadline:string){
-        this.qrdata = "Project Number " + qrProjectNumber + "," + " Project Name " + qrProjectName + "," + " Leader " + qrProjectLead + "," + " Location " + qrProjectLocation + "," + "Start Date " + qrProjectStart + "," + " Deadline " + qrProjectDeadline;
+    public GenerateProjectQR(qrProjectNumber: string){
+        this.qrdata = "Project Number " + qrProjectNumber;
     }
 }

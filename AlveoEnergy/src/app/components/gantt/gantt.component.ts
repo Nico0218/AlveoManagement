@@ -33,6 +33,7 @@ export class GanttComponent implements OnInit, AfterViewInit {
 				map(ganttObjWrapper => {
 					gantt.gantt.clearAll(); 
 					gantt.gantt.parse(ganttObjWrapper);
+					gantt.gantt.showDate(new Date());
 				})
 			)
 			.subscribe()

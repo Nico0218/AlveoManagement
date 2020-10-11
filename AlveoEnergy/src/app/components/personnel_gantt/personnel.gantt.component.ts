@@ -33,6 +33,7 @@ export class PersonnelGanttComponent implements OnInit, AfterViewInit {
 				map(ganttObjPersonnel => {
 					persGantt.gantt.clearAll();
 					persGantt.gantt.parse(ganttObjPersonnel);
+					persGantt.gantt.showDate(new Date());
 				})
 			)
 			.subscribe()

@@ -37,6 +37,7 @@ import { InventoryService } from './services/inventory.service';
 import { PersonnelService } from './services/personnel.service';
 import { ProjectService } from './services/project.service';
 import { QuoteService } from './services/quote.service';
+import { ScannerService} from './services/scanner.service';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { QuoteService } from './services/quote.service';
     GanttService,
     PersonnelService,
     CustomerService,
+    ScannerService,
     QuoteService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

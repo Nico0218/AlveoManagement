@@ -13,10 +13,11 @@ namespace AlveoManagementServer.Controllers
         private readonly IProjectService projectService;
         private readonly IGanttDataService ganttDataService;
 
-        public ProjectController(ILogger<ProjectController> logger, IProjectService projectService)
+        public ProjectController(ILogger<ProjectController> logger, IProjectService projectService, IGanttDataService ganttDataService)
         {
             this.logger = logger;
             this.projectService = projectService;
+            this.ganttDataService = ganttDataService;
         }
 
         [HttpGet("GetAllProjects")]
@@ -26,10 +27,20 @@ namespace AlveoManagementServer.Controllers
             return new ObjectResult(projectService.GetAllProjects());
         }
 
-        [HttpPost("WriteProjectToDB")]
-        public ActionResult WriteProjectToDb(newProject project)
+        [HttpPost("SaveProject")]
+        public ActionResult SaveProject(Project project)
         {
             logger.LogInformation("adding new project to DB");
+            ganttDataService.SaveProject(project);
+            return new ObjectResult("true");
+        }
+
+        [HttpPost("SaveTask")]
+        public ActionResult SaveTask(Task task)
+        {
+            logger.LogInformation("adding new project to DB");
+            ganttDataService.SaveTask(task);
+            return new ObjectResult("true");
         }
 
     }

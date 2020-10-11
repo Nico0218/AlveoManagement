@@ -55,6 +55,8 @@ namespace AlveoManagementServer
             services.AddScoped<IQuoteService, QuoteService>();
             services.AddScoped<IProjectService, ProjectService>();
 
+            services.AddMvc().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNameCaseInsensitive = true);
+
             services.AddControllers()
                 .AddJsonOptions(options =>
                 {

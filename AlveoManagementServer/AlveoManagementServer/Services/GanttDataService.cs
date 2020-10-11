@@ -33,6 +33,52 @@ namespace AlveoManagementServer.Services {
             return ganttObjWrapper;
         }
 
+        public void SaveProject(Project project)
+        {
+            GanttData newProject = new GanttData();
+            newProject.id = project.ID;
+            newProject.text = project.Name;
+            newProject.start_date = project.StartDate;
+            newProject.end_date = project.EndDate;
+            newProject.duration = project.Duration;
+            newProject.progress = project.Progress;
+            newProject.parent = project.Parent;
+            newProject.color = project.Color;
+            newProject.gantttype = project.Type;
+            newProject.personnel = project.Personnel;
+            newProject.ProjectLeader = project.Leader;
+            newProject.ProjectNumber = project.Number;
+            dataService.InsertObjectData(newProject);
+        }
+
+        public void SaveTask(Task task)
+        {
+            List<GanttData> currentData = GetAllGanttData();
+            List<Personnel> personnel = dataService.GetObjectData<Personnel>();
+            var person = personnel.Find(item => item.Name == task.Personnel);
+            var linkedProject = currentData.Find(item => item.text == task.Parent);
+                if (linkedProject.text != "")
+            {
+                GanttData newTask = new GanttData();
+                newTask.id = task.ID;
+                newTask.text = task.Name;
+                newTask.start_date = task.StartDate;
+                newTask.end_date = task.EndDate;
+                newTask.duration = task.Duration;
+                newTask.progress = task.Progress;
+                newTask.parent = linkedProject.id;
+                newTask.color = task.Color;
+                newTask.gantttype = task.Type;
+                newTask.personnel = person.ID;
+                newTask.ProjectLeader = linkedProject.ProjectLeader;
+                newTask.ProjectNumber = linkedProject.ProjectNumber;
+                dataService.InsertObjectData(newTask);
+            }
+
+
+
+        }
+
         private GanttData PersonToGanttProject(Personnel personnel, string startDate, string endDate) {
             return new GanttData() {
                 id = personnel.ID,
@@ -50,7 +96,7 @@ namespace AlveoManagementServer.Services {
             GanttObjWrapper ganttObjPersonnel = new GanttObjWrapper();
 
             List<IParameter> parameters = new List<IParameter>();
-            parameters.Add(new Parameter() { ColumnName = "JobDescription", DataType = "System.String", Operator = DBProviderBase.Enums.ParamOperator.Equals, Value = "VloerBoy" });
+            parameters.Add(new Parameter() { ColumnName = "JobDescription", DataType = "System.String", Operator = DBProviderBase.Enums.ParamOperator.Equals, Value = "Electrical Assistant" });
             List<Personnel> personnel = dataService.GetObjectData<Personnel>(parameters);
             List<GanttData> ganttData = GetAllGanttData();
 
