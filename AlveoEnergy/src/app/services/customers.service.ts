@@ -25,4 +25,8 @@ export class CustomerService {
           );
           
       }
+
+      SaveCustomer(customer:Customer): Observable<any> {
+        return this.httpClient.post(`${this.controllerURL}/SaveCustomer`, customer)
+      }
 }

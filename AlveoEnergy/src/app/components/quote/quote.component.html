@@ -491,4 +491,50 @@
         </div>
 
     </mat-tab>
+
+    <mat-tab label="Add Customer">
+
+        <div class="testbox">
+            <form action="/">
+              <div class="banner">
+                <h1>Add New Customer</h1>
+              </div>
+              <div class="colums">
+                <div class="item">
+                  <label for="nCustomerName"> Customer Name<span>*</span></label>
+                  <input style="text-align: right;" [(ngModel)]="nCustomerName" type="text" name="customerNameInput" required/>
+                </div>
+                <div class="item">
+                  <label for="nCustomerAddressLine1"> Address Line 1<span>*</span></label>
+                  <input style="text-align: right;" [(ngModel)]="nCustomerAddressLine1" type="text" name="customerAddressLine1Input" required/>
+                </div>
+                <div class="item">
+                  <label for="nCustomerAddressLine2">Address Line 2<span>*</span></label>
+                  <input style="text-align: right;" [(ngModel)]="nCustomerAddressLine2" type="text" name="customerAddressLine2Input" required/>
+                </div>
+                <div class="item">
+                  <label for="nContactPerson">Contact Person<span>*</span></label>
+                  <input style="text-align: right;" [(ngModel)]="nContactPerson" type="text" name="contactPersonInput" required/>
+                </div>
+                <div class="item">
+                  <label for="nContactEmail">Contact Email<span>*</span></label>
+                  <input style="text-align: right;" [(ngModel)]="nContactEmail" type="text" name="contactEmailrInput" required/>
+                </div>
+                <div class="item">
+                  <label for="nContactNumber">Contact Number<span>*</span></label>
+                  <input style="text-align: right;" [(ngModel)]="nContactNumber" type="text" name="contactNumberInput" required/>
+                </div>
+                <div class="item">
+                    <label for="nCustomerID">Customer ID<span>*</span></label>
+                    <input style="text-align: right;" [(ngModel)]="nCustomerID" type="text" name="customerIDInput" required/>
+                  </div>
+              </div>
+              <div style="text-align: center; color: green; font-size: large;" id="alertCustomer"></div>
+              <div class="btn-block">
+                <button type="submit" (click)="CreateCustomer(nCustomerName, nCustomerAddressLine1, nCustomerAddressLine2, nContactPerson, nContactEmail, nContactNumber,  nCustomerID)" >Submit</button>
+              </div>
+            </form>
+          </div>
+
+    </mat-tab>
 </mat-tab-group>

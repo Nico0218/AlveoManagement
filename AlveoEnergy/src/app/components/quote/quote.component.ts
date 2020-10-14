@@ -1,3 +1,4 @@
+import { Quote } from "../../models/quote/quote";
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import html2canvas from 'html2canvas';
@@ -7,6 +8,8 @@ import { InventoryItems } from 'src/app/models/inventory/inventory-items';
 import { CustomerService } from '../../services/customers.service';
 import { InventoryService } from '../../services/inventory.service';
 import { QuoteService } from '../../services/quote.service';
+import { Guid } from '../../classes/guid';
+import { Customer } from '../../models/customers/customers';
 
 @Component({
 	selector: 'quote',
@@ -60,6 +63,8 @@ export class QuoteComponent implements OnInit {
 	}
 
 	public convertToPDF() {
+
+
 		window.scroll(0, 0);
 		let pdf = new jspdf.jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
 		debugger;
@@ -87,6 +92,28 @@ export class QuoteComponent implements OnInit {
 			x.style.display = "none";
 		}
 	}
+
+	CreateCustomer(customerName: string, addressLine1: string, addressLine2: string, contactPerson: string, contactEmail: string, contactNumber: string, customerID: string){
+		var alert = document.getElementById("alertCustomer");
+
+		if (customerName == "" || addressLine1 == "" || addressLine2 == "" || contactPerson == "" || contactEmail == "" || contactNumber == "" || customerID == "") {
+			alert.style.color = "red";
+			alert.innerHTML = "Please ensure all fields are filled in!";
+
+		} else {
+			debugger;
+			var customer = new Customer();
+			customer.ID = Guid.newGuid();
+			customer.AddressLine1 = addressLine1;
+			customer.AddressLine2 = addressLine2;
+			customer.ContactPerson = contactPerson;
+			customer.Email = contactEmail;
+			customer.ContactNumber = contactNumber;
+			customer.CustomerID = customerID;
+
+			this.customerService.SaveCustomer(customer).subscribe()
+		}
+	} 
 
 	public setNewUser(id: any) {
 		console.log(id);

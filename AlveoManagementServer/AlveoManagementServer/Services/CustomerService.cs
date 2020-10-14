@@ -22,6 +22,11 @@ namespace AlveoManagementServer.Services
             logger.LogDebug("Getting all Customer information");
             return dataService.GetObjectData<Customer>();
         }
+
+        public void SaveCustomer(Customer customer)
+        {
+            dataService.InsertObjectData(customer);
+        }
         
     }
 }

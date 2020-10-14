@@ -6,6 +6,7 @@ namespace AlveoManagementServer.Services.Interfaces
     public interface ICustomerService
     {
         List<Customer> GetAllCustomerData();
+        void SaveCustomer(Customer customer);
 
     }
 }
