@@ -389,11 +389,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj",
+      "projectUniqueName": "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj",
       "projectName": "SQLiteProvider",
-      "projectPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj",
+      "projectPath": "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\SQLiteProvider.csproj",
       "packagesPath": "C:\\Users\\Tspan\\.nuget\\packages\\",
-      "outputPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\obj\\",
+      "outputPath": "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\SQLiteProvider\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tspan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -409,8 +409,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {
-              "projectPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj"
+            "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {
+              "projectPath": "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj"
             }
           }
         }
@@ -456,7 +456,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

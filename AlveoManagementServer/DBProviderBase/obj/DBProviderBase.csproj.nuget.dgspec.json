@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {}
+    "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {}
   },
   "projects": {
-    "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {
+    "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj",
+        "projectUniqueName": "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj",
         "projectName": "DBProviderBase",
-        "projectPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj",
+        "projectPath": "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\DBProviderBase.csproj",
         "packagesPath": "C:\\Users\\Tspan\\.nuget\\packages\\",
-        "outputPath": "F:\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\obj\\",
+        "outputPath": "C:\\Users\\Tspan\\Documents\\git\\AlveoManagement\\AlveoManagementServer\\DBProviderBase\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tspan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

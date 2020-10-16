@@ -2,15 +2,14 @@
 {
     public interface ICustomer: IDataModelBase
     {
-        public string addrLine1 { get; set; }
-        public string addrLine2 { get; set; }
-        public string contact { get; set; }
-        public string email { get; set; }
-        public string orderNumber { get; set; }
-        public string projectName { get; set; }
-        public string projectNumber { get; set; }
-        public string contactNumber { get; set; }
-        public string taxNumber { get; set; }
-        public string customerID { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string ContactPerson { get; set; }
+        public string Email { get; set; }
+        public string OrderNumber { get; set; }
+        public string ProjectName { get; set; }
+        public string ProjectNumber { get; set; }
+        public string ContactNumber { get; set; }
+        public string CustomerID { get; set; }
     }
 }

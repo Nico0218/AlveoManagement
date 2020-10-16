@@ -47,5 +47,13 @@ namespace AlveoManagementServer.Services {
             test.Name = "Test";
             dataService.UpdateObjectData(test);
         }
+
+        public void RemoveItemFromStock(Item item)
+        {
+            List<Item> currentItems = dataService.GetObjectData<Item>();
+            var updateItem = currentItems.Find(ii => ii.PartNumber == item.PartNumber);
+            updateItem.Instock = updateItem.Instock - 1;
+            dataService.UpdateObjectData(updateItem);
+        }
     }
 }

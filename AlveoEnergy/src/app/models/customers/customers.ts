@@ -11,6 +11,5 @@ export class Customer {
     ProjectNumber: string;
     ProjectName : string;
     ContactNumber : string;
-    TaxNumber : string;
     CustomerID: string;
   }

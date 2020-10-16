@@ -15,3 +15,12 @@ F:\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp
 F:\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp3.1\DBProviderBase.AssemblyInfo.cs
 F:\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp3.1\DBProviderBase.dll
 F:\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp3.1\DBProviderBase.pdb
+C:\Users\Tspan\Documents\git\AlveoManagement\AlveoManagementServer\DBProviderBase\bin\Debug\netcoreapp3.1\DBProviderBase.deps.json
+C:\Users\Tspan\Documents\git\AlveoManagement\AlveoManagementServer\DBProviderBase\bin\Debug\netcoreapp3.1\DBProviderBase.dll
+C:\Users\Tspan\Documents\git\AlveoManagement\AlveoManagementServer\DBProviderBase\bin\Debug\netcoreapp3.1\DBProviderBase.pdb
+C:\Users\Tspan\Documents\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp3.1\DBProviderBase.csprojAssemblyReference.cache
+C:\Users\Tspan\Documents\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp3.1\DBProviderBase.AssemblyInfoInputs.cache
+C:\Users\Tspan\Documents\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp3.1\DBProviderBase.AssemblyInfo.cs
+C:\Users\Tspan\Documents\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp3.1\DBProviderBase.csproj.CoreCompileInputs.cache
+C:\Users\Tspan\Documents\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp3.1\DBProviderBase.dll
+C:\Users\Tspan\Documents\git\AlveoManagement\AlveoManagementServer\DBProviderBase\obj\Debug\netcoreapp3.1\DBProviderBase.pdb

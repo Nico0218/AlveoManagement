@@ -1,4 +1,5 @@
-﻿using AlveoManagementCommon.Enums;
+﻿using AlveoManagementCommon.Classes;
+using AlveoManagementCommon.Enums;
 using AlveoManagementServer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -29,6 +30,14 @@ namespace AlveoManagementServer.Controllers
         {
             logger.LogInformation("Getting all Automation");
             return new ObjectResult(inventoryService.GetInventoryItemsByCategory(inventoryItemType));
+        }
+
+        [HttpPost("RemoveItemFromStock")]
+        public ActionResult SaveProject(Item item)
+        {
+            logger.LogInformation("Removing Item From Stock");
+            inventoryService.RemoveItemFromStock(item);
+            return new ObjectResult("true");
         }
     }
 }

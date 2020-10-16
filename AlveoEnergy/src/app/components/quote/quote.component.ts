@@ -104,6 +104,7 @@ export class QuoteComponent implements OnInit {
 			debugger;
 			var customer = new Customer();
 			customer.ID = Guid.newGuid();
+			customer.Name = customerName;
 			customer.AddressLine1 = addressLine1;
 			customer.AddressLine2 = addressLine2;
 			customer.ContactPerson = contactPerson;
@@ -112,6 +113,8 @@ export class QuoteComponent implements OnInit {
 			customer.CustomerID = customerID;
 
 			this.customerService.SaveCustomer(customer).subscribe()
+			alert.style.color = "green";
+			alert.innerHTML = "Customer Saved Successfully!";
 		}
 	} 
 
