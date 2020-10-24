@@ -28,3 +28,7 @@ AlveoEnergy/debug.log
 AlveoManagementServer/SQLiteProvider/bin/
 
 AlveoManagementServer/SQLiteProvider/obj/
+
+AlveoManagementServer/DBProviderBase/obj/
+
+AlveoManagementServer/DBProviderBase/bin/
