@@ -65,11 +65,8 @@ export class QuoteComponent implements OnInit {
 	}
 
 	public convertToPDF() {
-
-
 		window.scroll(0, 0);
 		let pdf = new jspdf.jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-		debugger;
 		var data1 = document.getElementById('quote');
 		var data2 = document.getElementById('terms')
 		html2canvas(data1).then(canvas => {
@@ -101,9 +98,7 @@ export class QuoteComponent implements OnInit {
 		if (customerName == "" || addressLine1 == "" || addressLine2 == "" || contactPerson == "" || contactEmail == "" || contactNumber == "" || customerID == "") {
 			alert.style.color = "red";
 			alert.innerHTML = "Please ensure all fields are filled in!";
-
 		} else {
-			debugger;
 			var customer = new Customer();
 			customer.ID = Guid.newGuid();
 			customer.Name = customerName;

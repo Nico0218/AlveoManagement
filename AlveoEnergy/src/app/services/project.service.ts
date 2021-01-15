@@ -11,53 +11,55 @@ import { dataProcessor } from 'gantt';
 @Injectable()
 export class ProjectService {
   constructor(private httpClient: HttpClient) {
-    
+
   }
 
   public get controllerURL(): string {
     return `${Environment.apiUrl}/Project`;
   }
 
-    public GetAllProjects(): Observable<any[]> {
-      return this.httpClient.get(`${this.controllerURL}/GetAllProjects`)
-        .pipe(
-          map((ii: Projects[]) => {
-            return ii;
-          }),
-          catchError(ii => {
-            return of(this.getProjectError());
-          })
-        );
-    }
+  public GetAllProjects(): Observable<any[]> {
+    return this.httpClient.get(`${this.controllerURL}/GetAllProjects`)
+      .pipe(
+        map((ii: Projects[]) => {
+          return ii;
+        }),
+        catchError(ii => {
+          return of(this.getProjectError());
+        })
+      );
+  }
 
-    SaveProject(project:Projects): Observable<any> {
-      return this.httpClient.post(`${this.controllerURL}/SaveProject`, project)
-    }
+  SaveProject(project: Projects): Observable<any> {
+    return this.httpClient.post(`${this.controllerURL}/SaveProject`, project)
+  }
 
-    UpdateProject(project:Projects): Observable<any> {
-      debugger;
-      return this.httpClient.post(`${this.controllerURL}/UpdateProject`, project)
-    }
+  DeleteProject(project: Projects): Observable<any> {
+    return this.httpClient.post(`${this.controllerURL}/DeleteProject`, project)
+  }
 
-    SaveTask(task:Tasks): Observable<any> {
-      return this.httpClient.post(`${this.controllerURL}/SaveTask`, task)
-    }
+  UpdateProject(project: Projects): Observable<any> {
+    return this.httpClient.post(`${this.controllerURL}/UpdateProject`, project)
+  }
 
-    private getProjectError() {
-      var ProjectData: Projects[] = [];
-      var project = this.buildProject("Cannot Retrieve Project Data", "Please Check Connection", "", "");
-      ProjectData.push(project);
-  
-      return ProjectData;
-    }
+  SaveTask(task: Tasks): Observable<any> {
+    return this.httpClient.post(`${this.controllerURL}/SaveTask`, task)
+  }
 
+  private getProjectError() {
+    var ProjectData: Projects[] = [];
+    var project = this.buildProject("Cannot Retrieve Project Data", "Please Check Connection", "", "");
+    ProjectData.push(project);
 
-      private buildProject(name: string, startDate: string, endDate: string, leader: string): Projects {
-        var project = new Projects();
-        project.Name = name;
-        project.StartDate = startDate;
-        project.EndDate = endDate;
-        project.Leader = leader;
-        return project;
-      }
+    return ProjectData;
+  }
+
+  private buildProject(name: string, startDate: string, endDate: string, leader: string): Projects {
+    var project = new Projects();
+    project.Name = name;
+    project.StartDate = startDate;
+    project.EndDate = endDate;
+    project.Leader = leader;
+    return project;
+  }
 }

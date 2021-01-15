@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Console } from 'console';
 import 'dhtmlx-gantt';
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { Projects } from 'src/app/models/projects/project';
 import { ProjectService } from 'src/app/services/project.service';
 import { GanttService } from '../../services/gantt.service';
@@ -34,7 +34,7 @@ export class GanttComponent implements OnInit, AfterViewInit {
 		this.ganttService.GetGanttDataWrapper()
 			.pipe(
 				map(ganttObjWrapper => {
-					gantt.gantt.clearAll(); 
+					gantt.gantt.clearAll();
 					gantt.gantt.parse(ganttObjWrapper);
 					gantt.gantt.showDate(new Date());
 				})
@@ -45,26 +45,25 @@ export class GanttComponent implements OnInit, AfterViewInit {
 
 	}
 
-
-
-
-
 	ngOnInit() {
 		gantt.gantt.attachEvent("onTaskSelected", function (id) {
-			document.getElementById("taskNameDisplay").innerHTML = "Task Name : " + gantt.gantt.getTaskByIndex(id - 1).text;
-			document.getElementById("taskStartDateDisplay").innerHTML = "Task Start Date : " + gantt.gantt.getTaskByIndex(id - 1).start_date;
-			document.getElementById("taskEndDisplay").innerHTML = "Task End Date : " + gantt.gantt.getTaskByIndex(id - 1).end_date;
-			document.getElementById("taskDurationDisplay").innerHTML = "Task Duration : " + gantt.gantt.getTaskByIndex(id - 1).duration + " day/s";
+			//gantt.gantt.getTaskByIndex(id - 1)
+			const task = gantt.gantt.getTask(id);
+			document.getElementById("taskNameDisplay").innerHTML = "Task Name : " + task.text;
+			document.getElementById("taskStartDateDisplay").innerHTML = "Task Start Date : " + task.start_date;
+			document.getElementById("taskEndDisplay").innerHTML = "Task End Date : " + task.end_date;
+			document.getElementById("taskDurationDisplay").innerHTML = "Task Duration : " + task.duration + " day/s";
 			// gantt.gantt.getTaskByIndex(id - 1).color = document.getElementById("taskColor").value;
 			gantt.gantt.refreshData();
 		});
 
-		gantt.gantt.attachEvent("onAfterTaskUpdate", function(id, item){
+		gantt.gantt.attachEvent("onAfterTaskUpdate", (id, item) => {
 			const diffDays = (date, otherDate) => ((otherDate - date) / (1000 * 60 * 60 * 24));
 
 			var Project = new Projects();
-			Project.StartDate = item.start_date;
-			Project.EndDate = item.end_date;
+			Project.ID = item.id;
+			Project.StartDate = this.CleanupDate(item.start_date);
+			Project.EndDate = this.CleanupDate(item.end_date);
 			Project.Number = item.ProjectNumber;
 			Project.Name = item.text;
 			Project.Progress = 0.0;
@@ -72,13 +71,13 @@ export class GanttComponent implements OnInit, AfterViewInit {
 			Project.Parent = item.Parent;
 			Project.Color = item.color;
 			Project.Type = item.Type;
-			Project.Personnel = "N/A"; 
+			Project.Personnel = "N/A";
 			Project.Leader = item.ProjectLeader;
 
-			this.projectService.UpdateProject(Project).subscribe();	
+			this.projectService.UpdateProject(Project).pipe(first()).subscribe();
 		});
 
-		gantt.gantt.attachEvent("onAfterTaskDelete", function(id,item){
+		gantt.gantt.attachEvent("onAfterTaskDelete", function (id, item) {
 			console.log("Task Deleted");
 		});
 	}
@@ -116,5 +115,13 @@ export class GanttComponent implements OnInit, AfterViewInit {
 				}
 			]
 		}
+	}
+
+	//Hacks to handle dumb javascript dates
+	private CleanupDate(rawDate: Date): string {
+		if (rawDate) {
+			return rawDate.toLocaleString("en-za").substring(0, 10);
+		}
+		return rawDate.toLocaleString("en-za").substring(0, 10);
 	}
 }

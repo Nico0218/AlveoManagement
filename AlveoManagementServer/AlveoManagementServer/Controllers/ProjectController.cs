@@ -35,6 +35,13 @@ namespace AlveoManagementServer.Controllers
             return new ObjectResult("true");
         }
 
+        [HttpPost("DeleteProject")]
+        public ActionResult DeleteProject(Project project) {
+            logger.LogInformation("Updating project");
+            ganttDataService.DeleteProject(project);
+            return new ObjectResult("true");
+        }
+
         [HttpPost("UpdateProject")]
         public ActionResult UpdateProject(Project project)
         {

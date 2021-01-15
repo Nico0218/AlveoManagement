@@ -33,59 +33,26 @@ namespace AlveoManagementServer.Services {
             return ganttObjWrapper;
         }
 
-        public void SaveProject(Project project)
-        {
-            GanttData newProject = new GanttData();
-            newProject.id = project.ID;
-            newProject.text = project.Name;
-            newProject.start_date = project.StartDate;
-            newProject.end_date = project.EndDate;
-            newProject.duration = project.Duration;
-            newProject.progress = project.Progress;
-            newProject.parent = project.Parent;
-            newProject.color = project.Color;
-            newProject.gantttype = project.Type;
-            newProject.personnel = project.Personnel;
-            newProject.ProjectLeader = project.Leader;
-            newProject.ProjectNumber = project.Number;
-            dataService.InsertObjectData(newProject);
+        public void SaveProject(Project project) {
+            dataService.InsertObjectData((GanttData)project);
         }
 
-        public void DeleteProject(Project project)
-        {
-            
+        public void DeleteProject(Project project) {
+            logger.LogDebug("removing project");
+            dataService.DeleteObjectData((GanttData)project);
         }
 
-        public void UpdateProject(Project project)
-        {
-
-            logger.LogDebug("removing item from stock");
-            List<Project> currentProjects = dataService.GetObjectData<Project>();
-            var updateItem = currentProjects.Find(ii => ii.Number == project.Number);
-            updateItem.ID = project.ID;
-            updateItem.Name = project.Name;
-            updateItem.StartDate = project.StartDate;
-            updateItem.EndDate = project.EndDate;
-            updateItem.Duration = project.Duration;
-            updateItem.Progress = project.Progress;
-            updateItem.Parent = project.Parent;
-            updateItem.Color = project.Color;
-            updateItem.Type = project.Type;
-            updateItem.Personnel = project.Personnel;
-            updateItem.Leader = project.Leader;
-            updateItem.Number = project.Number;
-            dataService.UpdateObjectData(updateItem);
-
+        public void UpdateProject(Project project) {
+            logger.LogDebug("updating project");
+            dataService.UpdateObjectData((GanttData)project);
         }
 
-        public void SaveTask(Task task)
-        {
+        public void SaveTask(Task task) {
             List<GanttData> currentData = GetAllGanttData();
             List<Personnel> personnel = dataService.GetObjectData<Personnel>();
             var person = personnel.Find(item => item.Name == task.Personnel);
             var linkedProject = currentData.Find(item => item.text == task.Parent);
-                if (linkedProject.text != "")
-            {
+            if (linkedProject.text != "") {
                 GanttData newTask = new GanttData();
                 newTask.id = task.ID;
                 newTask.text = task.Name;
@@ -101,9 +68,6 @@ namespace AlveoManagementServer.Services {
                 newTask.ProjectNumber = linkedProject.ProjectNumber;
                 dataService.InsertObjectData(newTask);
             }
-
-
-
         }
 
         private GanttData PersonToGanttProject(Personnel personnel, string startDate, string endDate) {
@@ -132,15 +96,16 @@ namespace AlveoManagementServer.Services {
                 tasks.Sort((firstDate, secondDate) => DateTime.Parse(firstDate.end_date).CompareTo(DateTime.Parse(secondDate.end_date)));
                 string endDate = tasks.FirstOrDefault().end_date;
                 tasks.Sort((firstDate, secondDate) => DateTime.Parse(firstDate.start_date).CompareTo(DateTime.Parse(secondDate.start_date)));
-                string startDate = tasks.FirstOrDefault().start_date;                
+                string startDate = tasks.FirstOrDefault().start_date;
                 ganttObjPersonnel.data.Add(PersonToGanttProject(person, startDate, endDate));
                 foreach (GanttData task in tasks) {
                     task.parent = person.ID;
                     task.color = person.Color;
                     ganttObjPersonnel.data.Add(task);
-                }                
+                }
             }
             return ganttObjPersonnel;
         }
+
     }
 };

@@ -32,7 +32,7 @@ export class PersonnelComponent {
 
 	  CreatePersonnel(firstName: string, lastName: string, startDate: string, contactNumber: string, jobDescription: string, taskColor: string){
 		var alert = document.getElementById("alertPersonnel");
-		debugger;
+		
 		if (firstName == undefined || lastName == undefined|| startDate == undefined || contactNumber == undefined || jobDescription == undefined) {
 			alert.style.color = "red";
 			alert.innerHTML = "Please ensure all fields have been filled in correctly!";
