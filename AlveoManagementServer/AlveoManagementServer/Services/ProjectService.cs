@@ -24,6 +24,7 @@ namespace AlveoManagementServer.Services {
             foreach (var item in ganttData) {
                 projects.Add(new Project() { 
                     ID = item.id.ToString(),
+                    Name = item.text,
                     StartDate = item.start_date,
                     Duration = item.duration,
                     EndDate = item.end_date,

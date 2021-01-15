@@ -15,6 +15,10 @@ namespace AlveoManagementServer.Services.Interfaces
 
         void SaveProject(Project project);
 
+        void DeleteProject(Project project);
+
+        void UpdateProject(Project project);
+
         void SaveTask(Task task);
     }
 }

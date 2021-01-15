@@ -48,9 +48,9 @@
     <mat-tab label="Create New Quote">
         <div style="text-align: center; border: darkolivegreen 1px solid; margin-top: 10px;">
             <h2>Select Customer:</h2>
-            <select *ngIf="customers" #selectElem (change)="setNewUser(selectElem.value)">
-                <option *ngFor="let customer of customers" [value]="customer.id">
-                    {{customer.name}}
+            <select *ngIf="CustomerList" #selectElem (change)="setNewUser(selectElem.value)">
+                <option *ngFor="let customer of CustomerList" [value]="customer.id">
+                    {{CustomerList.name}}
                 </option>
             </select>
             <h5> Enter Customer Order Number:</h5>

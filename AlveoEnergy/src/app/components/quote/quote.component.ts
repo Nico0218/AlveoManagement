@@ -18,12 +18,14 @@ import { Customer } from '../../models/customers/customers';
 })
 export class QuoteComponent implements OnInit {
 	QUOTE_DATA: any;
+	Customer_Data: any;
 
 	constructor(private customerService: CustomerService, private inventoryService: InventoryService, private quoteService: QuoteService) {
 
 	}
 
 	quoteList = new MatTableDataSource();
+	CustomerList = new MatTableDataSource();
 	displayedQuoteColumnsList: string[] = ['quote', 'project', 'valid', 'attention', 'status'];
 
 	public preparedBy = "";
@@ -149,7 +151,8 @@ export class QuoteComponent implements OnInit {
 		this.customerService.GetAllCustomerData()
 			.pipe(
 				map(customer => {
-					this.customers = customer;
+					this.Customer_Data = customer;
+					this.CustomerList.data = this.Customer_Data;
 				}),
 				take(1)
 			)

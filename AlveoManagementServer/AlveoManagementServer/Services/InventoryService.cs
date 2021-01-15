@@ -42,6 +42,7 @@ namespace AlveoManagementServer.Services {
 
         //Just some example code
         public void AddItem() {
+            logger.LogDebug("Adding Item");
             Item test = new Item();
             dataService.InsertObjectData(test);
             test.Name = "Test";
@@ -50,6 +51,7 @@ namespace AlveoManagementServer.Services {
 
         public void RemoveItemFromStock(Item item)
         {
+            logger.LogDebug("removing item from stock");
             List<Item> currentItems = dataService.GetObjectData<Item>();
             var updateItem = currentItems.Find(ii => ii.PartNumber == item.PartNumber);
             updateItem.Instock = updateItem.Instock - 1;

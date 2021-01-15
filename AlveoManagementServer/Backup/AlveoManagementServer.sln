@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlveoManagementServer", "AlveoManagementServer\AlveoManagementServer.csproj", "{8DB587F4-1C54-46E5-A0AB-0C92710F4461}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlveoManagementCommon", "AlveoManagementCommon\AlveoManagementCommon.csproj", "{65B85341-06CB-4492-B1E9-E5B4EA82E4C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C9FE0BCA-EB11-45AA-A877-C76D1D91CD76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleSheets", "GoogleSheets\GoogleSheets.csproj", "{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBProviders", "DBProviders", "{4127BB60-027A-4470-BDB5-3824F219947B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteProvider", "SQLiteProvider\SQLiteProvider.csproj", "{F63D4890-D67C-4D2E-A4FB-0E16AC4891D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBProviderBase", "DBProviderBase\DBProviderBase.csproj", "{3A6C2366-96B8-44D4-9B59-FED9EEB5D250}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DB587F4-1C54-46E5-A0AB-0C92710F4461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DB587F4-1C54-46E5-A0AB-0C92710F4461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DB587F4-1C54-46E5-A0AB-0C92710F4461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DB587F4-1C54-46E5-A0AB-0C92710F4461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65B85341-06CB-4492-B1E9-E5B4EA82E4C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B85341-06CB-4492-B1E9-E5B4EA82E4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B85341-06CB-4492-B1E9-E5B4EA82E4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B85341-06CB-4492-B1E9-E5B4EA82E4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F63D4890-D67C-4D2E-A4FB-0E16AC4891D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F63D4890-D67C-4D2E-A4FB-0E16AC4891D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F63D4890-D67C-4D2E-A4FB-0E16AC4891D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F63D4890-D67C-4D2E-A4FB-0E16AC4891D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A6C2366-96B8-44D4-9B59-FED9EEB5D250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A6C2366-96B8-44D4-9B59-FED9EEB5D250}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A6C2366-96B8-44D4-9B59-FED9EEB5D250}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A6C2366-96B8-44D4-9B59-FED9EEB5D250}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{854165FE-FC32-499A-ADE3-6BEF1BABC1A1} = {C9FE0BCA-EB11-45AA-A877-C76D1D91CD76}
+		{F63D4890-D67C-4D2E-A4FB-0E16AC4891D4} = {4127BB60-027A-4470-BDB5-3824F219947B}
+		{3A6C2366-96B8-44D4-9B59-FED9EEB5D250} = {4127BB60-027A-4470-BDB5-3824F219947B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C029D623-904E-4D06-A8E7-349FFCB69660}
+	EndGlobalSection
+EndGlobal

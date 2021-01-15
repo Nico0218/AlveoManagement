@@ -25,9 +25,7 @@ import { PersonnelComponent } from './components/personnel/personnel.component';
 import { PersonnelGanttComponent } from './components/personnel_gantt/personnel.gantt.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { PropertiesComponent } from './components/properties/properties.component';
-import { QRCodeGenComponent } from './components/qr-code-generator/qr-code-gen.component';
 import { QuoteComponent } from './components/quote/quote.component';
-import { ScannerComponent } from './components/scanner/scanner.component';
 import { VpnComponent } from "./components/vpn_passwords/vpn.component";
 import { ConfigService } from './services/config.service';
 import { CustomerService } from './services/customers.service';
@@ -36,7 +34,6 @@ import { InventoryService } from './services/inventory.service';
 import { PersonnelService } from './services/personnel.service';
 import { ProjectService } from './services/project.service';
 import { QuoteService } from './services/quote.service';
-import { ScannerService} from './services/scanner.service';
 
 @NgModule({
   declarations: [
@@ -46,9 +43,7 @@ import { ScannerService} from './services/scanner.service';
     InventoryComponent,
     ProjectsComponent,
     PersonnelComponent,
-    ScannerComponent,
     OrdersComponent,
-    QRCodeGenComponent,
     LoginComponent,
     QuoteComponent,
     VpnComponent,
@@ -86,7 +81,6 @@ import { ScannerService} from './services/scanner.service';
     GanttService,
     PersonnelService,
     CustomerService,
-    ScannerService,
     QuoteService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

@@ -9,9 +9,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { PersonnelComponent } from './components/personnel/personnel.component';
 import { PersonnelGanttComponent } from './components/personnel_gantt/personnel.gantt.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { QRCodeGenComponent } from './components/qr-code-generator/qr-code-gen.component';
 import { QuoteComponent } from './components/quote/quote.component';
-import { ScannerComponent } from './components/scanner/scanner.component';
 import { VpnComponent } from './components/vpn_passwords/vpn.component';
 
 const routes: Routes = [
@@ -21,10 +19,8 @@ const routes: Routes = [
     { path: 'inventory-component', component: InventoryComponent, canActivate: [AuthGuard]  },
     { path: 'projects-component', component: ProjectsComponent, canActivate: [AuthGuard]  },
     { path: 'personnel-component', component: PersonnelComponent, canActivate: [AuthGuard]  },
-    { path: 'scanner-component', component: ScannerComponent, canActivate: [AuthGuard]  },
     { path: 'orders-component', component: OrdersComponent, canActivate: [AuthGuard]  },
     { path: 'invoice-component', component: InvoiceComponent, canActivate: [AuthGuard]  },
-    { path: 'qr-code-component', component: QRCodeGenComponent, canActivate: [AuthGuard]  },
     { path: 'quote-component', component: QuoteComponent, canActivate: [AuthGuard]  },
     { path: 'vpn-component' , component: VpnComponent, canActivate: [AuthGuard] },
     { path: 'personnel.gantt-component' , component: PersonnelGanttComponent, canActivate: [AuthGuard] }

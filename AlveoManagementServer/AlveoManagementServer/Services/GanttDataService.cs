@@ -51,6 +51,33 @@ namespace AlveoManagementServer.Services {
             dataService.InsertObjectData(newProject);
         }
 
+        public void DeleteProject(Project project)
+        {
+            
+        }
+
+        public void UpdateProject(Project project)
+        {
+
+            logger.LogDebug("removing item from stock");
+            List<Project> currentProjects = dataService.GetObjectData<Project>();
+            var updateItem = currentProjects.Find(ii => ii.Number == project.Number);
+            updateItem.ID = project.ID;
+            updateItem.Name = project.Name;
+            updateItem.StartDate = project.StartDate;
+            updateItem.EndDate = project.EndDate;
+            updateItem.Duration = project.Duration;
+            updateItem.Progress = project.Progress;
+            updateItem.Parent = project.Parent;
+            updateItem.Color = project.Color;
+            updateItem.Type = project.Type;
+            updateItem.Personnel = project.Personnel;
+            updateItem.Leader = project.Leader;
+            updateItem.Number = project.Number;
+            dataService.UpdateObjectData(updateItem);
+
+        }
+
         public void SaveTask(Task task)
         {
             List<GanttData> currentData = GetAllGanttData();

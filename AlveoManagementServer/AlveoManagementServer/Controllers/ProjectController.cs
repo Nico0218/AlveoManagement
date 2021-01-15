@@ -35,6 +35,14 @@ namespace AlveoManagementServer.Controllers
             return new ObjectResult("true");
         }
 
+        [HttpPost("UpdateProject")]
+        public ActionResult UpdateProject(Project project)
+        {
+            logger.LogInformation("Updating project");
+            ganttDataService.UpdateProject(project);
+            return new ObjectResult("true");
+        }
+
         [HttpPost("SaveTask")]
         public ActionResult SaveTask(Task task)
         {

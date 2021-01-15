@@ -34,6 +34,11 @@ export class ProjectService {
       return this.httpClient.post(`${this.controllerURL}/SaveProject`, project)
     }
 
+    UpdateProject(project:Projects): Observable<any> {
+      debugger;
+      return this.httpClient.post(`${this.controllerURL}/UpdateProject`, project)
+    }
+
     SaveTask(task:Tasks): Observable<any> {
       return this.httpClient.post(`${this.controllerURL}/SaveTask`, task)
     }
