@@ -58,28 +58,35 @@ export class GanttComponent implements OnInit, AfterViewInit {
 		});
 
 		gantt.gantt.attachEvent("onAfterTaskUpdate", (id, item) => {
-			const diffDays = (date, otherDate) => ((otherDate - date) / (1000 * 60 * 60 * 24));
-
-			var Project = new Projects();
-			Project.ID = item.id;
-			Project.StartDate = this.CleanupDate(item.start_date);
-			Project.EndDate = this.CleanupDate(item.end_date);
-			Project.Number = item.ProjectNumber;
-			Project.Name = item.text;
-			Project.Progress = 0.0;
-			Project.Duration = diffDays(new Date(item.start_date), new Date(item.end_date));
-			Project.Parent = item.Parent;
-			Project.Color = item.color;
-			Project.Type = item.Type;
-			Project.Personnel = "N/A";
-			Project.Leader = item.ProjectLeader;
-
+			var Project = this.convertGanttItemToProject(item);
 			this.projectService.UpdateProject(Project).pipe(first()).subscribe();
 		});
 
-		gantt.gantt.attachEvent("onAfterTaskDelete", function (id, item) {
-			console.log("Task Deleted");
+		gantt.gantt.attachEvent("onAfterTaskDelete", (id, item) => {
+			var Project = this.convertGanttItemToProject(item);
+			this.projectService.DeleteProject(Project).pipe(first()).subscribe();
 		});
+	}
+
+	private convertGanttItemToProject(item: any): Projects {
+		var Project = new Projects();
+		Project.ID = item.id;
+		Project.StartDate = this.CleanupDate(item.start_date);
+		Project.EndDate = this.CleanupDate(item.end_date);
+		Project.Number = item.ProjectNumber;
+		Project.Name = item.text;
+		Project.Progress = item.progress;
+		Project.Duration = this.diffDays(new Date(item.start_date), new Date(item.end_date));
+		Project.Parent = item.parent?.toString();
+		Project.Color = item.color;
+		Project.Type = item.gantttype;
+		Project.Personnel = "N/A";
+		Project.Leader = item.ProjectLeader;
+		return Project;
+	}
+
+	private diffDays(startDate: any, endDate: any): number {
+		return (endDate - startDate) / (1000 * 60 * 60 * 24);
 	}
 
 	//sets gantt styling and layout
